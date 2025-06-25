@@ -134,11 +134,13 @@
                     <div class="guide-main">
                         
                         <!-- Guide Introduction -->
-                        <section class="guide-introduction" style="margin-bottom: 4rem;">
-                            <div style="background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); line-height: 1.8; font-size: 1.1rem;">
-                                <?php the_content(); ?>
-                            </div>
-                        </section>
+                        <?php if (get_the_content() && trim(get_the_content()) !== '') : ?>
+                            <section class="guide-introduction" style="margin-bottom: 4rem;">
+                                <div style="background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); line-height: 1.8; font-size: 1.1rem;">
+                                    <?php the_content(); ?>
+                                </div>
+                            </section>
+                        <?php endif; ?>
 
                         <!-- Guide Sections -->
                         <?php if ($guide_sections && !empty($guide_sections)) : ?>
