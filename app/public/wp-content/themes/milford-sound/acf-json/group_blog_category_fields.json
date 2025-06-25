@@ -1,0 +1,609 @@
+{
+    "key": "group_blog_category_fields",
+    "title": "Blog Category Settings",
+    "fields": [
+        {
+            "key": "field_category_header",
+            "label": "Category Header",
+            "name": "category_header",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Customize the header for this category",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_category_icon",
+                    "label": "Category Icon",
+                    "name": "category_icon",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Emoji or icon for this category",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "📝",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_category_color",
+                    "label": "Category Color",
+                    "name": "category_color",
+                    "aria-label": "",
+                    "type": "color_picker",
+                    "instructions": "Primary color for this category",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "#2dd4bf",
+                    "enable_opacity": false,
+                    "return_format": "string"
+                },
+                {
+                    "key": "field_category_background_image",
+                    "label": "Header Background Image",
+                    "name": "category_background_image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "Background image for category header",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "min_width": 0,
+                    "min_height": 0,
+                    "min_size": 0,
+                    "max_width": 0,
+                    "max_height": 0,
+                    "max_size": 0,
+                    "mime_types": ""
+                },
+                {
+                    "key": "field_category_subtitle",
+                    "label": "Category Subtitle",
+                    "name": "category_subtitle",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Subtitle text displayed under category name",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_category_description_extended",
+                    "label": "Extended Description",
+                    "name": "category_description_extended",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Detailed description for this category",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 4,
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": ""
+                }
+            ],
+            "layout": "block"
+        },
+        {
+            "key": "field_category_layout",
+            "label": "Category Layout Settings",
+            "name": "category_layout",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Customize how posts are displayed in this category",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_posts_layout",
+                    "label": "Posts Layout",
+                    "name": "posts_layout",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "Choose layout for category posts",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "grid": "Grid Layout",
+                        "list": "List Layout",
+                        "masonry": "Masonry Layout",
+                        "featured_first": "Featured First",
+                        "magazine": "Magazine Style"
+                    },
+                    "default_value": "grid",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_posts_per_page",
+                    "label": "Posts Per Page",
+                    "name": "posts_per_page",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "Number of posts to show per page",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 9,
+                    "min": 3,
+                    "max": 24,
+                    "step": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_show_sidebar",
+                    "label": "Show Sidebar",
+                    "name": "show_sidebar",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Display sidebar on category pages",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 1,
+                    "ui": 1,
+                    "message": "",
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_show_filters",
+                    "label": "Show Category Filters",
+                    "name": "show_filters",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Display category filter buttons",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 1,
+                    "ui": 1,
+                    "message": "",
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                }
+            ],
+            "layout": "block"
+        },
+        {
+            "key": "field_category_features",
+            "label": "Category Features",
+            "name": "category_features",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Key features or highlights for this category",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "min": 0,
+            "max": 6,
+            "layout": "table",
+            "rows_per_page": 20,
+            "button_label": "Add Row",
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_feature_icon",
+                    "label": "Feature Icon",
+                    "name": "feature_icon",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Emoji or icon",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_category_features"
+                },
+                {
+                    "key": "field_feature_title",
+                    "label": "Feature Title",
+                    "name": "feature_title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_category_features"
+                },
+                {
+                    "key": "field_feature_description",
+                    "label": "Feature Description",
+                    "name": "feature_description",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_category_features"
+                }
+            ]
+        },
+        {
+            "key": "field_category_cta",
+            "label": "Category Call to Action",
+            "name": "category_cta",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Custom CTA section for this category",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_cta_enabled",
+                    "label": "Enable CTA Section",
+                    "name": "cta_enabled",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 0,
+                    "ui": 1,
+                    "message": "",
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_cta_title",
+                    "label": "CTA Title",
+                    "name": "cta_title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_cta_enabled",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_cta_description",
+                    "label": "CTA Description",
+                    "name": "cta_description",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_cta_enabled",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_cta_buttons",
+                    "label": "CTA Buttons",
+                    "name": "cta_buttons",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_cta_enabled",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 1,
+                    "max": 2,
+                    "layout": "table",
+                    "rows_per_page": 20,
+                    "button_label": "Add Row",
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_button_text",
+                            "label": "Button Text",
+                            "name": "button_text",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_cta_buttons"
+                        },
+                        {
+                            "key": "field_button_link",
+                            "label": "Button Link",
+                            "name": "button_link",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "parent_repeater": "field_cta_buttons"
+                        },
+                        {
+                            "key": "field_button_style",
+                            "label": "Button Style",
+                            "name": "button_style",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "primary": "Primary",
+                                "secondary": "Secondary"
+                            },
+                            "default_value": "primary",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "return_format": "value",
+                            "parent_repeater": "field_cta_buttons"
+                        }
+                    ]
+                }
+            ],
+            "layout": "block"
+        },
+        {
+            "key": "field_category_seo",
+            "label": "SEO Settings",
+            "name": "category_seo",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "SEO optimization for this category",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_meta_title",
+                    "label": "Meta Title",
+                    "name": "meta_title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Custom meta title (leave blank for auto-generated)",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_meta_description",
+                    "label": "Meta Description",
+                    "name": "meta_description",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Meta description for search engines",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "maxlength": 160,
+                    "default_value": "",
+                    "new_lines": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_featured_snippets",
+                    "label": "Featured Snippets Content",
+                    "name": "featured_snippets",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Content optimized for featured snippets",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 4,
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": ""
+                }
+            ],
+            "layout": "block"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "category"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "Custom fields for blog categories including layout, styling, and content options",
+    "show_in_rest": false,
+    "modified": 1750799237
+}

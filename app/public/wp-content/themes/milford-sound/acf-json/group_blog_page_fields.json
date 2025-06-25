@@ -1,0 +1,405 @@
+{
+    "key": "group_blog_page_fields",
+    "title": "Blog Page Settings",
+    "fields": [
+        {
+            "key": "field_blog_hero_section",
+            "label": "Blog Hero Section",
+            "name": "blog_hero",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Customize the blog page header section",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_blog_badge_text",
+                    "label": "Badge Text",
+                    "name": "badge_text",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Small badge text above the title",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Latest Updates",
+                    "placeholder": "e.g., Latest Updates, Blog",
+                    "maxlength": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_blog_title",
+                    "label": "Main Title",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Main blog page title",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Milford Sound Blog",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_blog_title_highlight",
+                    "label": "Title Highlight Word",
+                    "name": "title_highlight",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Word to highlight in different color",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Blog",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_blog_description",
+                    "label": "Description",
+                    "name": "description",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Blog page description text",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Discover insider tips, travel guides, and the latest news from New Zealand's most spectacular natural wonder.",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "new_lines": ""
+                },
+                {
+                    "key": "field_blog_background_image",
+                    "label": "Background Image",
+                    "name": "background_image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "Optional background image for hero section",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": ""
+                },
+                {
+                    "key": "field_blog_background_video",
+                    "label": "Background Video",
+                    "name": "background_video",
+                    "aria-label": "",
+                    "type": "url",
+                    "instructions": "YouTube URL or direct video file for background",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "https:\/\/www.youtube.com\/watch?v=..."
+                }
+            ]
+        },
+        {
+            "key": "field_blog_settings",
+            "label": "Blog Display Settings",
+            "name": "blog_settings",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Configure how blog posts are displayed",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_posts_per_page",
+                    "label": "Posts Per Page",
+                    "name": "posts_per_page",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "Number of blog posts to show per page",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 6,
+                    "placeholder": "",
+                    "min": 1,
+                    "max": 20,
+                    "step": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_show_featured_post",
+                    "label": "Show Featured Post",
+                    "name": "show_featured_post",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Display the first post as a large featured post",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 1,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_blog_layout",
+                    "label": "Blog Layout",
+                    "name": "layout",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "Choose blog page layout",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "sidebar": "With Sidebar",
+                        "full_width": "Full Width",
+                        "grid": "Grid Layout"
+                    },
+                    "default_value": "sidebar",
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": "",
+                    "allow_null": 0
+                }
+            ]
+        },
+        {
+            "key": "field_blog_sidebar",
+            "label": "Sidebar Settings",
+            "name": "sidebar_settings",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Customize the blog sidebar content",
+            "required": false,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_blog_layout",
+                        "operator": "==",
+                        "value": "sidebar"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_newsletter_title",
+                    "label": "Newsletter Section Title",
+                    "name": "newsletter_title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Title for newsletter signup section",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Stay Updated",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_newsletter_description",
+                    "label": "Newsletter Description",
+                    "name": "newsletter_description",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Description text for newsletter signup",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Get the latest blog posts and travel tips delivered to your inbox.",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_show_recent_posts",
+                    "label": "Show Recent Posts",
+                    "name": "show_recent_posts",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Display recent posts widget in sidebar",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 1,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_recent_posts_count",
+                    "label": "Recent Posts Count",
+                    "name": "recent_posts_count",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "Number of recent posts to show",
+                    "required": false,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_show_recent_posts",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 5,
+                    "placeholder": "",
+                    "min": 1,
+                    "max": 10,
+                    "step": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_show_categories",
+                    "label": "Show Categories",
+                    "name": "show_categories",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Display categories widget in sidebar",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 1,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-blog.php"
+            }
+        ],
+        [
+            {
+                "param": "page",
+                "operator": "==",
+                "value": "5"
+            }
+        ],
+        [
+            {
+                "param": "page",
+                "operator": "==",
+                "value": "58"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content",
+        "custom_fields"
+    ],
+    "active": true,
+    "description": "Customization fields for the blog page including hero section, layout settings, and sidebar options",
+    "show_in_rest": false,
+    "modified": 1750834317
+}

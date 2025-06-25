@@ -1,0 +1,1244 @@
+{
+    "key": "group_tour_post_type",
+    "title": "Tour Details",
+    "fields": [
+        {
+            "key": "field_tour_overview",
+            "label": "Tour Overview",
+            "name": "tour_overview",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Basic tour information and pricing",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_tour_price",
+                    "label": "Tour Price",
+                    "name": "tour_price",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "e.g., From $89 per person",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_tour_duration",
+                    "label": "Duration",
+                    "name": "tour_duration",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "e.g., 2 hours, Half day, Full day",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_tour_group_size",
+                    "label": "Group Size",
+                    "name": "tour_group_size",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "e.g., Max 12 people, Small groups",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_tour_difficulty",
+                    "label": "Difficulty Level",
+                    "name": "tour_difficulty",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "Physical difficulty level",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "easy": "Easy - Suitable for all ages",
+                        "moderate": "Moderate - Some physical activity",
+                        "challenging": "Challenging - Good fitness required",
+                        "extreme": "Extreme - Excellent fitness required"
+                    },
+                    "default_value": "easy",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_tour_availability",
+                    "label": "Availability",
+                    "name": "tour_availability",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "When is this tour available?",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "year_round": "Year Round",
+                        "seasonal": "Seasonal",
+                        "summer_only": "Summer Only (Oct-Apr)",
+                        "winter_only": "Winter Only (May-Sep)",
+                        "on_demand": "On Demand"
+                    },
+                    "default_value": "year_round",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "return_format": "value"
+                }
+            ],
+            "layout": "block"
+        },
+        {
+            "key": "field_tour_gallery",
+            "label": "Tour Gallery",
+            "name": "tour_gallery",
+            "aria-label": "",
+            "type": "gallery",
+            "instructions": "Upload images showcasing this tour",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min": 3,
+            "max": 15,
+            "insert": "append",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_tour_highlights",
+            "label": "Tour Highlights",
+            "name": "tour_highlights",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Key highlights and features of this tour",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "min": 3,
+            "max": 8,
+            "layout": "table",
+            "rows_per_page": 20,
+            "button_label": "Add Row",
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_highlight_icon",
+                    "label": "Highlight Icon",
+                    "name": "highlight_icon",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Emoji or icon",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "⭐",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_tour_highlights"
+                },
+                {
+                    "key": "field_highlight_title",
+                    "label": "Highlight Title",
+                    "name": "highlight_title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_tour_highlights"
+                },
+                {
+                    "key": "field_highlight_description",
+                    "label": "Highlight Description",
+                    "name": "highlight_description",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 2,
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "parent_repeater": "field_tour_highlights"
+                }
+            ]
+        },
+        {
+            "key": "field_tour_itinerary",
+            "label": "Tour Itinerary",
+            "name": "tour_itinerary",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Detailed tour schedule and activities",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "min": 2,
+            "max": 12,
+            "layout": "row",
+            "rows_per_page": 20,
+            "button_label": "Add Row",
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_itinerary_time",
+                    "label": "Time",
+                    "name": "itinerary_time",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "e.g., 9:00 AM, Morning, Duration: 30 min",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_tour_itinerary"
+                },
+                {
+                    "key": "field_itinerary_activity",
+                    "label": "Activity",
+                    "name": "itinerary_activity",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_tour_itinerary"
+                },
+                {
+                    "key": "field_itinerary_description",
+                    "label": "Description",
+                    "name": "itinerary_description",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "parent_repeater": "field_tour_itinerary"
+                },
+                {
+                    "key": "field_itinerary_location",
+                    "label": "Location",
+                    "name": "itinerary_location",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Specific location for this activity",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_tour_itinerary"
+                }
+            ]
+        },
+        {
+            "key": "field_tour_inclusions",
+            "label": "What's Included",
+            "name": "tour_inclusions",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "What's included in the tour price",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "min": 1,
+            "max": 15,
+            "layout": "table",
+            "rows_per_page": 20,
+            "button_label": "Add Row",
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_inclusion_icon",
+                    "label": "Icon",
+                    "name": "inclusion_icon",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "✓",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_tour_inclusions"
+                },
+                {
+                    "key": "field_inclusion_item",
+                    "label": "Included Item",
+                    "name": "inclusion_item",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_tour_inclusions"
+                }
+            ]
+        },
+        {
+            "key": "field_tour_exclusions",
+            "label": "What's Not Included",
+            "name": "tour_exclusions",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "What's not included (optional)",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "min": 0,
+            "max": 10,
+            "layout": "table",
+            "rows_per_page": 20,
+            "button_label": "Add Row",
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_exclusion_icon",
+                    "label": "Icon",
+                    "name": "exclusion_icon",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "✗",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_tour_exclusions"
+                },
+                {
+                    "key": "field_exclusion_item",
+                    "label": "Excluded Item",
+                    "name": "exclusion_item",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_tour_exclusions"
+                }
+            ]
+        },
+        {
+            "key": "field_tour_requirements",
+            "label": "Requirements & Recommendations",
+            "name": "tour_requirements",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Important information for tour participants",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_age_restrictions",
+                    "label": "Age Restrictions",
+                    "name": "age_restrictions",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "e.g., Minimum age 12, All ages welcome",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_fitness_level",
+                    "label": "Fitness Level Required",
+                    "name": "fitness_level",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Describe fitness requirements",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 2,
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_what_to_bring",
+                    "label": "What to Bring",
+                    "name": "what_to_bring",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 0,
+                    "max": 10,
+                    "layout": "table",
+                    "rows_per_page": 20,
+                    "button_label": "Add Row",
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_bring_item",
+                            "label": "Item",
+                            "name": "bring_item",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_what_to_bring"
+                        }
+                    ]
+                },
+                {
+                    "key": "field_what_to_wear",
+                    "label": "What to Wear",
+                    "name": "what_to_wear",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Clothing recommendations",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": ""
+                }
+            ],
+            "layout": "block"
+        },
+        {
+            "key": "field_tour_booking",
+            "label": "Booking Information",
+            "name": "tour_booking",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Booking policies and procedures",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_booking_advance_notice",
+                    "label": "Advance Booking Required",
+                    "name": "booking_advance_notice",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "e.g., 24 hours, 1 week",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "24 hours",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_cancellation_policy",
+                    "label": "Cancellation Policy",
+                    "name": "cancellation_policy",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Cancellation terms and conditions",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 4,
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_payment_options",
+                    "label": "Payment Options",
+                    "name": "payment_options",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "credit_card": "Credit Card",
+                        "cash": "Cash",
+                        "bank_transfer": "Bank Transfer",
+                        "paypal": "PayPal",
+                        "eftpos": "EFTPOS"
+                    },
+                    "layout": "vertical",
+                    "default_value": [],
+                    "allow_custom": 0,
+                    "save_custom": 0,
+                    "toggle": 0,
+                    "return_format": "value",
+                    "custom_choice_button_text": "Add new choice"
+                },
+                {
+                    "key": "field_booking_link",
+                    "label": "Booking Link",
+                    "name": "booking_link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "Direct link to booking system",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array"
+                }
+            ],
+            "layout": "block"
+        },
+        {
+            "key": "field_tour_location",
+            "label": "Tour Location Details",
+            "name": "tour_location",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Location and meeting point information",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_meeting_point",
+                    "label": "Meeting Point",
+                    "name": "meeting_point",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Where participants should meet",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_meeting_address",
+                    "label": "Meeting Address",
+                    "name": "meeting_address",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Full address with directions",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_gps_coordinates",
+                    "label": "GPS Coordinates",
+                    "name": "gps_coordinates",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Latitude, Longitude for GPS navigation",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_parking_info",
+                    "label": "Parking Information",
+                    "name": "parking_info",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Parking availability and costs",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 2,
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_transport_options",
+                    "label": "Transport Options",
+                    "name": "transport_options",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 0,
+                    "max": 5,
+                    "layout": "table",
+                    "rows_per_page": 20,
+                    "button_label": "Add Row",
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_transport_type",
+                            "label": "Transport Type",
+                            "name": "transport_type",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "bus": "Bus",
+                                "coach": "Coach",
+                                "car": "Private Car",
+                                "helicopter": "Helicopter",
+                                "boat": "Boat",
+                                "walking": "Walking"
+                            },
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "default_value": false,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "return_format": "value",
+                            "parent_repeater": "field_transport_options"
+                        },
+                        {
+                            "key": "field_transport_description",
+                            "label": "Description",
+                            "name": "transport_description",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_transport_options"
+                        },
+                        {
+                            "key": "field_transport_cost",
+                            "label": "Additional Cost",
+                            "name": "transport_cost",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "Leave blank if included",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_transport_options"
+                        }
+                    ]
+                }
+            ],
+            "layout": "block"
+        },
+        {
+            "key": "field_tour_reviews",
+            "label": "Customer Reviews",
+            "name": "tour_reviews",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Review and rating information",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_average_rating",
+                    "label": "Average Rating",
+                    "name": "average_rating",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "Rating out of 5",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 1,
+                    "max": 5,
+                    "step": 0.10000000000000001,
+                    "default_value": 4.5,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_total_reviews",
+                    "label": "Total Reviews",
+                    "name": "total_reviews",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "Number of reviews",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 0,
+                    "default_value": 0,
+                    "max": "",
+                    "step": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_featured_reviews",
+                    "label": "Featured Reviews",
+                    "name": "featured_reviews",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "Highlight best customer reviews",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 0,
+                    "max": 6,
+                    "layout": "row",
+                    "rows_per_page": 20,
+                    "button_label": "Add Row",
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_review_rating",
+                            "label": "Rating",
+                            "name": "review_rating",
+                            "aria-label": "",
+                            "type": "number",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "min": 1,
+                            "max": 5,
+                            "default_value": "",
+                            "step": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_featured_reviews"
+                        },
+                        {
+                            "key": "field_review_text",
+                            "label": "Review Text",
+                            "name": "review_text",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "rows": 4,
+                            "default_value": "",
+                            "new_lines": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "parent_repeater": "field_featured_reviews"
+                        },
+                        {
+                            "key": "field_reviewer_name",
+                            "label": "Reviewer Name",
+                            "name": "reviewer_name",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_featured_reviews"
+                        },
+                        {
+                            "key": "field_reviewer_location",
+                            "label": "Reviewer Location",
+                            "name": "reviewer_location",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "e.g., Auckland, New Zealand",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_featured_reviews"
+                        },
+                        {
+                            "key": "field_review_date",
+                            "label": "Review Date",
+                            "name": "review_date",
+                            "aria-label": "",
+                            "type": "date_picker",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "display_format": "d\/m\/Y",
+                            "return_format": "d\/m\/Y",
+                            "first_day": 1,
+                            "parent_repeater": "field_featured_reviews"
+                        }
+                    ]
+                }
+            ],
+            "layout": "block"
+        },
+        {
+            "key": "field_tour_operator",
+            "label": "Tour Operator Information",
+            "name": "tour_operator",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Information about the tour operator",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_operator_name",
+                    "label": "Operator Name",
+                    "name": "operator_name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Milford Sound Tours",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_operator_license",
+                    "label": "License\/Certification",
+                    "name": "operator_license",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Tourism operator license number",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_insurance_covered",
+                    "label": "Insurance Coverage",
+                    "name": "insurance_covered",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Is this tour covered by insurance?",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 1,
+                    "ui": 1,
+                    "message": "",
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_safety_certifications",
+                    "label": "Safety Certifications",
+                    "name": "safety_certifications",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 0,
+                    "max": 5,
+                    "layout": "table",
+                    "rows_per_page": 20,
+                    "button_label": "Add Row",
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_certification_name",
+                            "label": "Certification",
+                            "name": "certification_name",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_safety_certifications"
+                        }
+                    ]
+                }
+            ],
+            "layout": "block"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "tours"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "custom_fields"
+    ],
+    "active": true,
+    "description": "Comprehensive tour information including pricing, itinerary, booking details, and customer reviews",
+    "show_in_rest": false,
+    "modified": 1750799238
+}

@@ -1,0 +1,861 @@
+{
+    "key": "group_blog_post_fields",
+    "title": "Blog Post Enhanced Fields",
+    "fields": [
+        {
+            "key": "field_blog_post_settings",
+            "label": "Post Settings",
+            "name": "post_settings",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Additional settings for this blog post",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_featured_post",
+                    "label": "Featured Post",
+                    "name": "featured_post",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Mark this post as featured",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 0,
+                    "ui": 1,
+                    "message": "",
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_post_layout",
+                    "label": "Post Layout",
+                    "name": "post_layout",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "Choose the layout for this post",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "standard": "Standard Layout",
+                        "large_featured": "Large Featured Image",
+                        "gallery": "Gallery Post",
+                        "video": "Video Post",
+                        "minimal": "Minimal Layout"
+                    },
+                    "default_value": "standard",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_reading_time_override",
+                    "label": "Reading Time Override",
+                    "name": "reading_time_override",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "Override auto-calculated reading time (minutes)",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 1,
+                    "max": 60,
+                    "default_value": "",
+                    "step": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_post_difficulty",
+                    "label": "Content Difficulty",
+                    "name": "post_difficulty",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "Content difficulty level",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "beginner": "Beginner",
+                        "intermediate": "Intermediate",
+                        "advanced": "Advanced",
+                        "expert": "Expert"
+                    },
+                    "default_value": "beginner",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "return_format": "value"
+                }
+            ],
+            "layout": "block"
+        },
+        {
+            "key": "field_post_hero",
+            "label": "Post Hero Section",
+            "name": "post_hero",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Custom hero section for this post",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_hero_background_image",
+                    "label": "Hero Background Image",
+                    "name": "hero_background_image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "Large background image for post header",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "min_width": 0,
+                    "min_height": 0,
+                    "min_size": 0,
+                    "max_width": 0,
+                    "max_height": 0,
+                    "max_size": 0,
+                    "mime_types": ""
+                },
+                {
+                    "key": "field_hero_overlay_color",
+                    "label": "Hero Overlay Color",
+                    "name": "hero_overlay_color",
+                    "aria-label": "",
+                    "type": "color_picker",
+                    "instructions": "Overlay color for better text readability",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "rgba(30, 64, 175, 0.8)",
+                    "enable_opacity": false,
+                    "return_format": "string"
+                },
+                {
+                    "key": "field_custom_excerpt",
+                    "label": "Custom Excerpt",
+                    "name": "custom_excerpt",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Custom excerpt for this post (overrides auto-generated)",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": ""
+                }
+            ],
+            "layout": "block"
+        },
+        {
+            "key": "field_post_gallery",
+            "label": "Post Gallery",
+            "name": "post_gallery",
+            "aria-label": "",
+            "type": "gallery",
+            "instructions": "Image gallery for this post",
+            "required": false,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_post_layout",
+                        "operator": "==",
+                        "value": "gallery"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min": "",
+            "max": 20,
+            "insert": "append",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_post_video",
+            "label": "Video Content",
+            "name": "post_video",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Video content for this post",
+            "required": false,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_post_layout",
+                        "operator": "==",
+                        "value": "video"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_video_url",
+                    "label": "Video URL",
+                    "name": "video_url",
+                    "aria-label": "",
+                    "type": "url",
+                    "instructions": "YouTube, Vimeo, or direct video URL",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_video_thumbnail",
+                    "label": "Video Thumbnail",
+                    "name": "video_thumbnail",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "Custom thumbnail for video",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "min_width": 0,
+                    "min_height": 0,
+                    "min_size": 0,
+                    "max_width": 0,
+                    "max_height": 0,
+                    "max_size": 0,
+                    "mime_types": ""
+                },
+                {
+                    "key": "field_video_duration",
+                    "label": "Video Duration",
+                    "name": "video_duration",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "e.g., 5:30",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placeholder": "0:00",
+                    "default_value": "",
+                    "maxlength": "",
+                    "prepend": "",
+                    "append": ""
+                }
+            ],
+            "layout": "block"
+        },
+        {
+            "key": "field_post_location",
+            "label": "Location Information",
+            "name": "post_location",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Location details for travel posts",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_location_name",
+                    "label": "Location Name",
+                    "name": "location_name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Name of the location featured in this post",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_location_coordinates",
+                    "label": "GPS Coordinates",
+                    "name": "location_coordinates",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Latitude, Longitude (e.g., -44.6456, 167.9188)",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_location_map",
+                    "label": "Show Map",
+                    "name": "show_map",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Display location map in post",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 0,
+                    "ui": 1,
+                    "message": "",
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_best_time_visit",
+                    "label": "Best Time to Visit",
+                    "name": "best_time_visit",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Recommended visiting time\/season",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_difficulty_level",
+                    "label": "Activity Difficulty",
+                    "name": "difficulty_level",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "Physical difficulty level",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "easy": "Easy",
+                        "moderate": "Moderate",
+                        "challenging": "Challenging",
+                        "extreme": "Extreme"
+                    },
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "default_value": false,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "return_format": "value"
+                }
+            ],
+            "layout": "block"
+        },
+        {
+            "key": "field_post_tips",
+            "label": "Travel Tips",
+            "name": "travel_tips",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Add practical tips for visitors",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "min": 0,
+            "max": 10,
+            "layout": "table",
+            "rows_per_page": 20,
+            "button_label": "Add Row",
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_tip_icon",
+                    "label": "Tip Icon",
+                    "name": "tip_icon",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Emoji or icon",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "💡",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_post_tips"
+                },
+                {
+                    "key": "field_tip_title",
+                    "label": "Tip Title",
+                    "name": "tip_title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_post_tips"
+                },
+                {
+                    "key": "field_tip_content",
+                    "label": "Tip Content",
+                    "name": "tip_content",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "parent_repeater": "field_post_tips"
+                }
+            ]
+        },
+        {
+            "key": "field_post_weather",
+            "label": "Weather Information",
+            "name": "weather_info",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Weather conditions when post was written\/location visited",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_weather_date",
+                    "label": "Date",
+                    "name": "weather_date",
+                    "aria-label": "",
+                    "type": "date_picker",
+                    "instructions": "Date of weather\/visit",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "display_format": "d\/m\/Y",
+                    "return_format": "d\/m\/Y",
+                    "first_day": 1
+                },
+                {
+                    "key": "field_temperature",
+                    "label": "Temperature",
+                    "name": "temperature",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Temperature during visit",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_conditions",
+                    "label": "Weather Conditions",
+                    "name": "conditions",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "sunny": "☀️ Sunny",
+                        "partly_cloudy": "⛅ Partly Cloudy",
+                        "cloudy": "☁️ Cloudy",
+                        "rainy": "🌧️ Rainy",
+                        "stormy": "⛈️ Stormy",
+                        "foggy": "🌫️ Foggy",
+                        "snowy": "❄️ Snowy"
+                    },
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "default_value": false,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_visibility",
+                    "label": "Visibility",
+                    "name": "visibility",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "excellent": "Excellent",
+                        "good": "Good",
+                        "fair": "Fair",
+                        "poor": "Poor"
+                    },
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "default_value": false,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "return_format": "value"
+                }
+            ],
+            "layout": "block"
+        },
+        {
+            "key": "field_related_tours",
+            "label": "Related Tours",
+            "name": "related_tours",
+            "aria-label": "",
+            "type": "relationship",
+            "instructions": "Select related tour posts",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "tours"
+            ],
+            "taxonomy": [],
+            "filters": [
+                "search"
+            ],
+            "return_format": "object",
+            "min": 0,
+            "max": 3,
+            "elements": [],
+            "bidirectional_target": []
+        },
+        {
+            "key": "field_post_cta",
+            "label": "Call to Action",
+            "name": "post_cta",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Custom call-to-action for this post",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_cta_enabled",
+                    "label": "Enable Custom CTA",
+                    "name": "cta_enabled",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 0,
+                    "ui": 1,
+                    "message": "",
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_cta_title",
+                    "label": "CTA Title",
+                    "name": "cta_title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_cta_enabled",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_cta_text",
+                    "label": "CTA Text",
+                    "name": "cta_text",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_cta_enabled",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 2,
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_cta_button",
+                    "label": "CTA Button",
+                    "name": "cta_button",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_cta_enabled",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array"
+                },
+                {
+                    "key": "field_cta_style",
+                    "label": "CTA Style",
+                    "name": "cta_style",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_cta_enabled",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "gradient": "Gradient Background",
+                        "bordered": "Bordered Style",
+                        "minimal": "Minimal Style"
+                    },
+                    "default_value": "gradient",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "return_format": "value"
+                }
+            ],
+            "layout": "block"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            },
+            {
+                "param": "page_type",
+                "operator": "!=",
+                "value": "front_page"
+            }
+        ]
+    ],
+    "menu_order": 10,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "custom_fields"
+    ],
+    "active": true,
+    "description": "Enhanced fields for blog posts including location, weather, tips, and custom layouts",
+    "show_in_rest": false,
+    "modified": 1750799237
+}

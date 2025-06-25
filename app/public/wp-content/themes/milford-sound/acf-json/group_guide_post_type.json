@@ -1,0 +1,1330 @@
+{
+    "key": "group_guide_post_type",
+    "title": "Travel Guide Details",
+    "fields": [
+        {
+            "key": "field_guide_overview",
+            "label": "Guide Overview",
+            "name": "guide_overview",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Basic guide information and type",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_guide_type",
+                    "label": "Guide Type",
+                    "name": "guide_type",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "What type of guide is this?",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "planning": "Trip Planning Guide",
+                        "activities": "Activities & Attractions",
+                        "accommodation": "Accommodation Guide",
+                        "transportation": "Transportation Guide",
+                        "dining": "Dining & Food Guide",
+                        "photography": "Photography Guide",
+                        "weather": "Weather & Seasons",
+                        "budget": "Budget Planning",
+                        "family": "Family Travel",
+                        "adventure": "Adventure Guide"
+                    },
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "default_value": false,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_guide_difficulty",
+                    "label": "Guide Complexity",
+                    "name": "guide_difficulty",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "How complex is this information?",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "beginner": "Beginner - First-time visitors",
+                        "intermediate": "Intermediate - Some experience",
+                        "advanced": "Advanced - Experienced travelers",
+                        "expert": "Expert - Detailed specialist info"
+                    },
+                    "default_value": "beginner",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_estimated_reading_time",
+                    "label": "Estimated Reading Time",
+                    "name": "estimated_reading_time",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "Minutes to read this guide",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 1,
+                    "max": 60,
+                    "default_value": 5,
+                    "step": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_last_updated",
+                    "label": "Last Updated",
+                    "name": "last_updated",
+                    "aria-label": "",
+                    "type": "date_picker",
+                    "instructions": "When was this guide last updated?",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "display_format": "F j, Y",
+                    "return_format": "Y-m-d",
+                    "first_day": 1
+                }
+            ],
+            "layout": "block"
+        },
+        {
+            "key": "field_guide_quick_facts",
+            "label": "Quick Facts",
+            "name": "guide_quick_facts",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Key facts and figures for quick reference",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "min": 3,
+            "max": 12,
+            "layout": "table",
+            "rows_per_page": 20,
+            "button_label": "Add Row",
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_fact_icon",
+                    "label": "Fact Icon",
+                    "name": "fact_icon",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Emoji or icon",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "📍",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_guide_quick_facts"
+                },
+                {
+                    "key": "field_fact_label",
+                    "label": "Fact Label",
+                    "name": "fact_label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_guide_quick_facts"
+                },
+                {
+                    "key": "field_fact_value",
+                    "label": "Fact Value",
+                    "name": "fact_value",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_guide_quick_facts"
+                }
+            ]
+        },
+        {
+            "key": "field_guide_sections",
+            "label": "Guide Sections",
+            "name": "guide_sections",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Break your guide into organized sections",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "min": 2,
+            "max": 15,
+            "layout": "row",
+            "rows_per_page": 20,
+            "button_label": "Add Row",
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_section_title",
+                    "label": "Section Title",
+                    "name": "section_title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_guide_sections"
+                },
+                {
+                    "key": "field_section_icon",
+                    "label": "Section Icon",
+                    "name": "section_icon",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Emoji or icon for this section",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_guide_sections"
+                },
+                {
+                    "key": "field_section_content",
+                    "label": "Section Content",
+                    "name": "section_content",
+                    "aria-label": "",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "tabs": "all",
+                    "toolbar": "full",
+                    "media_upload": 1,
+                    "default_value": "",
+                    "delay": 0,
+                    "parent_repeater": "field_guide_sections"
+                },
+                {
+                    "key": "field_section_tips",
+                    "label": "Section Tips",
+                    "name": "section_tips",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 0,
+                    "max": 5,
+                    "layout": "table",
+                    "rows_per_page": 20,
+                    "button_label": "Add Row",
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_tip_type",
+                            "label": "Tip Type",
+                            "name": "tip_type",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "tip": "💡 Tip",
+                                "warning": "⚠️ Warning",
+                                "money": "💰 Money Saver",
+                                "time": "⏰ Time Saver",
+                                "pro": "🔥 Pro Tip"
+                            },
+                            "default_value": "tip",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "return_format": "value",
+                            "parent_repeater": "field_section_tips"
+                        },
+                        {
+                            "key": "field_tip_content",
+                            "label": "Tip Content",
+                            "name": "tip_content",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "rows": 2,
+                            "default_value": "",
+                            "new_lines": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "parent_repeater": "field_section_tips"
+                        }
+                    ],
+                    "parent_repeater": "field_guide_sections"
+                }
+            ]
+        },
+        {
+            "key": "field_guide_checklist",
+            "label": "Travel Checklist",
+            "name": "guide_checklist",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Helpful checklists for travelers",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_before_you_go",
+                    "label": "Before You Go",
+                    "name": "before_you_go",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 0,
+                    "max": 20,
+                    "layout": "table",
+                    "rows_per_page": 20,
+                    "button_label": "Add Row",
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_checklist_item",
+                            "label": "Checklist Item",
+                            "name": "checklist_item",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_before_you_go"
+                        },
+                        {
+                            "key": "field_item_priority",
+                            "label": "Priority",
+                            "name": "item_priority",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "essential": "Essential",
+                                "recommended": "Recommended",
+                                "optional": "Optional"
+                            },
+                            "default_value": "recommended",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "return_format": "value",
+                            "parent_repeater": "field_before_you_go"
+                        }
+                    ]
+                },
+                {
+                    "key": "field_packing_list",
+                    "label": "Packing List",
+                    "name": "packing_list",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 0,
+                    "max": 30,
+                    "layout": "table",
+                    "rows_per_page": 20,
+                    "button_label": "Add Row",
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_packing_item",
+                            "label": "Item",
+                            "name": "packing_item",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_packing_list"
+                        },
+                        {
+                            "key": "field_packing_category",
+                            "label": "Category",
+                            "name": "packing_category",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "clothing": "Clothing",
+                                "electronics": "Electronics",
+                                "toiletries": "Toiletries",
+                                "documents": "Documents",
+                                "equipment": "Equipment",
+                                "medications": "Medications",
+                                "snacks": "Food & Snacks"
+                            },
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "default_value": false,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "return_format": "value",
+                            "parent_repeater": "field_packing_list"
+                        },
+                        {
+                            "key": "field_packing_season",
+                            "label": "Season",
+                            "name": "packing_season",
+                            "aria-label": "",
+                            "type": "checkbox",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "summer": "Summer",
+                                "autumn": "Autumn",
+                                "winter": "Winter",
+                                "spring": "Spring"
+                            },
+                            "layout": "vertical",
+                            "default_value": [],
+                            "allow_custom": 0,
+                            "save_custom": 0,
+                            "toggle": 0,
+                            "return_format": "value",
+                            "custom_choice_button_text": "Add new choice",
+                            "parent_repeater": "field_packing_list"
+                        }
+                    ]
+                }
+            ],
+            "layout": "block"
+        },
+        {
+            "key": "field_guide_costs",
+            "label": "Cost Information",
+            "name": "guide_costs",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Budget and cost breakdown",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_budget_categories",
+                    "label": "Budget Categories",
+                    "name": "budget_categories",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 0,
+                    "max": 10,
+                    "layout": "table",
+                    "rows_per_page": 20,
+                    "button_label": "Add Row",
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_category_name",
+                            "label": "Category",
+                            "name": "category_name",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "e.g., Accommodation, Food, Tours",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_budget_categories"
+                        },
+                        {
+                            "key": "field_budget_range",
+                            "label": "Budget Range",
+                            "name": "budget_range",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "e.g., $50-150 per night",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_budget_categories"
+                        },
+                        {
+                            "key": "field_budget_tips",
+                            "label": "Money-Saving Tips",
+                            "name": "budget_tips",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "rows": 2,
+                            "default_value": "",
+                            "new_lines": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "parent_repeater": "field_budget_categories"
+                        }
+                    ]
+                },
+                {
+                    "key": "field_sample_budgets",
+                    "label": "Sample Daily Budgets",
+                    "name": "sample_budgets",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 0,
+                    "max": 3,
+                    "layout": "table",
+                    "rows_per_page": 20,
+                    "button_label": "Add Row",
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_budget_type",
+                            "label": "Budget Type",
+                            "name": "budget_type",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "backpacker": "Backpacker",
+                                "mid_range": "Mid-Range",
+                                "luxury": "Luxury"
+                            },
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "default_value": false,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "return_format": "value",
+                            "parent_repeater": "field_sample_budgets"
+                        },
+                        {
+                            "key": "field_daily_budget",
+                            "label": "Daily Budget",
+                            "name": "daily_budget",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "e.g., $80-120 per day",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_sample_budgets"
+                        },
+                        {
+                            "key": "field_budget_breakdown",
+                            "label": "What's Included",
+                            "name": "budget_breakdown",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "rows": 3,
+                            "default_value": "",
+                            "new_lines": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "parent_repeater": "field_sample_budgets"
+                        }
+                    ]
+                }
+            ],
+            "layout": "block"
+        },
+        {
+            "key": "field_guide_timing",
+            "label": "Timing & Seasons",
+            "name": "guide_timing",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "When to visit and seasonal information",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_best_time_overall",
+                    "label": "Best Time to Visit",
+                    "name": "best_time_overall",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Overall best time recommendation",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_seasonal_breakdown",
+                    "label": "Seasonal Information",
+                    "name": "seasonal_breakdown",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 0,
+                    "max": 4,
+                    "layout": "table",
+                    "rows_per_page": 20,
+                    "button_label": "Add Row",
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_season_name",
+                            "label": "Season",
+                            "name": "season_name",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "summer": "Summer (Dec-Feb)",
+                                "autumn": "Autumn (Mar-May)",
+                                "winter": "Winter (Jun-Aug)",
+                                "spring": "Spring (Sep-Nov)"
+                            },
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "default_value": false,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "return_format": "value",
+                            "parent_repeater": "field_seasonal_breakdown"
+                        },
+                        {
+                            "key": "field_season_weather",
+                            "label": "Weather",
+                            "name": "season_weather",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "Typical weather conditions",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_seasonal_breakdown"
+                        },
+                        {
+                            "key": "field_season_pros",
+                            "label": "Pros",
+                            "name": "season_pros",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "rows": 2,
+                            "default_value": "",
+                            "new_lines": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "parent_repeater": "field_seasonal_breakdown"
+                        },
+                        {
+                            "key": "field_season_cons",
+                            "label": "Cons",
+                            "name": "season_cons",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "rows": 2,
+                            "default_value": "",
+                            "new_lines": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "parent_repeater": "field_seasonal_breakdown"
+                        },
+                        {
+                            "key": "field_season_activities",
+                            "label": "Best Activities",
+                            "name": "season_activities",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_seasonal_breakdown"
+                        }
+                    ]
+                }
+            ],
+            "layout": "block"
+        },
+        {
+            "key": "field_guide_resources",
+            "label": "Additional Resources",
+            "name": "guide_resources",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Helpful links and resources",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_useful_links",
+                    "label": "Useful Links",
+                    "name": "useful_links",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 0,
+                    "max": 10,
+                    "layout": "table",
+                    "rows_per_page": 20,
+                    "button_label": "Add Row",
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_link_title",
+                            "label": "Link Title",
+                            "name": "link_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_useful_links"
+                        },
+                        {
+                            "key": "field_link_url",
+                            "label": "URL",
+                            "name": "link_url",
+                            "aria-label": "",
+                            "type": "url",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "parent_repeater": "field_useful_links"
+                        },
+                        {
+                            "key": "field_link_description",
+                            "label": "Description",
+                            "name": "link_description",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_useful_links"
+                        }
+                    ]
+                },
+                {
+                    "key": "field_recommended_apps",
+                    "label": "Recommended Apps",
+                    "name": "recommended_apps",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 0,
+                    "max": 8,
+                    "layout": "table",
+                    "rows_per_page": 20,
+                    "button_label": "Add Row",
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_app_name",
+                            "label": "App Name",
+                            "name": "app_name",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_recommended_apps"
+                        },
+                        {
+                            "key": "field_app_purpose",
+                            "label": "Purpose",
+                            "name": "app_purpose",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "What is this app useful for?",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_recommended_apps"
+                        },
+                        {
+                            "key": "field_app_cost",
+                            "label": "Cost",
+                            "name": "app_cost",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "free": "Free",
+                                "paid": "Paid",
+                                "freemium": "Freemium"
+                            },
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "default_value": false,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "return_format": "value",
+                            "parent_repeater": "field_recommended_apps"
+                        }
+                    ]
+                },
+                {
+                    "key": "field_downloadable_resources",
+                    "label": "Downloadable Resources",
+                    "name": "downloadable_resources",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 0,
+                    "max": 5,
+                    "layout": "table",
+                    "rows_per_page": 20,
+                    "button_label": "Add Row",
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_resource_title",
+                            "label": "Resource Title",
+                            "name": "resource_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_downloadable_resources"
+                        },
+                        {
+                            "key": "field_resource_file",
+                            "label": "File",
+                            "name": "resource_file",
+                            "aria-label": "",
+                            "type": "file",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min_size": 0,
+                            "max_size": 0,
+                            "mime_types": "",
+                            "parent_repeater": "field_downloadable_resources"
+                        },
+                        {
+                            "key": "field_resource_description",
+                            "label": "Description",
+                            "name": "resource_description",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "rows": 2,
+                            "default_value": "",
+                            "new_lines": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "parent_repeater": "field_downloadable_resources"
+                        }
+                    ]
+                }
+            ],
+            "layout": "block"
+        },
+        {
+            "key": "field_guide_author",
+            "label": "Guide Author Info",
+            "name": "guide_author",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Information about the guide author",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_author_expertise",
+                    "label": "Author Expertise",
+                    "name": "author_expertise",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "What makes this author qualified to write this guide?",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_author_visits",
+                    "label": "Times Visited",
+                    "name": "author_visits",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "How many times has the author visited?",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_author_specialties",
+                    "label": "Specialties",
+                    "name": "author_specialties",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "budget_travel": "Budget Travel",
+                        "luxury_travel": "Luxury Travel",
+                        "family_travel": "Family Travel",
+                        "solo_travel": "Solo Travel",
+                        "adventure": "Adventure Travel",
+                        "photography": "Photography",
+                        "food": "Food & Dining",
+                        "culture": "Culture & History"
+                    },
+                    "layout": "vertical",
+                    "default_value": [],
+                    "allow_custom": 0,
+                    "save_custom": 0,
+                    "toggle": 0,
+                    "return_format": "value",
+                    "custom_choice_button_text": "Add new choice"
+                }
+            ],
+            "layout": "block"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "guides"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "custom_fields"
+    ],
+    "active": true,
+    "description": "Comprehensive travel guide fields including sections, checklists, costs, timing, and resources",
+    "show_in_rest": false,
+    "modified": 1750799237
+}

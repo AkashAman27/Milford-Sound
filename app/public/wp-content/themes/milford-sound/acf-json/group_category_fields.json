@@ -1,0 +1,1110 @@
+{
+    "key": "group_category_fields",
+    "title": "Tour Category Fields (Headout Style)",
+    "fields": [
+        {
+            "key": "field_category_hero",
+            "label": "Category Hero Section",
+            "name": "category_hero",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Hero section with background image\/video and key information",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_hero_background_type",
+                    "label": "Background Type",
+                    "name": "hero_background_type",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "Choose between image or video background",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "image": "Image Background",
+                        "video": "Video Background"
+                    },
+                    "default_value": "image",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_hero_background_image",
+                    "label": "Hero Background Image",
+                    "name": "hero_background_image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "Large hero background image",
+                    "required": false,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_hero_background_type",
+                                "operator": "==",
+                                "value": "image"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "min_width": 0,
+                    "min_height": 0,
+                    "min_size": 0,
+                    "max_width": 0,
+                    "max_height": 0,
+                    "max_size": 0,
+                    "mime_types": ""
+                },
+                {
+                    "key": "field_hero_background_video",
+                    "label": "Hero Background Video",
+                    "name": "hero_background_video",
+                    "aria-label": "",
+                    "type": "url",
+                    "instructions": "Video URL for background (YouTube, Vimeo, or direct)",
+                    "required": false,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_hero_background_type",
+                                "operator": "==",
+                                "value": "video"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_hero_overlay_color",
+                    "label": "Hero Overlay Color",
+                    "name": "hero_overlay_color",
+                    "aria-label": "",
+                    "type": "color_picker",
+                    "instructions": "Overlay color for better text readability",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "rgba(0, 0, 0, 0.5)",
+                    "enable_opacity": false,
+                    "return_format": "string"
+                },
+                {
+                    "key": "field_category_badge",
+                    "label": "Category Badge",
+                    "name": "category_badge",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Small badge text (e.g., 'Most Popular', 'Adventure')",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placeholder": "Most Popular",
+                    "default_value": "",
+                    "maxlength": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_category_subtitle",
+                    "label": "Category Subtitle",
+                    "name": "category_subtitle",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Short description below the title",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 2,
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_category_stats",
+                    "label": "Category Statistics",
+                    "name": "category_stats",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "Key statistics to display (tours available, avg price, etc.)",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 0,
+                    "max": 6,
+                    "layout": "table",
+                    "rows_per_page": 20,
+                    "button_label": "Add Row",
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_stat_number",
+                            "label": "Number",
+                            "name": "stat_number",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "The statistic number (e.g., '50+', '$149')",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_category_stats"
+                        },
+                        {
+                            "key": "field_stat_label",
+                            "label": "Label",
+                            "name": "stat_label",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "What the number represents",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_category_stats"
+                        },
+                        {
+                            "key": "field_stat_icon",
+                            "label": "Icon",
+                            "name": "stat_icon",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "Emoji or icon for this stat",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "📊",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_category_stats"
+                        }
+                    ]
+                }
+            ],
+            "layout": "block"
+        },
+        {
+            "key": "field_category_filters",
+            "label": "Filter Options",
+            "name": "category_filters",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Available filters for this category",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_enable_filters",
+                    "label": "Enable Filters",
+                    "name": "enable_filters",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Show filter options on this category page",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 1,
+                    "ui": 1,
+                    "message": "",
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_duration_filters",
+                    "label": "Duration Filters",
+                    "name": "duration_filters",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "Available duration filter options",
+                    "required": false,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_enable_filters",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 0,
+                    "max": 10,
+                    "layout": "table",
+                    "rows_per_page": 20,
+                    "button_label": "Add Row",
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_duration_label",
+                            "label": "Duration Label",
+                            "name": "duration_label",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "placeholder": "Half Day (2-4 hours)",
+                            "default_value": "",
+                            "maxlength": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_duration_filters"
+                        },
+                        {
+                            "key": "field_duration_value",
+                            "label": "Duration Value",
+                            "name": "duration_value",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "Value for filtering (e.g., 'half_day')",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "placeholder": "half_day",
+                            "default_value": "",
+                            "maxlength": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_duration_filters"
+                        }
+                    ]
+                },
+                {
+                    "key": "field_price_filters",
+                    "label": "Price Range Filters",
+                    "name": "price_filters",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "Available price range options",
+                    "required": false,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_enable_filters",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 0,
+                    "max": 8,
+                    "layout": "table",
+                    "rows_per_page": 20,
+                    "button_label": "Add Row",
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_price_label",
+                            "label": "Price Label",
+                            "name": "price_label",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "placeholder": "Under $100",
+                            "default_value": "",
+                            "maxlength": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_price_filters"
+                        },
+                        {
+                            "key": "field_price_min",
+                            "label": "Min Price",
+                            "name": "price_min",
+                            "aria-label": "",
+                            "type": "number",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "min": 0,
+                            "default_value": "",
+                            "max": "",
+                            "step": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_price_filters"
+                        },
+                        {
+                            "key": "field_price_max",
+                            "label": "Max Price",
+                            "name": "price_max",
+                            "aria-label": "",
+                            "type": "number",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "min": 0,
+                            "default_value": "",
+                            "max": "",
+                            "step": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_price_filters"
+                        }
+                    ]
+                },
+                {
+                    "key": "field_difficulty_filters",
+                    "label": "Difficulty Filters",
+                    "name": "difficulty_filters",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Available difficulty levels",
+                    "required": false,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_enable_filters",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "easy": "Easy",
+                        "moderate": "Moderate",
+                        "challenging": "Challenging",
+                        "extreme": "Extreme"
+                    },
+                    "layout": "vertical",
+                    "default_value": [],
+                    "allow_custom": 0,
+                    "save_custom": 0,
+                    "toggle": 0,
+                    "return_format": "value",
+                    "custom_choice_button_text": "Add new choice"
+                }
+            ],
+            "layout": "block"
+        },
+        {
+            "key": "field_featured_tours",
+            "label": "Featured Tours",
+            "name": "featured_tours",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Highlight the best tours in this category",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_featured_tours_title",
+                    "label": "Featured Section Title",
+                    "name": "featured_tours_title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Title for the featured tours section",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Top Rated Tours",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_featured_tours_list",
+                    "label": "Featured Tours",
+                    "name": "featured_tours_list",
+                    "aria-label": "",
+                    "type": "relationship",
+                    "instructions": "Select tours to feature in this category",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "post_type": [
+                        "tours"
+                    ],
+                    "taxonomy": [],
+                    "filters": [
+                        "search"
+                    ],
+                    "return_format": "object",
+                    "min": 0,
+                    "max": 6,
+                    "elements": [],
+                    "bidirectional_target": []
+                },
+                {
+                    "key": "field_featured_layout",
+                    "label": "Featured Tours Layout",
+                    "name": "featured_layout",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "How to display featured tours",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "grid": "Grid Layout",
+                        "slider": "Slider\/Carousel",
+                        "list": "List Layout"
+                    },
+                    "default_value": "grid",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "return_format": "value"
+                }
+            ],
+            "layout": "block"
+        },
+        {
+            "key": "field_category_highlights",
+            "label": "Category Highlights",
+            "name": "category_highlights",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Why choose this category section",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_highlights_title",
+                    "label": "Highlights Section Title",
+                    "name": "highlights_title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Title for the highlights section",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Why Choose This Experience",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_highlights_subtitle",
+                    "label": "Highlights Subtitle",
+                    "name": "highlights_subtitle",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Description for the highlights section",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 2,
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_highlights_list",
+                    "label": "Highlight Items",
+                    "name": "highlights_list",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "Individual highlight points",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 0,
+                    "max": 8,
+                    "layout": "table",
+                    "rows_per_page": 20,
+                    "button_label": "Add Row",
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_highlight_icon",
+                            "label": "Icon",
+                            "name": "highlight_icon",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "Emoji or icon",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "⭐",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_highlights_list"
+                        },
+                        {
+                            "key": "field_highlight_title",
+                            "label": "Highlight Title",
+                            "name": "highlight_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_highlights_list"
+                        },
+                        {
+                            "key": "field_highlight_description",
+                            "label": "Highlight Description",
+                            "name": "highlight_description",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "rows": 2,
+                            "default_value": "",
+                            "new_lines": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "parent_repeater": "field_highlights_list"
+                        }
+                    ]
+                }
+            ],
+            "layout": "block"
+        },
+        {
+            "key": "field_category_gallery",
+            "label": "Category Gallery",
+            "name": "category_gallery",
+            "aria-label": "",
+            "type": "gallery",
+            "instructions": "Images showcasing this category",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min": 0,
+            "max": 12,
+            "insert": "append",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_booking_info",
+            "label": "Booking Information",
+            "name": "booking_info",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "General booking details for this category",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_booking_features",
+                    "label": "Booking Features",
+                    "name": "booking_features",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "Benefits of booking through your site",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 0,
+                    "max": 6,
+                    "layout": "table",
+                    "rows_per_page": 20,
+                    "button_label": "Add Row",
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_feature_icon",
+                            "label": "Feature Icon",
+                            "name": "feature_icon",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "✓",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_booking_features"
+                        },
+                        {
+                            "key": "field_feature_text",
+                            "label": "Feature Text",
+                            "name": "feature_text",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "placeholder": "Free cancellation",
+                            "default_value": "",
+                            "maxlength": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_booking_features"
+                        }
+                    ]
+                },
+                {
+                    "key": "field_cancellation_policy",
+                    "label": "Cancellation Policy",
+                    "name": "cancellation_policy",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "General cancellation policy for this category",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_contact_info",
+                    "label": "Contact Information",
+                    "name": "contact_info",
+                    "aria-label": "",
+                    "type": "group",
+                    "instructions": "Contact details for this category",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "sub_fields": [
+                        {
+                            "key": "field_contact_phone",
+                            "label": "Phone Number",
+                            "name": "contact_phone",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_contact_email",
+                            "label": "Email",
+                            "name": "contact_email",
+                            "aria-label": "",
+                            "type": "email",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_contact_hours",
+                            "label": "Contact Hours",
+                            "name": "contact_hours",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "placeholder": "8am - 6pm NZST",
+                            "default_value": "",
+                            "maxlength": "",
+                            "prepend": "",
+                            "append": ""
+                        }
+                    ],
+                    "layout": "block"
+                }
+            ],
+            "layout": "block"
+        },
+        {
+            "key": "field_category_faq",
+            "label": "Frequently Asked Questions",
+            "name": "category_faq",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Common questions for this category",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "min": 0,
+            "max": 15,
+            "layout": "table",
+            "rows_per_page": 20,
+            "button_label": "Add Row",
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_faq_question",
+                    "label": "Question",
+                    "name": "faq_question",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_category_faq"
+                },
+                {
+                    "key": "field_faq_answer",
+                    "label": "Answer",
+                    "name": "faq_answer",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "parent_repeater": "field_category_faq"
+                }
+            ]
+        },
+        {
+            "key": "field_category_seo",
+            "label": "SEO Settings",
+            "name": "category_seo",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "SEO optimization for this category page",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_meta_description",
+                    "label": "Meta Description",
+                    "name": "meta_description",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Custom meta description for search engines",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 2,
+                    "maxlength": 160,
+                    "default_value": "",
+                    "new_lines": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_focus_keyword",
+                    "label": "Focus Keyword",
+                    "name": "focus_keyword",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Primary keyword for this category",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_og_image",
+                    "label": "Social Share Image",
+                    "name": "og_image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "Image for social media sharing",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "min_width": 0,
+                    "min_height": 0,
+                    "min_size": 0,
+                    "max_width": 0,
+                    "max_height": 0,
+                    "max_size": 0,
+                    "mime_types": ""
+                }
+            ],
+            "layout": "block"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "categories"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "custom_fields"
+    ],
+    "active": true,
+    "description": "Comprehensive fields for tour category pages similar to Headout's structure with hero sections, filters, featured tours, highlights, and booking information",
+    "show_in_rest": false,
+    "modified": 1750799237
+}

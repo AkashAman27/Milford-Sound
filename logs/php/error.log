@@ -1,0 +1,18 @@
+[24-Jun-2025 19:30:15 UTC] PHP Warning:  Undefined array key "tour_duration" in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/single-tours.php on line 57
+[24-Jun-2025 19:30:15 UTC] PHP Warning:  Undefined array key "tour_price" in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/single-tours.php on line 96
+[24-Jun-2025 19:30:15 UTC] PHP Warning:  Undefined array key "tour_duration" in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/single-tours.php on line 310
+[24-Jun-2025 19:31:00 UTC] PHP Warning:  Undefined array key "tour_duration" in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/single-tours.php on line 57
+[24-Jun-2025 19:31:00 UTC] PHP Warning:  Undefined array key "tour_price" in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/single-tours.php on line 96
+[24-Jun-2025 19:31:00 UTC] PHP Warning:  Undefined array key "tour_duration" in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/single-tours.php on line 310
+[24-Jun-2025 19:31:48 UTC] PHP Warning:  Undefined array key "tour_duration" in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/single-tours.php on line 57
+[24-Jun-2025 19:31:48 UTC] PHP Warning:  Undefined array key "tour_price" in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/single-tours.php on line 96
+[24-Jun-2025 19:31:48 UTC] PHP Warning:  Undefined array key "tour_duration" in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/single-tours.php on line 310
+[24-Jun-2025 19:33:06 UTC] PHP Warning:  Undefined array key "tour_duration" in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/single-tours.php on line 57
+[24-Jun-2025 19:33:06 UTC] PHP Warning:  Undefined array key "tour_price" in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/single-tours.php on line 96
+[24-Jun-2025 19:33:06 UTC] PHP Warning:  Undefined array key "tour_duration" in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/single-tours.php on line 310
+[24-Jun-2025 19:36:09 UTC] PHP Warning:  Undefined array key "tour_duration" in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/single-tours.php on line 324
+[24-Jun-2025 20:03:42 UTC] PHP Warning:  Undefined array key "tour_duration" in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/single-tours.php on line 319
+[24-Jun-2025 20:06:41 UTC] PHP Warning:  Undefined array key "tour_duration" in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/single-tours.php on line 319
+[24-Jun-2025 20:31:55 UTC] PHP Warning:  Trying to access array offset on value of type null in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/single.php on line 19
+[24-Jun-2025 20:31:55 UTC] PHP Warning:  Trying to access array offset on value of type null in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/single.php on line 23
+[24-Jun-2025 20:31:55 UTC] PHP Warning:  Trying to access array offset on value of type null in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/single.php on line 25
