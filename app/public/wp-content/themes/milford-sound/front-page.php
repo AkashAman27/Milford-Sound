@@ -37,32 +37,34 @@ if ($flexible_content) :
                                 preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/', $bg_video, $matches);
                                 $video_id = $matches[1] ?? '';
                                 ?>
-                                <iframe src="https://www.youtube.com/embed/<?php echo esc_attr($video_id); ?>?autoplay=1&mute=1&loop=1&playlist=<?php echo esc_attr($video_id); ?>&controls=0&showinfo=0&rel=0" frameborder="0" allow="autoplay; encrypted-media" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.3; pointer-events: none;"></iframe>
+                                <iframe src="https://www.youtube.com/embed/<?php echo esc_attr($video_id); ?>?autoplay=1&mute=1&loop=1&playlist=<?php echo esc_attr($video_id); ?>&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"></iframe>
                             <?php else : ?>
-                                <video autoplay muted loop style="width: 100%; height: 100%; object-fit: cover; opacity: 0.3; pointer-events: none;">
+                                <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
                                     <source src="<?php echo esc_url($bg_video); ?>" type="video/mp4">
                                 </video>
                             <?php endif; ?>
                         </div>
+                        <!-- Video Overlay for Text Contrast -->
+                        <div class="hero-video-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.5) 100%); z-index: 2;"></div>
                     <?php endif; ?>
                     
                     <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 10;">
                         <div class="hero-content">
                             
                             <?php if (safe_get($section, 'badge_text')) : ?>
-                                <div class="hero-badge" style="background: rgba(255,255,255,0.2); padding: 0.5rem 1.5rem; border-radius: 25px; font-size: 0.9rem; font-weight: 600; display: inline-block; margin-bottom: 2rem;">
+                                <div class="hero-badge" style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); padding: 0.5rem 1.5rem; border-radius: 25px; font-size: 0.9rem; font-weight: 600; display: inline-block; margin-bottom: 2rem; text-shadow: 0 1px 2px rgba(0,0,0,0.3);">
                                     <?php echo esc_html($section['badge_text']); ?>
                                 </div>
                             <?php endif; ?>
                             
                             <?php if (safe_get($section, 'title')) : ?>
-                                <h1 class="hero-title" style="font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; margin-bottom: 2rem; line-height: 1.1;">
+                                <h1 class="hero-title" style="font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; margin-bottom: 2rem; line-height: 1.1; text-shadow: 0 2px 4px rgba(0,0,0,0.3); letter-spacing: -0.02em;">
                                     <?php 
                                     $title = $section['title'];
                                     $highlight_word = safe_get($section, 'highlight_word');
                                     
                                     if ($highlight_word) {
-                                        $title = str_replace($highlight_word, '<span style="color: #2dd4bf;">' . $highlight_word . '</span>', $title);
+                                        $title = str_replace($highlight_word, '<span style="color: #2dd4bf; text-shadow: 0 2px 4px rgba(0,0,0,0.4);">' . $highlight_word . '</span>', $title);
                                     }
                                     
                                     echo wp_kses($title, array('span' => array('style' => array())));
@@ -71,7 +73,7 @@ if ($flexible_content) :
                             <?php endif; ?>
                             
                             <?php if (safe_get($section, 'description')) : ?>
-                                <p class="hero-description" style="font-size: 1.5rem; margin-bottom: 3rem; opacity: 0.9; line-height: 1.6; max-width: 800px; margin-left: auto; margin-right: auto;">
+                                <p class="hero-description" style="font-size: 1.5rem; margin-bottom: 3rem; opacity: 0.95; line-height: 1.6; max-width: 800px; margin-left: auto; margin-right: auto; text-shadow: 0 1px 3px rgba(0,0,0,0.4); font-weight: 400;">
                                     <?php echo esc_html($section['description']); ?>
                                 </p>
                             <?php endif; ?>
@@ -86,7 +88,7 @@ if ($flexible_content) :
                                             : 'background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3);';
                                         ?>
                                         <a href="<?php echo esc_url(safe_get(safe_get($button, 'link'), 'url', safe_get(safe_get($button, 'button_link'), 'url', '#'))); ?>" 
-                                           style="<?php echo $btn_class; ?> padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;"
+                                           style="<?php echo $btn_class; ?> padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.2); backdrop-filter: blur(10px);"
                                            <?php 
                                            $link_target = safe_get(safe_get($button, 'link'), 'target', safe_get(safe_get($button, 'button_link'), 'target'));
                                            if ($link_target) echo 'target="' . esc_attr($link_target) . '"'; 
@@ -102,6 +104,56 @@ if ($flexible_content) :
                             
                         </div>
                     </div>
+                    
+                    <!-- Enhanced Video & Text Styling -->
+                    <style>
+                    .hero-section {
+                        -webkit-font-smoothing: antialiased;
+                        -moz-osx-font-smoothing: grayscale;
+                        text-rendering: optimizeLegibility;
+                    }
+                    
+                    .hero-bg-video video,
+                    .hero-bg-video iframe {
+                        filter: brightness(1.1) contrast(1.05) saturate(1.1);
+                        transform: scale(1.02);
+                    }
+                    
+                    .hero-title {
+                        font-feature-settings: "kern" 1, "liga" 1;
+                        -webkit-text-stroke: 0.5px rgba(0,0,0,0.1);
+                    }
+                    
+                    .hero-description {
+                        font-feature-settings: "kern" 1;
+                    }
+                    
+                    .hero-badge {
+                        -webkit-backdrop-filter: blur(10px);
+                        backdrop-filter: blur(10px);
+                    }
+                    
+                    @media (max-width: 768px) {
+                        .hero-bg-video video,
+                        .hero-bg-video iframe {
+                            transform: scale(1.05);
+                        }
+                        
+                        .hero-title {
+                            text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+                        }
+                        
+                        .hero-description {
+                            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+                        }
+                    }
+                    
+                    /* Enhance button hover effects */
+                    .hero-buttons a:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 6px 20px rgba(0,0,0,0.3) !important;
+                    }
+                    </style>
                 </section>
                 <?php
                 break;
