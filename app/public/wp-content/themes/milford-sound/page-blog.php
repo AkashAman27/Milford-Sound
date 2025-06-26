@@ -1,6 +1,11 @@
-<?php get_header(); ?>
-
 <?php
+/**
+ * Template Name: Blog Page
+ * Description: Professional blog page template with ACF customization
+ */
+
+get_header(); 
+
 // Get ACF fields for blog page
 $blog_hero = get_field('blog_hero') ?: array();
 $blog_settings = get_field('blog_settings') ?: array();

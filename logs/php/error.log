@@ -16,3 +16,9 @@
 [24-Jun-2025 20:31:55 UTC] PHP Warning:  Trying to access array offset on value of type null in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/single.php on line 19
 [24-Jun-2025 20:31:55 UTC] PHP Warning:  Trying to access array offset on value of type null in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/single.php on line 23
 [24-Jun-2025 20:31:55 UTC] PHP Warning:  Trying to access array offset on value of type null in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/single.php on line 25
+[25-Jun-2025 14:35:23 UTC] PHP Warning:  Trying to access array offset on value of type null in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/category.php on line 23
+[25-Jun-2025 14:35:23 UTC] PHP Warning:  Trying to access array offset on value of type null in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/category.php on line 24
+[25-Jun-2025 14:35:23 UTC] PHP Warning:  Trying to access array offset on value of type null in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/category.php on line 25
+[25-Jun-2025 21:53:19 UTC] PHP Parse error:  syntax error, unexpected token "else" in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/front-page.php on line 743
+[25-Jun-2025 21:53:21 UTC] PHP Parse error:  syntax error, unexpected token "else" in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/front-page.php on line 743
+[26-Jun-2025 11:55:29 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in /Users/akashaman/Local Sites/milford-sound/app/public/wp-content/themes/milford-sound/page-blog.php on line 9
