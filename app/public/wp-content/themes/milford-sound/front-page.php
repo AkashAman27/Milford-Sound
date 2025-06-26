@@ -18,186 +18,122 @@ if ($flexible_content) :
         switch ($layout) :
             case 'hero_section':
                 ?>
-                <!-- Hero Section -->
-                <section class="hero-section" style="position: relative; padding: 8rem 0 4rem; background: linear-gradient(135deg, #2dd4bf 0%, #3b82f6 100%); color: white; text-align: center; overflow: hidden; min-height: 80vh; display: flex; align-items: center;">
+                <!-- Modern Hero Section with Tailwind CSS -->
+                <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-secondary to-purple-600">
                     
                     <?php 
                     $bg_image = safe_get($section, 'hero_background_image', safe_get($section, 'background_image'));
                     $bg_video = safe_get($section, 'hero_background_video', safe_get($section, 'background_video'));
                     ?>
                     
+                    <!-- Background Elements -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/30 to-purple-600/20 animate-gradient-x"></div>
+                    
                     <?php if ($bg_image) : ?>
-                        <div class="hero-bg-image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('<?php echo esc_url($bg_image['url']); ?>'); background-size: cover; background-position: center; opacity: 0.3; z-index: 1;"></div>
+                        <div class="absolute inset-0 z-0">
+                            <img src="<?php echo esc_url($bg_image['url']); ?>" 
+                                 alt="Hero Background" 
+                                 class="w-full h-full object-cover opacity-30 scale-105 animate-pulse">
+                        </div>
                     <?php endif; ?>
                     
                     <?php if ($bg_video) : ?>
-                        <div class="hero-bg-video" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
+                        <div class="absolute inset-0 z-0">
                             <?php if (strpos($bg_video, 'youtube.com') !== false || strpos($bg_video, 'youtu.be') !== false) : ?>
                                 <?php
                                 preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/', $bg_video, $matches);
                                 $video_id = $matches[1] ?? '';
                                 ?>
-                                <iframe src="https://www.youtube.com/embed/<?php echo esc_attr($video_id); ?>?autoplay=1&mute=1&loop=1&playlist=<?php echo esc_attr($video_id); ?>&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"></iframe>
+                                <iframe src="https://www.youtube.com/embed/<?php echo esc_attr($video_id); ?>?autoplay=1&mute=1&loop=1&playlist=<?php echo esc_attr($video_id); ?>&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3" 
+                                        frameborder="0" 
+                                        allow="autoplay; encrypted-media" 
+                                        class="w-full h-full object-cover opacity-40 pointer-events-none scale-105">
+                                </iframe>
                             <?php else : ?>
-                                <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
+                                <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-40 pointer-events-none scale-105">
                                     <source src="<?php echo esc_url($bg_video); ?>" type="video/mp4">
                                 </video>
                             <?php endif; ?>
                         </div>
-                        <!-- Video Overlay for Text Contrast -->
-                        <div class="hero-video-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.5) 100%); z-index: 2;"></div>
+                        <!-- Video Overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-br from-black/50 via-black/30 to-black/60 z-10"></div>
                     <?php endif; ?>
                     
-                    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 10;">
-                        <div class="hero-content">
+                    <!-- Floating Elements -->
+                    <div class="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl animate-bounce delay-1000"></div>
+                    <div class="absolute bottom-32 right-16 w-16 h-16 bg-primary/20 rounded-full blur-lg animate-pulse delay-500"></div>
+                    <div class="absolute top-1/3 right-1/4 w-12 h-12 bg-secondary/15 rounded-full blur-md animate-bounce delay-1500"></div>
+                    
+                    <!-- Main Content -->
+                    <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                        <div class="space-y-8 animate-fade-in-up">
                             
                             <?php if (safe_get($section, 'badge_text')) : ?>
-                                <div class="hero-badge" style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); padding: 0.5rem 1.5rem; border-radius: 25px; font-size: 0.9rem; font-weight: 600; display: inline-block; margin-bottom: 2rem; text-shadow: 0 1px 2px rgba(0,0,0,0.3);">
+                                <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-lg border border-white/20 px-6 py-3 rounded-full text-sm font-semibold text-white shadow-lg animate-fade-in-down">
+                                    <div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
                                     <?php echo esc_html($section['badge_text']); ?>
                                 </div>
                             <?php endif; ?>
                             
                             <?php if (safe_get($section, 'title')) : ?>
-                                <h1 class="hero-title" style="font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; margin-bottom: 2rem; line-height: 1.1; text-shadow: 0 2px 4px rgba(0,0,0,0.3); letter-spacing: -0.02em;">
+                                <h1 class="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-tight tracking-tight animate-fade-in-up" style="animation-delay: 0.2s;">
                                     <?php 
                                     $title = $section['title'];
                                     $highlight_word = safe_get($section, 'highlight_word');
                                     
                                     if ($highlight_word) {
-                                        $title = str_replace($highlight_word, '<span style="color: #2dd4bf; text-shadow: 0 2px 4px rgba(0,0,0,0.4);">' . $highlight_word . '</span>', $title);
+                                        $title = str_replace($highlight_word, '<span class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent animate-pulse">' . $highlight_word . '</span>', $title);
                                     }
                                     
-                                    echo wp_kses($title, array('span' => array('style' => array())));
+                                    echo wp_kses($title, array('span' => array('class' => array())));
                                     ?>
                                 </h1>
                             <?php endif; ?>
                             
                             <?php if (safe_get($section, 'description')) : ?>
-                                <p class="hero-description" style="font-size: 1.5rem; margin-bottom: 3rem; opacity: 0.95; line-height: 1.6; max-width: 800px; margin-left: auto; margin-right: auto; text-shadow: 0 1px 3px rgba(0,0,0,0.4); font-weight: 400;">
+                                <p class="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed font-light animate-fade-in-up" style="animation-delay: 0.4s;">
                                     <?php echo esc_html($section['description']); ?>
                                 </p>
                             <?php endif; ?>
                             
                             <?php if (safe_get($section, 'buttons') && !empty($section['buttons'])) : ?>
-                                <div class="hero-buttons" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-                                    <?php foreach ($section['buttons'] as $button) : ?>
+                                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8 animate-fade-in-up" style="animation-delay: 0.6s;">
+                                    <?php foreach ($section['buttons'] as $index => $button) : ?>
                                         <?php
                                         $btn_style = safe_get($button, 'style', safe_get($button, 'button_style', 'primary'));
-                                        $btn_class = ($btn_style === 'primary') 
-                                            ? 'background: #2dd4bf; color: white;' 
-                                            : 'background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3);';
+                                        $btn_classes = ($btn_style === 'primary') 
+                                            ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-2xl shadow-primary/50 hover:shadow-primary/70 hover:scale-105' 
+                                            : 'bg-white/10 border-2 border-white/30 text-white backdrop-blur-lg hover:bg-white/20 hover:border-white/50';
                                         ?>
                                         <a href="<?php echo esc_url(safe_get(safe_get($button, 'link'), 'url', safe_get(safe_get($button, 'button_link'), 'url', '#'))); ?>" 
-                                           style="<?php echo $btn_class; ?> padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.2); backdrop-filter: blur(10px);"
+                                           class="<?php echo $btn_classes; ?> px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:-translate-y-1 group inline-flex items-center gap-3 min-w-[200px] justify-center animate-scale-in"
+                                           style="animation-delay: <?php echo 0.8 + ($index * 0.1); ?>s;"
                                            <?php 
                                            $link_target = safe_get(safe_get($button, 'link'), 'target', safe_get(safe_get($button, 'button_link'), 'target'));
                                            if ($link_target) echo 'target="' . esc_attr($link_target) . '"'; 
                                            ?>>
                                             <?php if (safe_get($button, 'icon')) : ?>
-                                                <?php echo esc_html($button['icon']); ?> 
+                                                <span class="text-xl"><?php echo esc_html($button['icon']); ?></span>
                                             <?php endif; ?>
-                                            <?php echo esc_html(safe_get($button, 'text', safe_get($button, 'button_text', 'Button'))); ?>
+                                            <span><?php echo esc_html(safe_get($button, 'text', safe_get($button, 'button_text', 'Button'))); ?></span>
+                                            <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                                            </svg>
                                         </a>
                                     <?php endforeach; ?>
                                 </div>
                             <?php endif; ?>
                             
+                            <!-- Scroll Indicator -->
+                            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+                                <div class="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+                                    <div class="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse"></div>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                     
-                    <!-- Enhanced Video & Text Styling -->
-                    <style>
-                    .hero-section {
-                        -webkit-font-smoothing: antialiased;
-                        -moz-osx-font-smoothing: grayscale;
-                        text-rendering: optimizeLegibility;
-                    }
-                    
-                    .hero-bg-video video,
-                    .hero-bg-video iframe {
-                        filter: brightness(1.1) contrast(1.05) saturate(1.1);
-                        transform: scale(1.02);
-                    }
-                    
-                    .hero-title {
-                        font-feature-settings: "kern" 1, "liga" 1;
-                        -webkit-text-stroke: 0.5px rgba(0,0,0,0.1);
-                    }
-                    
-                    .hero-description {
-                        font-feature-settings: "kern" 1;
-                    }
-                    
-                    .hero-badge {
-                        -webkit-backdrop-filter: blur(10px);
-                        backdrop-filter: blur(10px);
-                    }
-                    
-                    @media (max-width: 768px) {
-                        .hero-bg-video video,
-                        .hero-bg-video iframe {
-                            transform: scale(1.05);
-                        }
-                        
-                        .hero-title {
-                            text-shadow: 0 2px 6px rgba(0,0,0,0.4);
-                        }
-                        
-                        .hero-description {
-                            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
-                        }
-                    }
-                    
-                    /* Enhanced Interactive Button Effects */
-                    .hero-buttons a {
-                        position: relative;
-                        overflow: hidden;
-                        cursor: pointer;
-                        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                    }
-                    
-                    .hero-buttons a::before {
-                        content: '';
-                        position: absolute;
-                        top: 0;
-                        left: -100%;
-                        width: 100%;
-                        height: 100%;
-                        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-                        transition: left 0.6s ease;
-                    }
-                    
-                    .hero-buttons a:hover {
-                        transform: translateY(-4px) scale(1.05);
-                        box-shadow: 0 10px 30px rgba(45, 212, 191, 0.4) !important;
-                        background: #26d0ce !important;
-                        filter: brightness(1.1);
-                    }
-                    
-                    .hero-buttons a:hover::before {
-                        left: 100%;
-                    }
-                    
-                    .hero-buttons a:active {
-                        transform: translateY(-2px) scale(1.02);
-                        transition: all 0.1s ease;
-                    }
-                    
-                    /* Pulse animation on page load */
-                    @keyframes buttonPulse {
-                        0% { box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-                        50% { box-shadow: 0 6px 25px rgba(45, 212, 191, 0.3); }
-                        100% { box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-                    }
-                    
-                    .hero-buttons a {
-                        animation: buttonPulse 3s ease-in-out infinite;
-                    }
-                    
-                    .hero-buttons a:hover {
-                        animation: none;
-                    }
-                    </style>
                 </section>
                 <?php
                 break;
@@ -436,239 +372,284 @@ if ($flexible_content) :
                 
             case 'tours_section':
                 ?>
-                <!-- Tours Section -->
-                <section class="tours-section" style="padding: 6rem 0; background: #f8fafc;" id="tours">
-                    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem; text-align: center;">
+                <!-- Modern Tours Section with Tailwind CSS -->
+                <section class="py-20 bg-gradient-to-br from-gray-50 to-blue-50" id="tours">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         
-                        <?php if (safe_get($section, 'badge')) : ?>
-                            <div class="section-badge" style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white; padding: 0.5rem 1.5rem; border-radius: 25px; font-size: 0.9rem; font-weight: 600; display: inline-block; margin-bottom: 2rem;">
-                                <?php echo esc_html($section['badge']); ?>
-                            </div>
-                        <?php endif; ?>
-                        
-                        <?php if (safe_get($section, 'title')) : ?>
-                            <h2 class="section-title" style="font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 4rem; color: #1e293b;">
-                                <?php echo esc_html($section['title']); ?>
-                            </h2>
-                        <?php endif; ?>
+                        <!-- Section Header -->
+                        <div class="text-center mb-16">
+                            <?php if (safe_get($section, 'badge')) : ?>
+                                <div class="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-full text-sm font-semibold mb-6 shadow-lg">
+                                    <div class="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                                    <?php echo esc_html($section['badge']); ?>
+                                </div>
+                            <?php endif; ?>
+                            
+                            <?php if (safe_get($section, 'title')) : ?>
+                                <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 leading-tight">
+                                    <?php echo esc_html($section['title']); ?>
+                                </h2>
+                            <?php endif; ?>
+                            
+                            <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mb-8"></div>
+                        </div>
                         
                         <?php if (safe_get($section, 'tours') && !empty($section['tours'])) : ?>
-                            <div class="tours-carousel-container" style="position: relative; overflow: hidden;">
-                                <!-- Carousel Navigation Arrows -->
-                                <button class="carousel-nav prev" onclick="scrollTours(-1)" style="position: absolute; left: -20px; top: 50%; transform: translateY(-50%); background: white; border: none; border-radius: 50%; width: 50px; height: 50px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #64748b; transition: all 0.3s ease;">
-                                    ←
+                            <!-- Tours Carousel Container -->
+                            <div class="relative group">
+                                
+                                <!-- Navigation Arrows -->
+                                <button class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/90 backdrop-blur-lg hover:bg-white text-gray-700 hover:text-primary w-12 h-12 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-110 opacity-0 group-hover:opacity-100 flex items-center justify-center" onclick="scrollTours(-1)">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                    </svg>
                                 </button>
-                                <button class="carousel-nav next" onclick="scrollTours(1)" style="position: absolute; right: -20px; top: 50%; transform: translateY(-50%); background: white; border: none; border-radius: 50%; width: 50px; height: 50px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #64748b; transition: all 0.3s ease;">
-                                    →
+                                
+                                <button class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/90 backdrop-blur-lg hover:bg-white text-gray-700 hover:text-primary w-12 h-12 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-110 opacity-0 group-hover:opacity-100 flex items-center justify-center" onclick="scrollTours(1)">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
                                 </button>
                                 
                                 <!-- Tours Carousel -->
-                                <div class="tours-carousel" id="toursCarousel" style="display: flex; gap: 1.5rem; overflow-x: auto; scroll-behavior: smooth; padding: 1rem 0; scrollbar-width: none; -ms-overflow-style: none;">
-                                    <?php foreach ($section['tours'] as $tour) : ?>
-                                        <div class="tour-card" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease; position: relative; min-width: 320px; max-width: 320px; flex-shrink: 0; height: 550px; display: flex; flex-direction: column;">
-                                        
-                                        <?php if (safe_get($tour, 'badge')) : ?>
-                                            <?php
-                                            $badge_color = safe_get($tour, 'badge_color', 'popular');
-                                            $badge_colors = array(
-                                                'popular' => 'background: linear-gradient(135deg, #22c55e, #16a34a);',
-                                                'premium' => 'background: linear-gradient(135deg, #8b5cf6, #7c3aed);',
-                                                'adventure' => 'background: linear-gradient(135deg, #f59e0b, #f97316);',
-                                                'new' => 'background: linear-gradient(135deg, #3b82f6, #2563eb);'
-                                            );
-                                            ?>
-                                            <div class="tour-badge" style="<?php echo $badge_colors[$badge_color]; ?> color: white; padding: 0.5rem 1rem; border-radius: 0 0 15px 0; position: absolute; top: 0; left: 0; font-size: 0.8rem; font-weight: 600; z-index: 2;">
-                                                <?php echo esc_html($tour['badge']); ?>
-                                            </div>
-                                        <?php endif; ?>
-                                        
-                                        <div class="tour-image" style="height: 180px; background: linear-gradient(135deg, #e2e8f0, #cbd5e1); display: flex; align-items: center; justify-content: center; position: relative;">
-                                            <?php if (safe_get($tour, 'image')) : ?>
-                                                <img src="<?php echo esc_url($tour['image']['sizes']['medium_large']); ?>" 
-                                                     alt="<?php echo esc_attr($tour['image']['alt']); ?>"
-                                                     style="width: 100%; height: 100%; object-fit: cover;">
-                                            <?php else : ?>
-                                                <span style="font-size: 4rem; color: #64748b;">
-                                                    <?php echo esc_html(safe_get($tour, 'icon', '🎯')); ?>
-                                                </span>
-                                            <?php endif; ?>
-                                        </div>
-                                        
-                                        <div class="tour-content" style="padding: 1.5rem; display: flex; flex-direction: column; flex: 1;">
+                                <div class="tours-carousel overflow-x-auto scrollbar-hide flex gap-6 pb-4 scroll-smooth" id="toursCarousel">
+                                    <?php foreach ($section['tours'] as $index => $tour) : ?>
+                                        <div class="tour-card flex-none w-80 bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group/card animate-fade-in-up" style="animation-delay: <?php echo $index * 0.1; ?>s;">
                                             
-                                            <!-- Main content area that can grow -->
-                                            <div class="tour-info" style="flex: 1;">
-                                                <div class="tour-header" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
-                                                <?php if (safe_get($tour, 'title')) : ?>
-                                                    <h3 class="tour-title" style="font-size: 1.1rem; font-weight: 700; color: #1e293b; flex: 1; text-align: left; line-height: 1.3;">
-                                                        <?php echo esc_html($tour['title']); ?>
-                                                    </h3>
+                                            <!-- Card Image -->
+                                            <div class="relative h-48 overflow-hidden">
+                                                <?php if (safe_get($tour, 'image')) : ?>
+                                                    <img src="<?php echo esc_url($tour['image']['sizes']['medium_large']); ?>" 
+                                                         alt="<?php echo esc_attr($tour['image']['alt']); ?>"
+                                                         class="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110">
+                                                <?php else : ?>
+                                                    <div class="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                                                        <span class="text-6xl">
+                                                            <?php echo esc_html(safe_get($tour, 'icon', '🎯')); ?>
+                                                        </span>
+                                                    </div>
                                                 <?php endif; ?>
                                                 
-                                                <?php if (safe_get($tour, 'duration')) : ?>
-                                                    <span class="tour-duration" style="background: #f1f5f9; color: #64748b; padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600; margin-left: 1rem;">
-                                                        <?php echo esc_html($tour['duration']); ?>
-                                                    </span>
+                                                <!-- Gradient Overlay -->
+                                                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                                                
+                                                <!-- Badge -->
+                                                <?php if (safe_get($tour, 'badge')) : ?>
+                                                    <?php
+                                                    $badge_color = safe_get($tour, 'badge_color', 'popular');
+                                                    $badge_classes = array(
+                                                        'popular' => 'bg-gradient-to-r from-green-500 to-green-600',
+                                                        'premium' => 'bg-gradient-to-r from-purple-500 to-purple-600',
+                                                        'adventure' => 'bg-gradient-to-r from-orange-500 to-orange-600',
+                                                        'new' => 'bg-gradient-to-r from-blue-500 to-blue-600'
+                                                    );
+                                                    ?>
+                                                    <div class="absolute top-4 left-4 <?php echo $badge_classes[$badge_color]; ?> text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg">
+                                                        <?php echo esc_html($tour['badge']); ?>
+                                                    </div>
                                                 <?php endif; ?>
-                                            </div>
-                                            
-                                            <?php if (safe_get($tour, 'price')) : ?>
-                                                <div class="tour-price" style="font-size: 1.5rem; font-weight: 800; color: #2dd4bf; margin-bottom: 1rem;">
-                                                    <?php echo esc_html($tour['price']); ?>
-                                                </div>
-                                            <?php endif; ?>
-                                            
-                                            <?php if (safe_get($tour, 'description')) : ?>
-                                                <p class="tour-description" style="color: #64748b; margin-bottom: 1rem; line-height: 1.5; font-size: 0.9rem;">
-                                                    <?php echo esc_html(strlen($tour['description']) > 80 ? substr($tour['description'], 0, 80) . '...' : $tour['description']); ?>
-                                                </p>
-                                            <?php endif; ?>
-                                            
-                                            <?php if (safe_get($tour, 'details') && !empty($tour['details'])) : ?>
-                                                <div class="tour-details" style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; font-size: 0.9rem; color: #64748b;">
-                                                    <?php foreach ($tour['details'] as $detail) : ?>
-                                                        <div class="tour-detail" style="display: flex; align-items: center; gap: 0.25rem;">
-                                                            <span><?php echo esc_html(safe_get($detail, 'icon')); ?></span>
-                                                            <span><?php echo esc_html(safe_get($detail, 'text')); ?></span>
-                                                        </div>
-                                                    <?php endforeach; ?>
-                                                </div>
-                                            <?php endif; ?>
-                                            
-                                                <?php if (safe_get($tour, 'rating') && safe_get($tour, 'reviews')) : ?>
-                                                    <div class="tour-rating" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; font-size: 0.9rem;">
-                                                        <span class="stars" style="color: #fbbf24;">⭐</span>
-                                                        <span style="font-weight: 600; color: #1e293b;"><?php echo esc_html($tour['rating']); ?></span>
-                                                        <span style="color: #64748b;">(<?php echo esc_html(number_format($tour['reviews'])); ?>)</span>
+                                                
+                                                <!-- Duration -->
+                                                <?php if (safe_get($tour, 'duration')) : ?>
+                                                    <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-gray-700 px-3 py-1.5 rounded-full text-xs font-semibold">
+                                                        <?php echo esc_html($tour['duration']); ?>
                                                     </div>
                                                 <?php endif; ?>
                                             </div>
                                             
-                                            <!-- CTA Button - Fixed at bottom -->
-                                            <?php if (safe_get($tour, 'link')) : ?>
-                                                <a href="<?php echo esc_url(safe_get($tour['link'], 'url', '#')); ?>" 
-                                                   class="btn btn-primary tour-cta-btn" 
-                                                   style="background: #2dd4bf; color: white; padding: 0.75rem 1.5rem; border-radius: 25px; text-decoration: none; font-weight: 600; display: inline-block; transition: all 0.3s ease; width: 100%; text-align: center; box-sizing: border-box;"
-                                                   <?php if (safe_get($tour['link'], 'target')) echo 'target="' . esc_attr($tour['link']['target']) . '"'; ?>>
-                                                    <?php echo esc_html(safe_get($tour, 'button_text', 'Book Now')); ?> →
-                                                </a>
-                                            <?php endif; ?>
-                                            
-                                        </div>
+                                            <!-- Card Content -->
+                                            <div class="p-6 flex flex-col h-80">
+                                                
+                                                <!-- Title & Price -->
+                                                <div class="mb-4">
+                                                    <?php if (safe_get($tour, 'title')) : ?>
+                                                        <h3 class="text-xl font-bold text-gray-900 mb-2 line-clamp-2 group-hover/card:text-primary transition-colors duration-300">
+                                                            <?php echo esc_html($tour['title']); ?>
+                                                        </h3>
+                                                    <?php endif; ?>
+                                                    
+                                                    <?php if (safe_get($tour, 'price')) : ?>
+                                                        <div class="text-2xl font-black text-primary">
+                                                            <?php echo esc_html($tour['price']); ?>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </div>
+                                                
+                                                <!-- Description -->
+                                                <?php if (safe_get($tour, 'description')) : ?>
+                                                    <p class="text-gray-600 text-sm leading-relaxed mb-4 flex-grow line-clamp-3">
+                                                        <?php echo esc_html($tour['description']); ?>
+                                                    </p>
+                                                <?php endif; ?>
+                                                
+                                                <!-- Tour Details -->
+                                                <?php if (safe_get($tour, 'details') && !empty($tour['details'])) : ?>
+                                                    <div class="flex flex-wrap gap-3 mb-4">
+                                                        <?php foreach (array_slice($tour['details'], 0, 3) as $detail) : ?>
+                                                            <div class="flex items-center gap-1 text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-lg">
+                                                                <span><?php echo esc_html(safe_get($detail, 'icon')); ?></span>
+                                                                <span><?php echo esc_html(safe_get($detail, 'text')); ?></span>
+                                                            </div>
+                                                        <?php endforeach; ?>
+                                                    </div>
+                                                <?php endif; ?>
+                                                
+                                                <!-- Rating -->
+                                                <?php if (safe_get($tour, 'rating') && safe_get($tour, 'reviews')) : ?>
+                                                    <div class="flex items-center gap-2 mb-6">
+                                                        <div class="flex items-center">
+                                                            <?php for ($i = 1; $i <= 5; $i++) : ?>
+                                                                <svg class="w-4 h-4 <?php echo $i <= floor($tour['rating']) ? 'text-yellow-400' : 'text-gray-300'; ?>" fill="currentColor" viewBox="0 0 20 20">
+                                                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                                                </svg>
+                                                            <?php endfor; ?>
+                                                        </div>
+                                                        <span class="text-sm font-semibold text-gray-900"><?php echo esc_html($tour['rating']); ?></span>
+                                                        <span class="text-sm text-gray-500">(<?php echo esc_html(number_format($tour['reviews'])); ?>)</span>
+                                                    </div>
+                                                <?php endif; ?>
+                                                
+                                                <!-- CTA Button -->
+                                                <?php if (safe_get($tour, 'link')) : ?>
+                                                    <a href="<?php echo esc_url(safe_get($tour['link'], 'url', '#')); ?>" 
+                                                       class="w-full bg-gradient-to-r from-primary to-secondary text-white py-3 px-6 rounded-xl font-bold text-center transition-all duration-300 transform hover:scale-105 hover:shadow-lg group/button"
+                                                       <?php if (safe_get($tour['link'], 'target')) echo 'target="' . esc_attr($tour['link']['target']) . '"'; ?>>
+                                                        <span class="flex items-center justify-center gap-2">
+                                                            <?php echo esc_html(safe_get($tour, 'button_text', 'Book Now')); ?>
+                                                            <svg class="w-4 h-4 transition-transform duration-300 group-hover/button:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                                                            </svg>
+                                                        </span>
+                                                    </a>
+                                                <?php endif; ?>
+                                                
+                                            </div>
                                         </div>
                                     <?php endforeach; ?>
                                 </div>
+                                
+                                <!-- Scroll Indicators -->
+                                <div class="flex justify-center mt-8 space-x-2" id="tour-indicators">
+                                    <!-- Indicators will be generated by JavaScript -->
+                                </div>
+                                
                             </div>
                             
-                            <!-- Add Carousel JavaScript -->
+                            <!-- Modern Carousel JavaScript -->
                             <script>
                             function scrollTours(direction) {
                                 const carousel = document.getElementById('toursCarousel');
-                                const scrollAmount = 335; // Card width (320px) + gap (15px)
+                                const cardWidth = 344; // 320px (w-80) + 24px (gap-6)
                                 const currentScroll = carousel.scrollLeft;
                                 
                                 if (direction === 1) {
                                     carousel.scrollTo({
-                                        left: currentScroll + scrollAmount,
+                                        left: currentScroll + cardWidth,
                                         behavior: 'smooth'
                                     });
                                 } else {
                                     carousel.scrollTo({
-                                        left: currentScroll - scrollAmount,
+                                        left: currentScroll - cardWidth,
                                         behavior: 'smooth'
                                     });
                                 }
+                                updateIndicators();
                             }
                             
-                            // Auto-scroll functionality (only left to right)
-                            let autoScrollInterval;
-                            let currentIndex = 0;
+                            // Enhanced auto-scroll with indicators
+                            let toursAutoScrollInterval;
+                            let toursCurrentIndex = 0;
                             
-                            function startAutoScroll() {
-                                autoScrollInterval = setInterval(() => {
-                                    const carousel = document.getElementById('toursCarousel');
-                                    const totalCards = carousel.children.length;
-                                    const containerWidth = carousel.parentElement.clientWidth;
-                                    const cardWidth = 335; // Card width + gap
+                            function updateIndicators() {
+                                const carousel = document.getElementById('toursCarousel');
+                                const indicators = document.getElementById('tour-indicators');
+                                const cards = carousel.children;
+                                const containerWidth = carousel.offsetWidth;
+                                const cardWidth = 344;
+                                const visibleCards = Math.floor(containerWidth / cardWidth);
+                                const totalSlides = Math.max(1, cards.length - visibleCards + 1);
+                                
+                                // Clear existing indicators
+                                indicators.innerHTML = '';
+                                
+                                // Create indicators
+                                for (let i = 0; i < totalSlides; i++) {
+                                    const indicator = document.createElement('button');
+                                    indicator.className = `w-3 h-3 rounded-full transition-all duration-300 ${
+                                        i === Math.floor(carousel.scrollLeft / cardWidth) 
+                                            ? 'bg-primary shadow-lg' 
+                                            : 'bg-gray-300 hover:bg-gray-400'
+                                    }`;
+                                    indicator.addEventListener('click', () => {
+                                        carousel.scrollTo({
+                                            left: i * cardWidth,
+                                            behavior: 'smooth'
+                                        });
+                                        setTimeout(updateIndicators, 300);
+                                    });
+                                    indicators.appendChild(indicator);
+                                }
+                            }
+                            
+                            function startToursAutoScroll() {
+                                const carousel = document.getElementById('toursCarousel');
+                                if (!carousel || carousel.children.length <= 1) return;
+                                
+                                toursAutoScrollInterval = setInterval(() => {
+                                    const containerWidth = carousel.offsetWidth;
+                                    const cardWidth = 344;
                                     const maxScroll = carousel.scrollWidth - containerWidth;
                                     
-                                    // Check if we're at or near the end
-                                    if (carousel.scrollLeft >= maxScroll - 50) {
-                                        // Jump back to start smoothly
+                                    if (carousel.scrollLeft >= maxScroll - 10) {
+                                        // Reset to beginning with smooth transition
                                         carousel.scrollTo({ left: 0, behavior: 'smooth' });
-                                        currentIndex = 0;
+                                        toursCurrentIndex = 0;
                                     } else {
-                                        // Continue scrolling right
-                                        currentIndex++;
-                                        carousel.scrollTo({ left: currentIndex * cardWidth, behavior: 'smooth' });
+                                        // Scroll to next card
+                                        toursCurrentIndex++;
+                                        carousel.scrollTo({ 
+                                            left: toursCurrentIndex * cardWidth, 
+                                            behavior: 'smooth' 
+                                        });
                                     }
-                                }, 4000); // Change slide every 4 seconds
+                                    
+                                    setTimeout(updateIndicators, 300);
+                                }, 5000); // Change every 5 seconds
                             }
                             
-                            function stopAutoScroll() {
-                                clearInterval(autoScrollInterval);
+                            function stopToursAutoScroll() {
+                                clearInterval(toursAutoScrollInterval);
                             }
                             
-                            // Initialize auto-scroll when page loads
+                            // Initialize enhanced carousel
                             document.addEventListener('DOMContentLoaded', function() {
-                                startAutoScroll();
-                                
-                                // Pause auto-scroll on hover
                                 const carousel = document.getElementById('toursCarousel');
-                                const container = document.querySelector('.tours-carousel-container');
+                                const container = carousel?.parentElement;
                                 
-                                if (container) {
-                                    container.addEventListener('mouseenter', stopAutoScroll);
-                                    container.addEventListener('mouseleave', startAutoScroll);
+                                if (carousel && container) {
+                                    // Initialize indicators
+                                    updateIndicators();
+                                    
+                                    // Start auto-scroll
+                                    startToursAutoScroll();
+                                    
+                                    // Pause on hover
+                                    container.addEventListener('mouseenter', stopToursAutoScroll);
+                                    container.addEventListener('mouseleave', startToursAutoScroll);
+                                    
+                                    // Update indicators on scroll
+                                    carousel.addEventListener('scroll', () => {
+                                        clearTimeout(carousel.scrollTimeout);
+                                        carousel.scrollTimeout = setTimeout(updateIndicators, 150);
+                                    });
+                                    
+                                    // Update indicators on resize
+                                    window.addEventListener('resize', () => {
+                                        setTimeout(updateIndicators, 100);
+                                    });
                                 }
                             });
                             </script>
-                            
-                            <!-- Hide scrollbar -->
-                            <style>
-                            .tours-carousel::-webkit-scrollbar {
-                                display: none;
-                            }
-                            
-                            .carousel-nav:hover {
-                                background: #f8fafc !important;
-                                transform: translateY(-50%) scale(1.1) !important;
-                                box-shadow: 0 6px 25px rgba(0,0,0,0.15) !important;
-                            }
-                            
-                            .tour-card:hover {
-                                transform: translateY(-5px);
-                            }
-                            
-                            .tour-cta-btn:hover {
-                                background: #1eb5a6 !important;
-                                transform: translateY(-2px);
-                                box-shadow: 0 4px 15px rgba(45, 212, 191, 0.3);
-                            }
-                            
-                            @media (max-width: 768px) {
-                                .carousel-nav {
-                                    display: none !important;
-                                }
-                                
-                                .tours-carousel {
-                                    padding: 1rem !important;
-                                }
-                                
-                                .tour-card {
-                                    min-width: 280px !important;
-                                    max-width: 280px !important;
-                                    height: 500px !important;
-                                }
-                            }
-                            
-                            @media (min-width: 1200px) {
-                                .tours-carousel-container {
-                                    max-width: 1000px;
-                                    margin: 0 auto;
-                                }
-                            }
-                            </style>
                         <?php endif; ?>
                         
                     </div>
