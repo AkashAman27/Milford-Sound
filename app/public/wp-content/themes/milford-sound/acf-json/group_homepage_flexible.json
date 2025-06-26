@@ -1021,6 +1021,27 @@
                                     "parent_repeater": "field_tours_items"
                                 },
                                 {
+                                    "key": "field_tour_button_text",
+                                    "label": "Button Text",
+                                    "name": "button_text",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "Custom text for the tour button (e.g., 'Book Now', 'Explore Now')",
+                                    "required": false,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "Book Now",
+                                    "maxlength": "",
+                                    "placeholder": "Book Now",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "field_tours_items"
+                                },
+                                {
                                     "key": "field_tour_link",
                                     "label": "Book Now Link",
                                     "name": "link",
