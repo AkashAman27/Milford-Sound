@@ -234,6 +234,51 @@ function milford_sound_sync_blog_fields() {
 }
 add_action('acf/init', 'milford_sound_sync_blog_fields');
 
+// Sync tour category fields (Headout style only)
+function milford_sound_sync_category_fields() {
+    if (get_option('milford_sound_category_fields_synced_v5') !== 'done' && function_exists('acf_import_field_group')) {
+        $json_file = get_template_directory() . '/acf-json/group_tour_category_fields.json';
+        if (file_exists($json_file)) {
+            $json_data = file_get_contents($json_file);
+            $field_group = json_decode($json_data, true);
+            if ($field_group && isset($field_group['key'])) {
+                acf_import_field_group($field_group);
+                update_option('milford_sound_category_fields_synced_v5', 'done');
+                
+                // Force refresh ACF cache
+                if (function_exists('acf_get_field_groups')) {
+                    wp_cache_delete('acf_get_field_groups', 'acf');
+                    wp_cache_flush();
+                }
+            }
+        }
+    }
+}
+add_action('acf/init', 'milford_sound_sync_category_fields');
+
+// Clean up old conflicting ACF field groups
+function milford_sound_cleanup_old_field_groups() {
+    if (get_option('milford_sound_field_cleanup_done') !== 'done' && function_exists('acf_get_field_groups')) {
+        // Remove old conflicting field group
+        $old_group_key = 'group_category_fields';
+        
+        // Check if the old group exists and remove it
+        if (function_exists('acf_delete_field_group')) {
+            $field_groups = acf_get_field_groups();
+            foreach ($field_groups as $group) {
+                if ($group['key'] === $old_group_key) {
+                    // Delete the old field group
+                    acf_delete_field_group($group['ID']);
+                    break;
+                }
+            }
+        }
+        
+        update_option('milford_sound_field_cleanup_done', 'done');
+    }
+}
+add_action('acf/init', 'milford_sound_cleanup_old_field_groups', 15);
+
 // Add default tour and guide categories
 function milford_sound_add_default_taxonomies() {
     // Default tour categories

@@ -4,487 +4,802 @@
     <?php
     // Get ACF fields for category pages
     $category_hero = get_field('category_hero') ?: array();
-    $category_filters = get_field('category_filters') ?: array();
     $featured_tours = get_field('featured_tours') ?: array();
-    $category_highlights = get_field('category_highlights') ?: array();
-    $category_gallery = get_field('category_gallery') ?: array();
-    $booking_info = get_field('booking_info') ?: array();
-    $category_faq = get_field('category_faq') ?: array();
-    $category_seo = get_field('category_seo') ?: array();
+    $pro_tips = get_field('pro_tips') ?: array();
+    $similar_things = get_field('similar_things') ?: array();
+    $about_section = get_field('about_section') ?: array();
     
-    // Hero background setup
-    $hero_bg_type = safe_get($category_hero, 'hero_background_type', 'image');
-    $hero_bg_image = safe_get($category_hero, 'hero_background_image');
-    $hero_bg_video = safe_get($category_hero, 'hero_background_video');
-    $hero_overlay = safe_get($category_hero, 'hero_overlay_color', 'rgba(0, 0, 0, 0.5)');
-    
-    // Determine if we have custom background
-    $has_custom_bg = ($hero_bg_type === 'image' && $hero_bg_image) || ($hero_bg_type === 'video' && $hero_bg_video);
-    $default_bg = $has_custom_bg ? 'transparent' : 'linear-gradient(135deg, #2dd4bf 0%, #3b82f6 100%)';
+    // Helper function for safe array access
+    if (!function_exists('safe_get')) {
+        function safe_get($array, $key, $default = '') {
+            return (is_array($array) && isset($array[$key])) ? $array[$key] : $default;
+        }
+    }
     ?>
 
-    <main class="main-content single-category">
+    <main class="main-content single-category headout-style">
         
         <!-- Category Hero Section -->
-        <header class="category-hero" style="position: relative; padding: 10rem 0 6rem; background: <?php echo $default_bg; ?>; color: white; overflow: hidden;">
-            
-            <?php if ($hero_bg_type === 'image' && $hero_bg_image) : ?>
-                <div class="hero-bg-image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('<?php echo esc_url($hero_bg_image['url']); ?>'); background-size: cover; background-position: center; z-index: 1;"></div>
-                <div class="hero-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: <?php echo esc_attr($hero_overlay); ?>; z-index: 2;"></div>
-            <?php elseif ($hero_bg_type === 'video' && $hero_bg_video) : ?>
-                <div class="hero-bg-video" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
-                    <?php if (strpos($hero_bg_video, 'youtube.com') !== false || strpos($hero_bg_video, 'youtu.be') !== false) : ?>
-                        <?php
-                        preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/', $hero_bg_video, $matches);
-                        $video_id = $matches[1] ?? '';
-                        ?>
-                        <iframe src="https://www.youtube.com/embed/<?php echo esc_attr($video_id); ?>?autoplay=1&mute=1&loop=1&playlist=<?php echo esc_attr($video_id); ?>&controls=0&showinfo=0&rel=0" frameborder="0" allow="autoplay; encrypted-media" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"></iframe>
-                    <?php else : ?>
-                        <video autoplay muted loop style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
-                            <source src="<?php echo esc_url($hero_bg_video); ?>" type="video/mp4">
-                        </video>
-                    <?php endif; ?>
-                </div>
-                <div class="hero-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: <?php echo esc_attr($hero_overlay); ?>; z-index: 2;"></div>
-            <?php elseif (has_post_thumbnail()) : ?>
-                <div class="hero-bg-image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.3; z-index: -1;">
-                    <?php the_post_thumbnail('full', array('style' => 'width: 100%; height: 100%; object-fit: cover;')); ?>
-                </div>
-            <?php endif; ?>
-            
-            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 10; text-align: center;">
-                
-                <!-- Category Badge -->
-                <?php if (safe_get($category_hero, 'category_badge')) : ?>
-                    <div style="background: linear-gradient(135deg, #f59e0b, #f97316); color: white; padding: 0.5rem 1.5rem; border-radius: 25px; font-size: 0.9rem; font-weight: 600; display: inline-block; margin-bottom: 2rem;">
-                        <?php echo esc_html($category_hero['category_badge']); ?>
-                    </div>
-                <?php endif; ?>
-                
-                <h1 class="category-title" style="font-size: clamp(3rem, 8vw, 5rem); font-weight: 900; margin-bottom: 2rem; line-height: 1.1;">
-                    <?php the_title(); ?>
-                </h1>
-                
-                <?php if (safe_get($category_hero, 'category_subtitle')) : ?>
-                    <p class="category-subtitle" style="font-size: 1.5rem; margin-bottom: 3rem; opacity: 0.9; line-height: 1.6; max-width: 800px; margin-left: auto; margin-right: auto;">
-                        <?php echo esc_html($category_hero['category_subtitle']); ?>
-                    </p>
-                <?php endif; ?>
-                
-                <!-- Category Statistics -->
-                <?php if (safe_get($category_hero, 'category_stats') && !empty($category_hero['category_stats'])) : ?>
-                    <div class="category-stats" style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin-bottom: 3rem;">
-                        <?php foreach ($category_hero['category_stats'] as $stat) : ?>
-                            <div style="text-align: center;">
-                                <div style="font-size: 2rem; margin-bottom: 0.5rem;"><?php echo esc_html($stat['stat_icon']); ?></div>
-                                <div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 0.25rem; color: #2dd4bf;"><?php echo esc_html($stat['stat_number']); ?></div>
-                                <div style="font-size: 0.9rem; opacity: 0.8;"><?php echo esc_html($stat['stat_label']); ?></div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
-                
-                <!-- Quick Action Buttons -->
-                <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-                    <a href="#tours" style="background: #2dd4bf; color: white; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
-                        🎯 View All Tours
-                    </a>
-                    <a href="#booking" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
-                        📞 Get Help
-                    </a>
-                </div>
-                
-            </div>
-        </header>
-
-        <!-- Main Content -->
-        <div class="category-content" style="padding: 4rem 0; background: #f8fafc;">
-            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
-                
-                <!-- Filter Section -->
-                <?php if (safe_get($category_filters, 'enable_filters')) : ?>
-                    <section class="filters-section" style="background: white; padding: 2rem; border-radius: 20px; margin-bottom: 4rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                        <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem; color: #1e293b;">🔍 Filter Tours</h2>
-                        
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
-                            
-                            <!-- Duration Filters -->
-                            <?php if (safe_get($category_filters, 'duration_filters') && !empty($category_filters['duration_filters'])) : ?>
-                                <div>
-                                    <h3 style="font-weight: 600; margin-bottom: 1rem; color: #64748b;">Duration</h3>
-                                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                                        <?php foreach ($category_filters['duration_filters'] as $duration) : ?>
-                                            <button class="filter-btn" data-filter="duration" data-value="<?php echo esc_attr($duration['duration_value']); ?>" style="background: #f1f5f9; border: 1px solid #e2e8f0; color: #64748b; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease;">
-                                                <?php echo esc_html($duration['duration_label']); ?>
-                                            </button>
-                                        <?php endforeach; ?>
-                                    </div>
-                                </div>
-                            <?php endif; ?>
-                            
-                            <!-- Price Filters -->
-                            <?php if (safe_get($category_filters, 'price_filters') && !empty($category_filters['price_filters'])) : ?>
-                                <div>
-                                    <h3 style="font-weight: 600; margin-bottom: 1rem; color: #64748b;">Price Range</h3>
-                                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                                        <?php foreach ($category_filters['price_filters'] as $price) : ?>
-                                            <button class="filter-btn" data-filter="price" data-min="<?php echo esc_attr($price['price_min']); ?>" data-max="<?php echo esc_attr($price['price_max']); ?>" style="background: #f1f5f9; border: 1px solid #e2e8f0; color: #64748b; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease;">
-                                                <?php echo esc_html($price['price_label']); ?>
-                                            </button>
-                                        <?php endforeach; ?>
-                                    </div>
-                                </div>
-                            <?php endif; ?>
-                            
-                            <!-- Difficulty Filters -->
-                            <?php if (safe_get($category_filters, 'difficulty_filters') && !empty($category_filters['difficulty_filters'])) : ?>
-                                <div>
-                                    <h3 style="font-weight: 600; margin-bottom: 1rem; color: #64748b;">Difficulty</h3>
-                                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                                        <?php foreach ($category_filters['difficulty_filters'] as $difficulty) : ?>
-                                            <button class="filter-btn" data-filter="difficulty" data-value="<?php echo esc_attr($difficulty); ?>" style="background: #f1f5f9; border: 1px solid #e2e8f0; color: #64748b; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease;">
-                                                <?php echo esc_html(ucfirst($difficulty)); ?>
-                                            </button>
-                                        <?php endforeach; ?>
-                                    </div>
-                                </div>
-                            <?php endif; ?>
-                            
+        <section class="category-hero" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 4rem 0 2rem; color: white;">
+            <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 2rem;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+                    
+                    <!-- Hero Content -->
+                    <div class="hero-content">
+                        <div class="rank-badge" style="background: rgba(255,255,255,0.2); padding: 0.5rem 1rem; border-radius: 20px; display: inline-block; font-size: 0.9rem; margin-bottom: 1rem;">
+                            📍 <?php echo esc_html(safe_get($category_hero, 'rank_badge', '#1 out of 127 in ' . get_the_title())); ?>
                         </div>
                         
-                        <div style="margin-top: 2rem; text-align: center;">
-                            <button id="clear-filters" style="background: #64748b; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 25px; font-weight: 600; cursor: pointer;">
-                                Clear All Filters
-                            </button>
-                        </div>
-                    </section>
-                <?php endif; ?>
-
-                <!-- Featured Tours Section -->
-                <?php if (safe_get($featured_tours, 'featured_tours_list') && !empty($featured_tours['featured_tours_list'])) : ?>
-                    <section id="tours" class="featured-tours-section" style="margin-bottom: 4rem;">
-                        <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; color: #1e293b; text-align: center;">
-                            <?php echo esc_html(safe_get($featured_tours, 'featured_tours_title', 'Top Rated Tours')); ?>
-                        </h2>
-                        <p style="text-align: center; color: #64748b; margin-bottom: 3rem; font-size: 1.1rem;">Discover the best experiences in this category</p>
+                        <h1 style="font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 1rem; line-height: 1.2;">
+                            <?php echo esc_html(safe_get($category_hero, 'title', 'Experience only the best of ' . get_the_title() . ' Tickets')); ?>
+                        </h1>
                         
+                        <p style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 2rem; line-height: 1.6;">
+                            <?php echo esc_html(safe_get($category_hero, 'subtitle', "We've done the hard work - Find only the best experiences from hundreds of them so you can choose easily.")); ?>
+                        </p>
+                        
+                        <!-- Hero Stats -->
                         <?php 
-                        $layout = safe_get($featured_tours, 'featured_layout', 'grid');
-                        $grid_class = ($layout === 'list') ? 'grid-template-columns: 1fr;' : 'grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));';
+                        $hero_stats = safe_get($category_hero, 'hero_stats', array());
+                        
+                        // Debug: Let's see what's in the hero stats
+                        if (current_user_can('administrator')) {
+                            echo '<!-- DEBUG: Hero Stats data: ' . print_r($hero_stats, true) . ' -->';
+                            echo '<!-- DEBUG: Category Hero data: ' . print_r($category_hero, true) . ' -->';
+                        }
+                        
+                        // Check if hero_stats has data but all fields are empty
+                        $has_empty_data = false;
+                        if (!empty($hero_stats)) {
+                            $has_empty_data = true;
+                            foreach ($hero_stats as $stat) {
+                                if (!empty($stat['icon']) || !empty($stat['number']) || !empty($stat['text']) || !empty($stat['subtext'])) {
+                                    $has_empty_data = false;
+                                    break;
+                                }
+                            }
+                        }
+                        
+                        // Add default stats if none are set OR if all fields are empty
+                        if (empty($hero_stats) || $has_empty_data) {
+                            $hero_stats = array(
+                                array('icon' => '❤️', 'number' => '4.4/5', 'text' => '107.3K+ travellers love this', 'subtext' => 'See what they have to say'),
+                                array('icon' => '📍', 'number' => "Visitor's guide", 'text' => 'Must-see highlights & key info', 'subtext' => '')
+                            );
+                        }
+                        if (!empty($hero_stats)) : 
                         ?>
-                        
-                        <div class="tours-grid" style="display: grid; <?php echo $grid_class; ?> gap: 2rem;">
-                            <?php foreach ($featured_tours['featured_tours_list'] as $tour) : ?>
-                                <?php
-                                $tour_overview = get_field('tour_overview', $tour->ID) ?: array();
-                                $tour_highlights = get_field('tour_highlights', $tour->ID) ?: array();
-                                ?>
-                                <div class="tour-card" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
-                                    
-                                    <?php if (has_post_thumbnail($tour->ID)) : ?>
-                                        <div style="height: 200px; overflow: hidden; position: relative;">
-                                            <a href="<?php echo get_permalink($tour->ID); ?>">
-                                                <?php echo get_the_post_thumbnail($tour->ID, 'medium_large', array('style' => 'width: 100%; height: 100%; object-fit: cover;')); ?>
-                                            </a>
-                                            <?php if (safe_get($tour_overview, 'tour_price')) : ?>
-                                                <div style="position: absolute; top: 1rem; right: 1rem; background: #2dd4bf; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">
-                                                    <?php echo esc_html($tour_overview['tour_price']); ?>
-                                                </div>
-                                            <?php endif; ?>
+                            <div class="hero-stats" style="display: flex; gap: 2rem; flex-wrap: wrap;">
+                                <?php foreach ($hero_stats as $stat) : ?>
+                                    <div class="stat-item" style="background: rgba(255,255,255,0.1); padding: 1rem 1.5rem; border-radius: 15px; backdrop-filter: blur(10px);">
+                                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                            <span style="font-size: 1.2rem;"><?php echo esc_html(safe_get($stat, 'icon')); ?></span>
+                                            <span style="font-weight: 700; font-size: 1.1rem;"><?php echo esc_html(safe_get($stat, 'number')); ?></span>
                                         </div>
-                                    <?php endif; ?>
-                                    
-                                    <div style="padding: 2rem;">
-                                        <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.4;">
-                                            <a href="<?php echo get_permalink($tour->ID); ?>" style="text-decoration: none; color: #1e293b;">
-                                                <?php echo esc_html($tour->post_title); ?>
-                                            </a>
-                                        </h3>
-                                        
-                                        <p style="color: #64748b; margin-bottom: 1.5rem; line-height: 1.6;">
-                                            <?php echo wp_trim_words($tour->post_excerpt ?: $tour->post_content, 15); ?>
-                                        </p>
-                                        
-                                        <!-- Tour Meta -->
-                                        <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; font-size: 0.9rem; color: #64748b;">
-                                            <?php if (safe_get($tour_overview, 'tour_duration')) : ?>
-                                                <span style="display: flex; align-items: center; gap: 0.25rem;">
-                                                    <span>⏰</span>
-                                                    <span><?php echo esc_html($tour_overview['tour_duration']); ?></span>
-                                                </span>
-                                            <?php endif; ?>
-                                            <?php if (safe_get($tour_overview, 'tour_group_size')) : ?>
-                                                <span style="display: flex; align-items: center; gap: 0.25rem;">
-                                                    <span>👥</span>
-                                                    <span><?php echo esc_html($tour_overview['tour_group_size']); ?></span>
-                                                </span>
-                                            <?php endif; ?>
-                                            <?php if (safe_get($tour_overview, 'tour_difficulty')) : ?>
-                                                <span style="display: flex; align-items: center; gap: 0.25rem;">
-                                                    <span>📊</span>
-                                                    <span><?php echo esc_html(ucfirst($tour_overview['tour_difficulty'])); ?></span>
-                                                </span>
-                                            <?php endif; ?>
-                                        </div>
-                                        
-                                        <a href="<?php echo get_permalink($tour->ID); ?>" style="background: #2dd4bf; color: white; padding: 0.75rem 1.5rem; border-radius: 25px; text-decoration: none; font-weight: 600; display: inline-block; transition: all 0.3s ease;">
-                                            View Details →
-                                        </a>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </section>
-                <?php endif; ?>
-
-                <!-- Description Content -->
-                <section class="category-description" style="margin-bottom: 4rem;">
-                    <div style="background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); line-height: 1.8; font-size: 1.1rem;">
-                        <?php the_content(); ?>
-                    </div>
-                </section>
-
-                <!-- Category Highlights -->
-                <?php if (safe_get($category_highlights, 'highlights_list') && !empty($category_highlights['highlights_list'])) : ?>
-                    <section class="category-highlights" style="margin-bottom: 4rem;">
-                        <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; color: #1e293b; text-align: center;">
-                            <?php echo esc_html(safe_get($category_highlights, 'highlights_title', 'Why Choose This Experience')); ?>
-                        </h2>
-                        
-                        <?php if (safe_get($category_highlights, 'highlights_subtitle')) : ?>
-                            <p style="text-align: center; color: #64748b; margin-bottom: 3rem; font-size: 1.1rem; max-width: 800px; margin-left: auto; margin-right: auto;">
-                                <?php echo esc_html($category_highlights['highlights_subtitle']); ?>
-                            </p>
-                        <?php endif; ?>
-                        
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                            <?php foreach ($category_highlights['highlights_list'] as $highlight) : ?>
-                                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); text-align: center;">
-                                    <div style="font-size: 3rem; margin-bottom: 1rem;"><?php echo esc_html($highlight['highlight_icon']); ?></div>
-                                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: #1e293b;">
-                                        <?php echo esc_html($highlight['highlight_title']); ?>
-                                    </h3>
-                                    <p style="color: #64748b; line-height: 1.6;">
-                                        <?php echo esc_html($highlight['highlight_description']); ?>
-                                    </p>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </section>
-                <?php endif; ?>
-
-                <!-- Category Gallery -->
-                <?php if ($category_gallery && !empty($category_gallery)) : ?>
-                    <section class="category-gallery" style="margin-bottom: 4rem;">
-                        <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 3rem; color: #1e293b; text-align: center;">Gallery</h2>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-                            <?php foreach ($category_gallery as $image) : ?>
-                                <div style="aspect-ratio: 4/3; overflow: hidden; border-radius: 15px; cursor: pointer;">
-                                    <img src="<?php echo esc_url($image['sizes']['medium_large']); ?>" 
-                                         alt="<?php echo esc_attr($image['alt']); ?>"
-                                         style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </section>
-                <?php endif; ?>
-
-                <!-- FAQ Section -->
-                <?php if ($category_faq && !empty($category_faq)) : ?>
-                    <section class="faq-section" style="margin-bottom: 4rem;">
-                        <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 3rem; color: #1e293b; text-align: center;">Frequently Asked Questions</h2>
-                        <div style="max-width: 800px; margin: 0 auto;">
-                            <?php foreach ($category_faq as $index => $faq) : ?>
-                                <div class="faq-item" style="background: white; margin-bottom: 1rem; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
-                                    <button class="faq-question" data-target="faq-<?php echo $index; ?>" style="width: 100%; padding: 1.5rem; text-align: left; background: none; border: none; font-size: 1.1rem; font-weight: 600; color: #1e293b; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                                        <?php echo esc_html($faq['faq_question']); ?>
-                                        <span class="faq-icon">+</span>
-                                    </button>
-                                    <div id="faq-<?php echo $index; ?>" class="faq-answer" style="display: none; padding: 0 1.5rem 1.5rem; color: #64748b; line-height: 1.6;">
-                                        <?php echo esc_html($faq['faq_answer']); ?>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </section>
-                <?php endif; ?>
-
-                <!-- Booking Information -->
-                <?php if ($booking_info) : ?>
-                    <section id="booking" class="booking-section" style="background: linear-gradient(135deg, #2dd4bf, #3b82f6); color: white; padding: 4rem 2rem; border-radius: 20px; text-align: center;">
-                        <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 2rem;">Ready to Book?</h2>
-                        <p style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">Get in touch with our team for personalized recommendations and instant booking</p>
-                        
-                        <!-- Booking Features -->
-                        <?php if (safe_get($booking_info, 'booking_features') && !empty($booking_info['booking_features'])) : ?>
-                            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 3rem;">
-                                <?php foreach ($booking_info['booking_features'] as $feature) : ?>
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.2); padding: 0.75rem 1.5rem; border-radius: 25px;">
-                                        <span><?php echo esc_html($feature['feature_icon']); ?></span>
-                                        <span><?php echo esc_html($feature['feature_text']); ?></span>
+                                        <div style="font-size: 0.9rem; opacity: 0.9;"><?php echo esc_html(safe_get($stat, 'text')); ?></div>
+                                        <?php if (safe_get($stat, 'subtext')) : ?>
+                                            <div style="font-size: 0.8rem; opacity: 0.7;"><?php echo esc_html(safe_get($stat, 'subtext')); ?></div>
+                                        <?php endif; ?>
                                     </div>
                                 <?php endforeach; ?>
                             </div>
                         <?php endif; ?>
+                    </div>
+                    
+                    <!-- Hero Video -->
+                    <?php 
+                    $hero_video = safe_get($category_hero, 'hero_video', array());
+                    $video_url = safe_get($hero_video, 'video_url');
+                    $video_thumbnail = safe_get($hero_video, 'video_thumbnail');
+                    
+                    // Function to extract YouTube video ID
+                    function get_youtube_id($url) {
+                        if (empty($url)) return false;
+                        preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/', $url, $matches);
+                        return isset($matches[1]) ? $matches[1] : false;
+                    }
+                    
+                    // Auto-generate YouTube thumbnail if no custom thumbnail is set
+                    $youtube_id = get_youtube_id($video_url);
+                    $auto_thumbnail = $youtube_id ? "https://img.youtube.com/vi/{$youtube_id}/maxresdefault.jpg" : '';
+                    
+                    if ($video_thumbnail || $video_url) : 
+                    ?>
+                        <div class="hero-video" style="width: 100%;">
+                            <?php if ($youtube_id) : ?>
+                                <!-- Embedded YouTube Video with Autoplay -->
+                                <div style="position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3); aspect-ratio: 16/9;">
+                                    <iframe 
+                                        src="https://www.youtube.com/embed/<?php echo esc_attr($youtube_id); ?>?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&loop=1&playlist=<?php echo esc_attr($youtube_id); ?>"
+                                        style="width: 100%; height: 100%; border: none;"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                        loading="lazy">
+                                    </iframe>
+                                </div>
+                            <?php else : ?>
+                                <!-- Fallback with thumbnail and play button for non-YouTube videos -->
+                                <div style="position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3); aspect-ratio: 16/9;">
+                                    <?php if ($video_thumbnail && safe_get($video_thumbnail, 'url')) : ?>
+                                        <!-- Custom thumbnail uploaded -->
+                                        <img src="<?php echo esc_url(safe_get($video_thumbnail, 'url')); ?>" 
+                                             alt="Video thumbnail" 
+                                             style="width: 100%; height: 100%; object-fit: cover;">
+                                    <?php elseif ($auto_thumbnail) : ?>
+                                        <!-- Auto YouTube thumbnail -->
+                                        <img src="<?php echo esc_url($auto_thumbnail); ?>" 
+                                             alt="YouTube Video Thumbnail" 
+                                             style="width: 100%; height: 100%; object-fit: cover;">
+                                    <?php else : ?>
+                                        <!-- Fallback placeholder -->
+                                        <div style="width: 100%; height: 100%; background: linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.1) 75%), linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.1) 75%); background-size: 20px 20px; background-position: 0 0, 10px 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">
+                                            🎥 Video Placeholder
+                                        </div>
+                                    <?php endif; ?>
+                                    
+                                    <?php if ($video_url) : ?>
+                                        <!-- Play button for non-YouTube videos -->
+                                        <div class="play-button" 
+                                             onclick="openVideoModal('<?php echo esc_js($video_url); ?>')"
+                                             style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px; background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                                            <span style="font-size: 2rem; margin-left: 8px; color: #667eea;">▶</span>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Tours Section -->
+        <?php 
+        // Add default tour if none are set
+        if (empty($featured_tours)) {
+            $featured_tours = array(
+                array(
+                    'tour_images' => array(
+                        array('url' => 'https://via.placeholder.com/400x300/667eea/ffffff?text=Tour+Image+1'),
+                        array('url' => 'https://via.placeholder.com/400x300/764ba2/ffffff?text=Tour+Image+2'),
+                        array('url' => 'https://via.placeholder.com/400x300/2dd4bf/ffffff?text=Tour+Image+3')
+                    ),
+                    'rating' => '4.4',
+                    'review_count' => '(32,849)',
+                    'tour_type' => 'Tickets',
+                    'title' => get_the_title() . ' Experience: Premium Access',
+                    'features' => array(
+                        array('icon' => '⚡', 'text' => 'Instant confirmation'),
+                        array('icon' => '🕐', 'text' => 'Flexible duration'),
+                        array('icon' => '📱', 'text' => 'Mobile ticket')
+                    ),
+                    'highlights' => array(
+                        array('text' => 'Level up your experience with premium access and exclusive benefits.'),
+                        array('text' => 'Skip the regular lines with our fast-track entry system.'),
+                        array('text' => 'Professional guide included for the ultimate experience.')
+                    ),
+                    'price_from' => '$99',
+                    'cta_text' => 'Check availability',
+                    'tour_link' => array('url' => '#'),
+                    'badges' => array(
+                        array('text' => 'Free cancellation', 'type' => 'success')
+                    )
+                )
+            );
+        }
+        if (!empty($featured_tours)) : 
+        ?>
+            <section class="featured-tours" style="padding: 4rem 0; background: #f8fafc;">
+                <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+                    <div class="tours-grid" style="display: flex; flex-direction: column; gap: 2rem;">
                         
-                        <!-- Contact Information -->
-                        <?php if (safe_get($booking_info, 'contact_info')) : ?>
-                            <div style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin-bottom: 3rem;">
-                                <?php if (safe_get($booking_info['contact_info'], 'contact_phone')) : ?>
-                                    <div>
-                                        <div style="font-weight: 600; margin-bottom: 0.5rem;">📞 Phone</div>
-                                        <div style="font-size: 1.1rem;"><?php echo esc_html($booking_info['contact_info']['contact_phone']); ?></div>
-                                        <?php if (safe_get($booking_info['contact_info'], 'contact_hours')) : ?>
-                                            <div style="font-size: 0.9rem; opacity: 0.8;"><?php echo esc_html($booking_info['contact_info']['contact_hours']); ?></div>
+                        <?php foreach ($featured_tours as $index => $tour) : ?>
+                            <div class="tour-card" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease; display: grid; grid-template-columns: 400px 1fr; min-height: 300px;">
+                                
+                                <!-- Tour Image Carousel -->
+                                <?php 
+                                $tour_images = safe_get($tour, 'tour_images', array());
+                                // Handle both gallery format and fallback single image
+                                if (empty($tour_images) && safe_get($tour, 'tour_image')) {
+                                    $tour_images = array(safe_get($tour, 'tour_image'));
+                                }
+                                if (!empty($tour_images)) : 
+                                ?>
+                                    <div class="tour-image-carousel" style="position: relative; height: 100%; overflow: hidden;">
+                                        <!-- Main Image Display -->
+                                        <div class="carousel-images" style="position: relative; width: 100%; height: 100%;">
+                                            <?php foreach ($tour_images as $img_index => $image) : ?>
+                                                <img src="<?php echo esc_url(safe_get($image, 'url')); ?>" 
+                                                     alt="<?php echo esc_attr(safe_get($tour, 'title')); ?> - Image <?php echo $img_index + 1; ?>"
+                                                     class="carousel-image <?php echo $img_index === 0 ? 'active' : ''; ?>"
+                                                     data-index="<?php echo $img_index; ?>"
+                                                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: <?php echo $img_index === 0 ? '1' : '0'; ?>; transition: opacity 0.5s ease;">
+                                            <?php endforeach; ?>
+                                        </div>
+                                        
+                                        <!-- Navigation Arrows -->
+                                        <?php if (count($tour_images) > 1) : ?>
+                                            <button class="carousel-prev" onclick="changeImage(this, -1)" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10;">‹</button>
+                                            <button class="carousel-next" onclick="changeImage(this, 1)" style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10;">›</button>
+                                        <?php endif; ?>
+                                        
+                                        <!-- Image Indicators -->
+                                        <?php if (count($tour_images) > 1) : ?>
+                                            <div class="carousel-indicators" style="position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); display: flex; gap: 0.5rem; z-index: 10;">
+                                                <?php foreach ($tour_images as $img_index => $image) : ?>
+                                                    <span class="indicator <?php echo $img_index === 0 ? 'active' : ''; ?>" 
+                                                          onclick="goToImage(this, <?php echo $img_index; ?>)"
+                                                          data-index="<?php echo $img_index; ?>"
+                                                          style="width: 8px; height: 8px; border-radius: 50%; background: <?php echo $img_index === 0 ? 'white' : 'rgba(255,255,255,0.5)'; ?>; cursor: pointer; transition: background 0.3s ease;"></span>
+                                                <?php endforeach; ?>
+                                            </div>
+                                        <?php endif; ?>
+                                        
+                                        <!-- Tour Badges -->
+                                        <?php 
+                                        $badges = safe_get($tour, 'badges', array());
+                                        if (!empty($badges)) : 
+                                        ?>
+                                            <div class="tour-badges" style="position: absolute; top: 1rem; left: 1rem; display: flex; flex-direction: column; gap: 0.5rem; z-index: 10;">
+                                                <?php foreach ($badges as $badge) : ?>
+                                                    <?php
+                                                    $badge_colors = array(
+                                                        'success' => 'background: #22c55e; color: white;',
+                                                        'warning' => 'background: #f59e0b; color: white;',
+                                                        'info' => 'background: #3b82f6; color: white;',
+                                                        'urgent' => 'background: #ef4444; color: white;'
+                                                    );
+                                                    $badge_style = $badge_colors[safe_get($badge, 'type', 'success')] ?? $badge_colors['success'];
+                                                    ?>
+                                                    <span style="<?php echo $badge_style; ?> padding: 0.5rem 1rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">
+                                                        <?php echo esc_html(safe_get($badge, 'text')); ?>
+                                                    </span>
+                                                <?php endforeach; ?>
+                                            </div>
                                         <?php endif; ?>
                                     </div>
                                 <?php endif; ?>
                                 
-                                <?php if (safe_get($booking_info['contact_info'], 'contact_email')) : ?>
-                                    <div>
-                                        <div style="font-weight: 600; margin-bottom: 0.5rem;">✉️ Email</div>
-                                        <div style="font-size: 1.1rem;"><?php echo esc_html($booking_info['contact_info']['contact_email']); ?></div>
+                                <!-- Tour Content -->
+                                <div class="tour-content" style="padding: 2rem;">
+                                    
+                                    <!-- Rating and Type -->
+                                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+                                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                            <?php if (safe_get($tour, 'rating')) : ?>
+                                                <span style="background: #fee2e2; color: #dc2626; padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">
+                                                    ⭐ <?php echo esc_html(safe_get($tour, 'rating')); ?>
+                                                </span>
+                                            <?php endif; ?>
+                                            <?php if (safe_get($tour, 'review_count')) : ?>
+                                                <span style="color: #64748b; font-size: 0.9rem;"><?php echo esc_html(safe_get($tour, 'review_count')); ?></span>
+                                            <?php endif; ?>
+                                        </div>
+                                        <?php if (safe_get($tour, 'tour_type')) : ?>
+                                            <span style="background: #e0e7ff; color: #3730a3; padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">
+                                                <?php echo esc_html(safe_get($tour, 'tour_type')); ?>
+                                            </span>
+                                        <?php endif; ?>
                                     </div>
+                                    
+                                    <!-- Tour Title -->
+                                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: #1e293b; line-height: 1.3;">
+                                        <?php echo esc_html(safe_get($tour, 'title')); ?>
+                                    </h3>
+                                    
+                                    <!-- Tour Features -->
+                                    <?php 
+                                    $features = safe_get($tour, 'features', array());
+                                    if (!empty($features)) : 
+                                    ?>
+                                        <div class="tour-features" style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+                                            <?php foreach ($features as $feature) : ?>
+                                                <div style="display: flex; align-items: center; gap: 0.5rem; color: #64748b; font-size: 0.9rem;">
+                                                    <span><?php echo esc_html(safe_get($feature, 'icon')); ?></span>
+                                                    <span><?php echo esc_html(safe_get($feature, 'text')); ?></span>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    
+                                    <!-- Tour Highlights -->
+                                    <?php 
+                                    $highlights = safe_get($tour, 'highlights', array());
+                                    
+                                    // Debug: Let's see what's in the highlights array
+                                    if (current_user_can('administrator')) {
+                                        echo '<!-- DEBUG: Highlights data: ' . print_r($highlights, true) . ' -->';
+                                    }
+                                    
+                                    if (!empty($highlights)) : 
+                                    ?>
+                                        <ul style="list-style: none; padding: 0; margin-bottom: 1.5rem;">
+                                            <?php foreach ($highlights as $highlight) : ?>
+                                                <?php 
+                                                $highlight_text = safe_get($highlight, 'text');
+                                                if (!empty($highlight_text)) : 
+                                                ?>
+                                                    <li style="color: #64748b; margin-bottom: 0.5rem; padding-left: 1rem; position: relative; font-size: 0.9rem; line-height: 1.5;">
+                                                        <span style="position: absolute; left: 0; color: #22c55e;">•</span>
+                                                        <?php echo esc_html($highlight_text); ?>
+                                                    </li>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    <?php endif; ?>
+                                    
+                                    <!-- Price and CTA -->
+                                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                                        <div>
+                                            <?php if (safe_get($tour, 'price_from')) : ?>
+                                                <div style="color: #64748b; font-size: 0.9rem;">from</div>
+                                                <div style="font-size: 1.5rem; font-weight: 800; color: #1e293b;"><?php echo esc_html(safe_get($tour, 'price_from')); ?></div>
+                                            <?php endif; ?>
+                                        </div>
+                                        <?php 
+                                        // Prioritize Book Now Link over Tour Link
+                                        $book_now_link = safe_get($tour, 'book_now_link', array());
+                                        $tour_link = safe_get($tour, 'tour_link', array());
+                                        $cta_text = safe_get($tour, 'cta_text', 'Check availability');
+                                        
+                                        // Use Book Now Link if available, otherwise use Tour Link
+                                        $primary_link = !empty(safe_get($book_now_link, 'url')) ? $book_now_link : $tour_link;
+                                        $link_url = safe_get($primary_link, 'url', '#');
+                                        $link_target = safe_get($primary_link, 'target', '_self');
+                                        ?>
+                                        <a href="<?php echo esc_url($link_url); ?>" 
+                                           target="<?php echo esc_attr($link_target); ?>"
+                                           style="background: #7c3aed; color: white; padding: 1rem 2rem; border-radius: 15px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
+                                            <?php echo esc_html($cta_text); ?>
+                                        </a>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                        
+                    </div>
+                </div>
+            </section>
+        <?php endif; ?>
+
+        <!-- Pro Tips Section -->
+        <?php if (!empty($pro_tips) && !empty(safe_get($pro_tips, 'tips_list'))) : ?>
+            <section class="pro-tips" style="padding: 4rem 0; background: white;">
+                <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+                    <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 3rem; color: #1e293b; text-align: center;">
+                        <?php echo esc_html(safe_get($pro_tips, 'title', 'Pro tips to help you make a pick')); ?>
+                    </h2>
+                    
+                    <div class="tips-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem;">
+                        <?php foreach (safe_get($pro_tips, 'tips_list', array()) as $tip) : ?>
+                            <div class="tip-card" style="background: #f8fafc; padding: 2rem; border-radius: 20px; border-left: 4px solid #7c3aed;">
+                                <div style="display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem;">
+                                    <div style="background: #7c3aed; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">
+                                        <?php echo esc_html(safe_get($tip, 'number', '1')); ?>
+                                    </div>
+                                    <p style="color: #1e293b; line-height: 1.6; margin: 0; font-size: 0.95rem;">
+                                        <?php echo esc_html(safe_get($tip, 'tip_content')); ?>
+                                    </p>
+                                </div>
+                                <?php 
+                                $more_link = safe_get($tip, 'more_link', array());
+                                if (!empty($more_link)) : 
+                                ?>
+                                    <a href="<?php echo esc_url(safe_get($more_link, 'url')); ?>" 
+                                       style="color: #7c3aed; text-decoration: none; font-weight: 600; font-size: 0.9rem;">
+                                        See more +
+                                    </a>
                                 <?php endif; ?>
                             </div>
-                        <?php endif; ?>
-                        
-                        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-                            <?php if (safe_get($booking_info['contact_info'], 'contact_phone')) : ?>
-                                <a href="tel:<?php echo esc_attr($booking_info['contact_info']['contact_phone']); ?>" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600;">
-                                    📞 Call Now
-                                </a>
-                            <?php endif; ?>
-                            <?php if (safe_get($booking_info['contact_info'], 'contact_email')) : ?>
-                                <a href="mailto:<?php echo esc_attr($booking_info['contact_info']['contact_email']); ?>" style="background: white; color: #2dd4bf; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600;">
-                                    ✉️ Email Us
-                                </a>
-                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </section>
+        <?php endif; ?>
+
+        <!-- Similar Things Section -->
+        <?php if (!empty($similar_things) && !empty(safe_get($similar_things, 'similar_items'))) : ?>
+            <section class="similar-things" style="padding: 4rem 0; background: #f8fafc;">
+                <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 3rem;">
+                        <h2 style="font-size: 2rem; font-weight: 800; color: #1e293b; margin: 0;">
+                            <?php echo esc_html(safe_get($similar_things, 'title', 'Similar things to do')); ?>
+                        </h2>
+                        <div style="display: flex; gap: 1rem;">
+                            <button onclick="scrollSimilarItems(-1)" style="background: white; border: 2px solid #e2e8f0; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.background='#f8fafc'; this.style.borderColor='#2dd4bf';" onmouseout="this.style.background='white'; this.style.borderColor='#e2e8f0';">
+                                ←
+                            </button>
+                            <button onclick="scrollSimilarItems(1)" style="background: white; border: 2px solid #e2e8f0; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.background='#f8fafc'; this.style.borderColor='#2dd4bf';" onmouseout="this.style.background='white'; this.style.borderColor='#e2e8f0';">
+                                →
+                            </button>
                         </div>
+                    </div>
+                    
+                    <div class="similar-carousel-container" style="position: relative; overflow: hidden;">
+                        <div class="similar-carousel" id="similarItemsCarousel" style="display: flex; gap: 1.5rem; overflow-x: auto; scroll-behavior: smooth; padding: 0.5rem 0; scrollbar-width: none; -ms-overflow-style: none;">
+                        <?php foreach (safe_get($similar_things, 'similar_items', array()) as $item) : ?>
+                            <div class="similar-card" style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: transform 0.3s ease; min-width: 280px; max-width: 280px; flex-shrink: 0; cursor: pointer;" onclick="<?php if (safe_get($item, 'link')) { echo 'window.open(\'' . esc_url(safe_get(safe_get($item, 'link'), 'url', '#')) . '\', \'' . (safe_get(safe_get($item, 'link'), 'target') ?: '_self') . '\')'; } ?>">
+                                <?php if (safe_get($item, 'image')) : ?>
+                                    <div style="height: 200px; overflow: hidden;">
+                                        <img src="<?php echo esc_url(safe_get($item['image'], 'url')); ?>" 
+                                             alt="<?php echo esc_attr(safe_get($item, 'title')); ?>"
+                                             style="width: 100%; height: 100%; object-fit: cover;">
+                                    </div>
+                                <?php endif; ?>
+                                <div style="padding: 1.5rem;">
+                                    <h4 style="font-size: 1.1rem; font-weight: 600; color: #1e293b; margin-bottom: 0.5rem;">
+                                        <?php echo esc_html(safe_get($item, 'title')); ?>
+                                    </h4>
+                                    <?php if (safe_get($item, 'price')) : ?>
+                                        <div style="color: #64748b; font-size: 0.9rem; font-weight: 600;">
+                                            <?php echo esc_html(safe_get($item, 'price')); ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                        </div>
+                    </div>
+                    
+                    <!-- Add Similar Items Carousel JavaScript -->
+                    <script>
+                    function scrollSimilarItems(direction) {
+                        const carousel = document.getElementById('similarItemsCarousel');
+                        const scrollAmount = 295; // Card width (280px) + gap (15px)
+                        const currentScroll = carousel.scrollLeft;
                         
-                    </section>
-                <?php endif; ?>
-                
-            </div>
-        </div>
+                        if (direction === 1) {
+                            carousel.scrollTo({
+                                left: currentScroll + scrollAmount,
+                                behavior: 'smooth'
+                            });
+                        } else {
+                            carousel.scrollTo({
+                                left: currentScroll - scrollAmount,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                    
+                    // Auto-scroll functionality for similar items
+                    let similarItemsAutoScrollInterval;
+                    let similarItemsCurrentIndex = 0;
+                    
+                    function startSimilarItemsAutoScroll() {
+                        similarItemsAutoScrollInterval = setInterval(() => {
+                            const carousel = document.getElementById('similarItemsCarousel');
+                            const containerWidth = carousel.parentElement.clientWidth;
+                            const cardWidth = 295; // Card width + gap
+                            const maxScroll = carousel.scrollWidth - containerWidth;
+                            
+                            // Check if we're at or near the end
+                            if (carousel.scrollLeft >= maxScroll - 50) {
+                                // Jump back to start smoothly
+                                carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                                similarItemsCurrentIndex = 0;
+                            } else {
+                                // Continue scrolling right
+                                similarItemsCurrentIndex++;
+                                carousel.scrollTo({ left: similarItemsCurrentIndex * cardWidth, behavior: 'smooth' });
+                            }
+                        }, 4000); // Change item every 4 seconds
+                    }
+                    
+                    function stopSimilarItemsAutoScroll() {
+                        clearInterval(similarItemsAutoScrollInterval);
+                    }
+                    
+                    // Initialize auto-scroll when page loads
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const similarCarousel = document.getElementById('similarItemsCarousel');
+                        if (similarCarousel && similarCarousel.children.length > 0) {
+                            startSimilarItemsAutoScroll();
+                            
+                            // Pause auto-scroll on hover
+                            const similarContainer = document.querySelector('.similar-carousel-container');
+                            if (similarContainer) {
+                                similarContainer.addEventListener('mouseenter', stopSimilarItemsAutoScroll);
+                                similarContainer.addEventListener('mouseleave', startSimilarItemsAutoScroll);
+                            }
+                        }
+                    });
+                    </script>
+                    
+                    <!-- Additional CSS for similar items carousel -->
+                    <style>
+                    .similar-carousel::-webkit-scrollbar {
+                        display: none;
+                    }
+                    
+                    .similar-card:hover {
+                        transform: translateY(-8px);
+                        box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+                    }
+                    
+                    @media (max-width: 768px) {
+                        .similar-card {
+                            min-width: 250px !important;
+                            max-width: 250px !important;
+                        }
+                    }
+                    </style>
+                </div>
+            </section>
+        <?php endif; ?>
+
+        <!-- About Section -->
+        <?php if (!empty($about_section)) : ?>
+            <section class="about-section" style="padding: 4rem 0; background: white;">
+                <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+                    <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 2rem; color: #1e293b;">
+                        <?php echo esc_html(safe_get($about_section, 'title', 'About ' . get_the_title())); ?>
+                    </h2>
+                    
+                    <?php if (safe_get($about_section, 'content')) : ?>
+                        <div style="color: #64748b; line-height: 1.7; font-size: 1.05rem; margin-bottom: 2rem;">
+                            <?php echo wp_kses_post(safe_get($about_section, 'content')); ?>
+                        </div>
+                    <?php endif; ?>
+                    
+                    <!-- Tags -->
+                    <?php 
+                    $tags = safe_get($about_section, 'tags', array());
+                    if (!empty($tags)) : 
+                    ?>
+                        <div style="margin-bottom: 2rem;">
+                            <h4 style="font-size: 1rem; font-weight: 600; color: #1e293b; margin-bottom: 1rem;">GREAT FOR</h4>
+                            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                                <?php foreach ($tags as $tag) : ?>
+                                    <?php
+                                    $tag_colors = array(
+                                        'purple' => 'background: #ede9fe; color: #6b21a8;',
+                                        'blue' => 'background: #dbeafe; color: #1e3a8a;',
+                                        'green' => 'background: #dcfce7; color: #166534;',
+                                        'orange' => 'background: #fed7aa; color: #c2410c;',
+                                        'red' => 'background: #fecaca; color: #dc2626;'
+                                    );
+                                    $tag_style = $tag_colors[safe_get($tag, 'color', 'purple')] ?? $tag_colors['purple'];
+                                    ?>
+                                    <span style="<?php echo $tag_style; ?> padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600;">
+                                        <?php echo esc_html(safe_get($tag, 'text')); ?>
+                                    </span>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    
+                    <!-- Info Sections -->
+                    <?php 
+                    $info_sections = safe_get($about_section, 'info_sections', array());
+                    if (!empty($info_sections)) : 
+                    ?>
+                        <div class="info-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                            <?php foreach ($info_sections as $info) : ?>
+                                <div>
+                                    <h5 style="font-size: 0.9rem; font-weight: 700; color: #64748b; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                                        <?php echo esc_html(safe_get($info, 'title')); ?>
+                                    </h5>
+                                    <p style="color: #1e293b; line-height: 1.6; margin: 0;">
+                                        <?php echo esc_html(safe_get($info, 'content')); ?>
+                                    </p>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </section>
+        <?php endif; ?>
         
     </main>
 
 <?php endwhile; ?>
 
 <style>
-/* Category Page Specific Styles */
+/* Headout-style responsive design */
 .tour-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
 }
 
-.filter-btn:hover,
-.filter-btn.active {
-    background: #2dd4bf !important;
-    color: white !important;
-    border-color: #2dd4bf !important;
+.similar-card:hover {
+    transform: translateY(-3px);
 }
 
-.faq-question:hover {
-    background: #f8fafc;
+.play-button:hover {
+    background: white !important;
+    transform: translate(-50%, -50%) scale(1.1) !important;
 }
 
-.category-gallery img:hover {
-    transform: scale(1.05);
+.tip-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .category-hero {
-        padding: 6rem 0 4rem !important;
+/* Carousel Styles */
+.carousel-prev:hover, .carousel-next:hover {
+    background: rgba(0,0,0,0.7) !important;
+    transform: translateY(-50%) scale(1.1) !important;
+}
+
+.indicator.active {
+    background: white !important;
+}
+
+.indicator:hover {
+    background: rgba(255,255,255,0.8) !important;
+}
+
+/* Hero Video Responsive Styles */
+.hero-video {
+    width: 100% !important;
+    max-width: 700px !important;
+}
+
+@media (min-width: 1200px) {
+    .hero-video {
+        max-width: 800px !important;
     }
-    
-    .category-stats {
-        flex-direction: column !important;
-        align-items: center !important;
+}
+
+/* Responsive Grid Adjustments */
+@media (max-width: 768px) {
+    .category-hero > div > div {
+        grid-template-columns: 1fr !important;
         gap: 2rem !important;
     }
     
-    .tours-grid {
+    .hero-video {
+        max-width: 100% !important;
+    }
+    
+    .tour-card {
+        grid-template-columns: 1fr !important;
+        min-height: auto !important;
+    }
+    
+    .tour-image-carousel {
+        height: 250px !important;
+    }
+    
+    .hero-stats {
+        gap: 1rem !important;
+    }
+    
+    .tips-grid {
         grid-template-columns: 1fr !important;
     }
     
-    .category-gallery {
-        grid-template-columns: repeat(2, 1fr) !important;
+    .similar-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
     }
 }
 
-@media (max-width: 480px) {
-    .category-gallery {
-        grid-template-columns: 1fr !important;
+@media (max-width: 640px) {
+    .hero-stats {
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+    
+    .stat-item {
+        text-align: center !important;
     }
 }
 </style>
 
 <script>
-// Filter functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const tourCards = document.querySelectorAll('.tour-card');
-    const clearBtn = document.getElementById('clear-filters');
+function changeImage(button, direction) {
+    const carousel = button.closest('.tour-image-carousel');
+    const images = carousel.querySelectorAll('.carousel-image');
+    const indicators = carousel.querySelectorAll('.indicator');
+    const currentActive = carousel.querySelector('.carousel-image.active');
+    const currentIndex = parseInt(currentActive.dataset.index);
     
-    let activeFilters = {
-        duration: null,
-        price: null,
-        difficulty: null
-    };
+    let newIndex = currentIndex + direction;
+    if (newIndex >= images.length) newIndex = 0;
+    if (newIndex < 0) newIndex = images.length - 1;
     
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const filterType = this.dataset.filter;
-            const filterValue = this.dataset.value;
-            
-            // Toggle active state
-            if (this.classList.contains('active')) {
-                this.classList.remove('active');
-                activeFilters[filterType] = null;
-            } else {
-                // Remove active from other buttons of same type
-                document.querySelectorAll(`[data-filter="${filterType}"]`).forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                activeFilters[filterType] = filterValue;
-            }
-            
-            applyFilters();
-        });
-    });
+    // Hide current image
+    currentActive.style.opacity = '0';
+    currentActive.classList.remove('active');
+    indicators[currentIndex].classList.remove('active');
+    indicators[currentIndex].style.background = 'rgba(255,255,255,0.5)';
     
-    clearBtn?.addEventListener('click', function() {
-        filterBtns.forEach(btn => btn.classList.remove('active'));
-        activeFilters = { duration: null, price: null, difficulty: null };
-        applyFilters();
-    });
+    // Show new image
+    setTimeout(() => {
+        images[newIndex].style.opacity = '1';
+        images[newIndex].classList.add('active');
+        indicators[newIndex].classList.add('active');
+        indicators[newIndex].style.background = 'white';
+    }, 100);
+}
+
+function goToImage(indicator, index) {
+    const carousel = indicator.closest('.tour-image-carousel');
+    const images = carousel.querySelectorAll('.carousel-image');
+    const indicators = carousel.querySelectorAll('.indicator');
+    const currentActive = carousel.querySelector('.carousel-image.active');
+    const currentIndex = parseInt(currentActive.dataset.index);
     
-    function applyFilters() {
-        // This would typically connect to a server-side filtering system
-        // For now, it's a placeholder for the filtering logic
-        console.log('Active filters:', activeFilters);
+    if (currentIndex === index) return;
+    
+    // Hide current image
+    currentActive.style.opacity = '0';
+    currentActive.classList.remove('active');
+    indicators[currentIndex].classList.remove('active');
+    indicators[currentIndex].style.background = 'rgba(255,255,255,0.5)';
+    
+    // Show new image
+    setTimeout(() => {
+        images[index].style.opacity = '1';
+        images[index].classList.add('active');
+        indicators[index].classList.add('active');
+        indicators[index].style.background = 'white';
+    }, 100);
+}
+
+// Video modal functionality
+function openVideoModal(videoUrl) {
+    // Convert YouTube URL to embed format
+    function getYouTubeEmbedUrl(url) {
+        const youtubeRegex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+        const match = url.match(youtubeRegex);
+        if (match) {
+            return `https://www.youtube.com/embed/${match[1]}?autoplay=1&rel=0`;
+        }
+        return url; // Return original URL if not YouTube
     }
     
-    // FAQ functionality
-    const faqQuestions = document.querySelectorAll('.faq-question');
+    const embedUrl = getYouTubeEmbedUrl(videoUrl);
     
-    faqQuestions.forEach(question => {
-        question.addEventListener('click', function() {
-            const targetId = this.dataset.target;
-            const answer = document.getElementById(targetId);
-            const icon = this.querySelector('.faq-icon');
-            
-            if (answer.style.display === 'none' || !answer.style.display) {
-                answer.style.display = 'block';
-                icon.textContent = '−';
-            } else {
-                answer.style.display = 'none';
-                icon.textContent = '+';
-            }
-        });
+    // Create modal
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        padding: 2rem;
+    `;
+    
+    modal.innerHTML = `
+        <div style="position: relative; width: 100%; max-width: 900px; aspect-ratio: 16/9;">
+            <iframe src="${embedUrl}" 
+                    style="width: 100%; height: 100%; border: none; border-radius: 15px;"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+            </iframe>
+            <button onclick="this.closest('div').remove()" 
+                    style="position: absolute; top: -15px; right: -15px; width: 40px; height: 40px; border-radius: 50%; background: white; border: none; cursor: pointer; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+                ×
+            </button>
+        </div>
+    `;
+    
+    // Close modal when clicking outside
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.remove();
+        }
     });
-});
+    
+    // Close modal with escape key
+    document.addEventListener('keydown', function escapeHandler(e) {
+        if (e.key === 'Escape') {
+            modal.remove();
+            document.removeEventListener('keydown', escapeHandler);
+        }
+    });
+    
+    document.body.appendChild(modal);
+}
 </script>
 
 <?php get_footer(); ?>

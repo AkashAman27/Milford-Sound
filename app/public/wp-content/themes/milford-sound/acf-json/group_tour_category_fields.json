@@ -1,0 +1,1134 @@
+{
+    "key": "group_tour_category_fields",
+    "title": "Tour Category (Headout Style)",
+    "fields": [
+        {
+            "key": "field_category_hero",
+            "label": "Category Hero Section",
+            "name": "category_hero",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Main header section for the category page",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_hero_rank_badge",
+                    "label": "Rank Badge",
+                    "name": "rank_badge",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "e.g., '#1 out of 127 in Dubai'",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "#1 out of 127 in Dubai",
+                    "maxlength": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_hero_title",
+                    "label": "Main Title",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Category page main title",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "Experience only the best of Burj Khalifa Tickets",
+                    "maxlength": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_hero_subtitle",
+                    "label": "Subtitle",
+                    "name": "subtitle",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Description below the title",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "We've done the hard work - Find only the best 9 experiences from hundreds of them so you can choose easily.",
+                    "maxlength": "",
+                    "rows": 3,
+                    "new_lines": ""
+                },
+                {
+                    "key": "field_hero_stats",
+                    "label": "Hero Statistics",
+                    "name": "hero_stats",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "Statistics shown in hero section",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 0,
+                    "max": 4,
+                    "layout": "table",
+                    "rows_per_page": 20,
+                    "button_label": "Add Stat",
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_stat_icon",
+                            "label": "Icon",
+                            "name": "icon",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "Emoji or icon",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "❤️",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_hero_stats"
+                        },
+                        {
+                            "key": "field_stat_number",
+                            "label": "Number",
+                            "name": "number",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "Statistical number",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "4.4\/5",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_hero_stats"
+                        },
+                        {
+                            "key": "field_stat_text",
+                            "label": "Text",
+                            "name": "text",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "Description text",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "107.3K+ travellers love this",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_hero_stats"
+                        },
+                        {
+                            "key": "field_stat_subtext",
+                            "label": "Subtext",
+                            "name": "subtext",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "Small text below",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "See what they have to say",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_hero_stats"
+                        }
+                    ]
+                },
+                {
+                    "key": "field_hero_video",
+                    "label": "Hero Video",
+                    "name": "hero_video",
+                    "aria-label": "",
+                    "type": "group",
+                    "instructions": "Video content for hero section",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_video_thumbnail",
+                            "label": "Video Thumbnail",
+                            "name": "video_thumbnail",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "Preview image for video",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "preview_size": "medium",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": ""
+                        },
+                        {
+                            "key": "field_video_url",
+                            "label": "Video URL",
+                            "name": "video_url",
+                            "aria-label": "",
+                            "type": "url",
+                            "instructions": "YouTube or direct video URL",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "https:\/\/www.youtube.com\/watch?v=..."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "field_featured_tours",
+            "label": "Featured Tours",
+            "name": "featured_tours",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Main tour listings for this category",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "min": 1,
+            "max": 20,
+            "layout": "row",
+            "rows_per_page": 20,
+            "button_label": "Add Tour",
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_tour_images",
+                    "label": "Tour Images Gallery",
+                    "name": "tour_images",
+                    "aria-label": "",
+                    "type": "gallery",
+                    "instructions": "Multiple images for tour carousel",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "min": 1,
+                    "max": 8,
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "insert": "append",
+                    "parent_repeater": "field_featured_tours"
+                },
+                {
+                    "key": "field_tour_rating",
+                    "label": "Rating",
+                    "name": "rating",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "Tour rating out of 5",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 4.5,
+                    "placeholder": "",
+                    "min": 0,
+                    "max": 5,
+                    "step": 0.10000000000000001,
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_featured_tours"
+                },
+                {
+                    "key": "field_tour_review_count",
+                    "label": "Review Count",
+                    "name": "review_count",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Number of reviews",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "(32,849)",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_featured_tours"
+                },
+                {
+                    "key": "field_tour_type",
+                    "label": "Tour Type",
+                    "name": "tour_type",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Type of tour\/ticket",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "Tickets",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_featured_tours"
+                },
+                {
+                    "key": "field_tour_title",
+                    "label": "Tour Title",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Main tour title",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "Burj Khalifa At The Top Tickets: Levels 124 & 125",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_featured_tours"
+                },
+                {
+                    "key": "field_tour_features",
+                    "label": "Tour Features",
+                    "name": "features",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "Key features\/badges",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 0,
+                    "max": 5,
+                    "layout": "table",
+                    "rows_per_page": 20,
+                    "button_label": "Add Feature",
+                    "collapsed": "",
+                    "parent_repeater": "field_featured_tours",
+                    "sub_fields": [
+                        {
+                            "key": "field_feature_icon",
+                            "label": "Icon",
+                            "name": "icon",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "Feature icon",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "⚡",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_tour_features"
+                        },
+                        {
+                            "key": "field_feature_text",
+                            "label": "Text",
+                            "name": "text",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "Feature text",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "Instant confirmation",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_tour_features"
+                        }
+                    ]
+                },
+                {
+                    "key": "field_tour_highlights",
+                    "label": "Tour Highlights",
+                    "name": "highlights",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "Key tour highlights\/bullet points",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 0,
+                    "max": 10,
+                    "layout": "table",
+                    "rows_per_page": 20,
+                    "button_label": "Add Highlight",
+                    "collapsed": "",
+                    "parent_repeater": "field_featured_tours",
+                    "sub_fields": [
+                        {
+                            "key": "field_highlight_text",
+                            "label": "Highlight Text",
+                            "name": "text",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "Add your highlight text with emojis and symbols",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "⚡ Level up your experience with premium access and exclusive benefits",
+                            "rows": 2,
+                            "new_lines": "",
+                            "parent_repeater": "field_tour_highlights"
+                        }
+                    ]
+                },
+                {
+                    "key": "field_tour_price_from",
+                    "label": "Price From",
+                    "name": "price_from",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Starting price",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "₹3,722",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_featured_tours"
+                },
+                {
+                    "key": "field_tour_cta_text",
+                    "label": "CTA Button Text",
+                    "name": "cta_text",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Call to action button text",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Check availability",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_featured_tours"
+                },
+                {
+                    "key": "field_tour_link",
+                    "label": "Tour Link",
+                    "name": "tour_link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "Link to tour page",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "parent_repeater": "field_featured_tours"
+                },
+                {
+                    "key": "field_book_now_link",
+                    "label": "Book Now Link",
+                    "name": "book_now_link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "Primary booking link for CTA button",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "parent_repeater": "field_featured_tours"
+                },
+                {
+                    "key": "field_tour_badges",
+                    "label": "Special Badges",
+                    "name": "badges",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "Special badges like 'Free cancellation', 'Selling out fast'",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 0,
+                    "max": 3,
+                    "layout": "table",
+                    "rows_per_page": 20,
+                    "button_label": "Add Badge",
+                    "collapsed": "",
+                    "parent_repeater": "field_featured_tours",
+                    "sub_fields": [
+                        {
+                            "key": "field_badge_text",
+                            "label": "Badge Text",
+                            "name": "text",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "Free cancellation",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_tour_badges"
+                        },
+                        {
+                            "key": "field_badge_type",
+                            "label": "Badge Type",
+                            "name": "type",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "success": "Success (Green)",
+                                "warning": "Warning (Orange)",
+                                "info": "Info (Blue)",
+                                "urgent": "Urgent (Red)"
+                            },
+                            "default_value": "success",
+                            "multiple": 0,
+                            "ui": 0,
+                            "return_format": "value",
+                            "ajax": 0,
+                            "placeholder": "",
+                            "allow_null": 0,
+                            "parent_repeater": "field_tour_badges"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "field_pro_tips",
+            "label": "Pro Tips Section",
+            "name": "pro_tips",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Pro tips to help visitors make a pick",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_tips_title",
+                    "label": "Section Title",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Pro tips to help you make a pick",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_tips_list",
+                    "label": "Tips",
+                    "name": "tips_list",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 1,
+                    "max": 6,
+                    "layout": "row",
+                    "rows_per_page": 20,
+                    "button_label": "Add Tip",
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_tip_number",
+                            "label": "Tip Number",
+                            "name": "number",
+                            "aria-label": "",
+                            "type": "number",
+                            "instructions": "Tip sequence number",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": 1,
+                            "placeholder": "",
+                            "min": 1,
+                            "max": 10,
+                            "step": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_tips_list"
+                        },
+                        {
+                            "key": "field_tip_content",
+                            "label": "Tip Content",
+                            "name": "content",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "Skip waiting in long queues and save time by purchasing Fast Track tickets for Burj Khalifa. With these tickets, you bypass the regular queue and access the observation decks directly, ensuring a smoother and quicker entry experience!",
+                            "maxlength": "",
+                            "rows": 4,
+                            "new_lines": "",
+                            "parent_repeater": "field_tips_list"
+                        },
+                        {
+                            "key": "field_tip_more_link",
+                            "label": "See More Link",
+                            "name": "more_link",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "Optional link for more details",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "parent_repeater": "field_tips_list"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "field_similar_things",
+            "label": "Similar Things Section",
+            "name": "similar_things",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Similar activities section",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_similar_title",
+                    "label": "Section Title",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Similar things to do in Dubai",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_similar_items",
+                    "label": "Similar Items",
+                    "name": "similar_items",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 3,
+                    "max": 12,
+                    "layout": "row",
+                    "rows_per_page": 20,
+                    "button_label": "Add Similar Item",
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_similar_image",
+                            "label": "Image",
+                            "name": "image",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "preview_size": "medium",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "",
+                            "parent_repeater": "field_similar_items"
+                        },
+                        {
+                            "key": "field_similar_item_title",
+                            "label": "Title",
+                            "name": "title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "Burj Khalifa At The Top",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_similar_items"
+                        },
+                        {
+                            "key": "field_similar_price",
+                            "label": "Price From",
+                            "name": "price",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "from ₹3,726",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_similar_items"
+                        },
+                        {
+                            "key": "field_similar_link",
+                            "label": "Link",
+                            "name": "link",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "parent_repeater": "field_similar_items"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "field_about_section",
+            "label": "About Section",
+            "name": "about_section",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "About the attraction section",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_about_title",
+                    "label": "Section Title",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "About Burj Khalifa",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_about_content",
+                    "label": "Content",
+                    "name": "content",
+                    "aria-label": "",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "tabs": "all",
+                    "toolbar": "full",
+                    "media_upload": 1,
+                    "delay": 0
+                },
+                {
+                    "key": "field_about_tags",
+                    "label": "Tags",
+                    "name": "tags",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "Tags like 'Solo Travellers', 'Couples', etc.",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 0,
+                    "max": 10,
+                    "layout": "table",
+                    "rows_per_page": 20,
+                    "button_label": "Add Tag",
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_tag_text",
+                            "label": "Tag",
+                            "name": "text",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "Solo Travellers",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_about_tags"
+                        },
+                        {
+                            "key": "field_tag_color",
+                            "label": "Color",
+                            "name": "color",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "purple": "Purple",
+                                "blue": "Blue",
+                                "green": "Green",
+                                "orange": "Orange",
+                                "red": "Red"
+                            },
+                            "default_value": "purple",
+                            "multiple": 0,
+                            "ui": 0,
+                            "return_format": "value",
+                            "ajax": 0,
+                            "placeholder": "",
+                            "allow_null": 0,
+                            "parent_repeater": "field_about_tags"
+                        }
+                    ]
+                },
+                {
+                    "key": "field_about_info_sections",
+                    "label": "Information Sections",
+                    "name": "info_sections",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "Additional info sections like Address, Year Opened, etc.",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 0,
+                    "max": 6,
+                    "layout": "table",
+                    "rows_per_page": 20,
+                    "button_label": "Add Info Section",
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_info_title",
+                            "label": "Title",
+                            "name": "title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "ADDRESS",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_about_info_sections"
+                        },
+                        {
+                            "key": "field_info_content",
+                            "label": "Content",
+                            "name": "content",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "1 Sheikh Mohammed bin Rashid Blvd - Downtown Dubai - Dubai - United Arab Emirates",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_about_info_sections"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "categories"
+            }
+        ]
+    ],
+    "menu_order": -1,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "Comprehensive fields for tour category pages matching Headout design",
+    "show_in_rest": false,
+    "modified": 1750865369
+}
