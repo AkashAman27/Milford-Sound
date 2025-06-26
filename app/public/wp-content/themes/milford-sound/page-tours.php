@@ -13,6 +13,16 @@ if (!function_exists('safe_get')) {
     }
 }
 
+// Get ACF fields for this page
+$tours_hero = get_field('tours_hero') ?: array();
+$layout_settings = get_field('layout_settings') ?: array();
+$cta_section = get_field('cta_section') ?: array();
+
+// Get layout settings with defaults
+$categories_per_row = safe_get($layout_settings, 'categories_per_row', '3');
+$show_view_toggle = safe_get($layout_settings, 'show_view_toggle', true);
+$show_sorting = safe_get($layout_settings, 'show_sorting', true);
+
 // Query all tour categories
 $categories_query = new WP_Query(array(
     'post_type' => 'categories',
@@ -27,34 +37,56 @@ $categories_query = new WP_Query(array(
     
     <!-- Tours Page Header -->
     <header class="tours-header" style="position: relative; padding: 8rem 0 4rem; background: linear-gradient(135deg, #2dd4bf 0%, #3b82f6 100%); color: white; text-align: center;">
-        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+        
+        <?php if (safe_get($tours_hero, 'background_image')) : ?>
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('<?php echo esc_url($tours_hero['background_image']['url']); ?>'); background-size: cover; background-position: center; opacity: 0.3; z-index: 1;"></div>
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(45, 212, 191, 0.8), rgba(59, 130, 246, 0.8)); z-index: 2;"></div>
+        <?php endif; ?>
+        
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 10;">
             
             <h1 style="font-size: clamp(3rem, 8vw, 5rem); font-weight: 900; margin-bottom: 2rem; line-height: 1.1; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
-                Explore All Tours
+                <?php echo esc_html(safe_get($tours_hero, 'title', 'Explore All Tours')); ?>
             </h1>
             
             <p style="font-size: 1.5rem; margin-bottom: 3rem; opacity: 0.95; line-height: 1.6; max-width: 800px; margin-left: auto; margin-right: auto; text-shadow: 0 1px 3px rgba(0,0,0,0.4);">
-                Discover amazing experiences across all our tour categories. From adventure activities to cultural experiences, find the perfect tour for your next adventure.
+                <?php echo esc_html(safe_get($tours_hero, 'description', 'Discover amazing experiences across all our tour categories. From adventure activities to cultural experiences, find the perfect tour for your next adventure.')); ?>
             </p>
             
-            <!-- Quick Stats -->
+            <!-- Statistics -->
+            <?php 
+            $hero_stats = safe_get($tours_hero, 'statistics', array());
+            if (empty($hero_stats)) {
+                // Default statistics if none set
+                $hero_stats = array(
+                    array('number' => '', 'label' => 'Categories', 'auto_calculate' => 'categories'),
+                    array('number' => '', 'label' => 'Tours Available', 'auto_calculate' => 'tours'),
+                    array('number' => '5.0', 'label' => 'Average Rating', 'auto_calculate' => 'none')
+                );
+            }
+            ?>
             <div style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;">
-                <div style="text-align: center;">
-                    <div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 0.25rem; color: #2dd4bf; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
-                        <?php echo $categories_query->found_posts; ?>
+                <?php foreach ($hero_stats as $stat) : ?>
+                    <?php
+                    $stat_number = safe_get($stat, 'number');
+                    $auto_calc = safe_get($stat, 'auto_calculate', 'none');
+                    
+                    // Auto-calculate numbers based on setting
+                    if ($auto_calc === 'categories') {
+                        $stat_number = $categories_query->found_posts;
+                    } elseif ($auto_calc === 'tours') {
+                        $stat_number = wp_count_posts('tours')->publish . '+';
+                    } elseif ($auto_calc === 'rating') {
+                        $stat_number = '5.0';
+                    }
+                    ?>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 0.25rem; color: #2dd4bf; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+                            <?php echo esc_html($stat_number); ?>
+                        </div>
+                        <div style="font-size: 0.9rem; opacity: 0.8;"><?php echo esc_html(safe_get($stat, 'label')); ?></div>
                     </div>
-                    <div style="font-size: 0.9rem; opacity: 0.8;">Categories</div>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 0.25rem; color: #2dd4bf; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
-                        <?php echo wp_count_posts('tours')->publish; ?>+
-                    </div>
-                    <div style="font-size: 0.9rem; opacity: 0.8;">Tours Available</div>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 0.25rem; color: #2dd4bf; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">5.0</div>
-                    <div style="font-size: 0.9rem; opacity: 0.8;">Average Rating</div>
-                </div>
+                <?php endforeach; ?>
             </div>
             
         </div>
@@ -75,26 +107,46 @@ $categories_query = new WP_Query(array(
                             </h2>
                         </div>
                         <div style="display: flex; gap: 1rem; align-items: center;">
-                            <select id="category-sort" style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 0.5rem 1rem; border-radius: 8px; color: #64748b;">
-                                <option value="default">Sort by Default</option>
-                                <option value="name">Sort by Name</option>
-                                <option value="newest">Sort by Newest</option>
-                                <option value="popular">Sort by Popularity</option>
-                            </select>
-                            <div style="display: flex; gap: 0.5rem;">
-                                <button id="grid-view" class="view-toggle active" data-view="grid" style="background: #2dd4bf; color: white; border: none; padding: 0.5rem; border-radius: 6px; cursor: pointer; transition: all 0.3s ease;">
-                                    ⊞
-                                </button>
-                                <button id="list-view" class="view-toggle" data-view="list" style="background: #f1f5f9; color: #64748b; border: none; padding: 0.5rem; border-radius: 6px; cursor: pointer; transition: all 0.3s ease;">
-                                    ☰
-                                </button>
-                            </div>
+                            <?php if ($show_sorting) : ?>
+                                <select id="category-sort" style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 0.5rem 1rem; border-radius: 8px; color: #64748b;">
+                                    <option value="default">Sort by Default</option>
+                                    <option value="name">Sort by Name</option>
+                                    <option value="newest">Sort by Newest</option>
+                                    <option value="popular">Sort by Popularity</option>
+                                </select>
+                            <?php endif; ?>
+                            <?php if ($show_view_toggle) : ?>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button id="grid-view" class="view-toggle active" data-view="grid" style="background: #2dd4bf; color: white; border: none; padding: 0.5rem; border-radius: 6px; cursor: pointer; transition: all 0.3s ease;">
+                                        ⊞
+                                    </button>
+                                    <button id="list-view" class="view-toggle" data-view="list" style="background: #f1f5f9; color: #64748b; border: none; padding: 0.5rem; border-radius: 6px; cursor: pointer; transition: all 0.3s ease;">
+                                        ☰
+                                    </button>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Categories Grid/List -->
-                <div id="categories-container" class="categories-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem;">
+                <?php
+                // Set grid columns based on ACF setting
+                $grid_columns = '';
+                if ($categories_per_row == '2') {
+                    $grid_columns = 'repeat(2, 1fr)';
+                } elseif ($categories_per_row == '3') {
+                    $grid_columns = 'repeat(3, 1fr)';
+                } elseif ($categories_per_row == '4') {
+                    $grid_columns = 'repeat(4, 1fr)';
+                } else {
+                    $grid_columns = 'repeat(3, 1fr)'; // default
+                }
+                ?>
+                <div id="categories-container" class="categories-grid" 
+                     style="display: grid; grid-template-columns: <?php echo $grid_columns; ?>; gap: 2rem; 
+                            --categories-per-row: <?php echo $categories_per_row; ?>;" 
+                     data-per-row="<?php echo $categories_per_row; ?>">
                     
                     <?php while ($categories_query->have_posts()) : $categories_query->the_post(); ?>
                         <?php
@@ -244,16 +296,36 @@ $categories_query = new WP_Query(array(
     <!-- Call to Action Section -->
     <section style="background: linear-gradient(135deg, #2dd4bf, #3b82f6); color: white; padding: 4rem 2rem; text-align: center;">
         <div class="container" style="max-width: 800px; margin: 0 auto;">
-            <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Can't Find What You're Looking For?</h2>
-            <p style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 2rem; line-height: 1.6; text-shadow: 0 1px 3px rgba(0,0,0,0.4);">Our expert team can help you find the perfect tour or create a custom experience just for you.</p>
+            <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+                <?php echo esc_html(safe_get($cta_section, 'title', "Can't Find What You're Looking For?")); ?>
+            </h2>
+            <p style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 2rem; line-height: 1.6; text-shadow: 0 1px 3px rgba(0,0,0,0.4);">
+                <?php echo esc_html(safe_get($cta_section, 'description', 'Our expert team can help you find the perfect tour or create a custom experience just for you.')); ?>
+            </p>
             
             <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-                <a href="mailto:info@milfordsound.co" style="background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; backdrop-filter: blur(10px); transition: all 0.3s ease;">
-                    ✉️ Email Us
-                </a>
-                <a href="tel:+64312345678" style="background: white; color: #2dd4bf; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
-                    📞 Call Now
-                </a>
+                <?php 
+                $cta_buttons = safe_get($cta_section, 'buttons', array());
+                if (empty($cta_buttons)) {
+                    // Default buttons if none set
+                    $cta_buttons = array(
+                        array('text' => '✉️ Email Us', 'link' => 'mailto:info@milfordsound.co', 'style' => 'secondary'),
+                        array('text' => '📞 Call Now', 'link' => 'tel:+64312345678', 'style' => 'primary')
+                    );
+                }
+                ?>
+                <?php foreach ($cta_buttons as $button) : ?>
+                    <?php
+                    $btn_style = safe_get($button, 'style', 'primary');
+                    $btn_class = ($btn_style === 'primary') 
+                        ? 'background: white; color: #2dd4bf; box-shadow: 0 4px 15px rgba(0,0,0,0.2);' 
+                        : 'background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3); backdrop-filter: blur(10px);';
+                    ?>
+                    <a href="<?php echo esc_url(safe_get($button, 'link', '#')); ?>" 
+                       style="<?php echo $btn_class; ?> padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
+                        <?php echo esc_html(safe_get($button, 'text', 'Contact Us')); ?>
+                    </a>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
@@ -328,10 +400,29 @@ $categories_query = new WP_Query(array(
     box-shadow: 0 6px 20px rgba(255,255,255,0.2) !important;
 }
 
-/* Responsive */
+/* Grid Layout Controls */
+.page-tours .categories-grid[data-per-row="2"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+}
+
+.page-tours .categories-grid[data-per-row="3"] {
+    grid-template-columns: repeat(3, 1fr) !important;
+}
+
+.page-tours .categories-grid[data-per-row="4"] {
+    grid-template-columns: repeat(4, 1fr) !important;
+}
+
+/* Responsive Grid Layout */
+@media (max-width: 1200px) {
+    .page-tours .categories-grid[data-per-row="4"] {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
 @media (max-width: 768px) {
     .page-tours .categories-grid {
-        grid-template-columns: 1fr !important;
+        grid-template-columns: repeat(2, 1fr) !important;
     }
     
     .page-tours .categories-list .category-card {
@@ -350,6 +441,10 @@ $categories_query = new WP_Query(array(
 }
 
 @media (max-width: 480px) {
+    .page-tours .categories-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
     .page-tours .tours-header {
         padding: 6rem 0 3rem !important;
     }
@@ -370,7 +465,10 @@ document.addEventListener('DOMContentLoaded', function() {
     gridViewBtn?.addEventListener('click', function() {
         categoriesContainer.className = 'categories-grid';
         categoriesContainer.style.display = 'grid';
-        categoriesContainer.style.gridTemplateColumns = 'repeat(auto-fit, minmax(350px, 1fr))';
+        
+        // Get the number of categories per row from data attribute
+        const perRow = categoriesContainer.dataset.perRow || '3';
+        categoriesContainer.style.gridTemplateColumns = `repeat(${perRow}, 1fr)`;
         
         this.classList.add('active');
         listViewBtn.classList.remove('active');

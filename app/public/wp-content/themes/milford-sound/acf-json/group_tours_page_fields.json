@@ -1,0 +1,436 @@
+{
+    "key": "group_tours_page_fields",
+    "title": "Tours Page Settings",
+    "fields": [
+        {
+            "key": "field_tours_page_hero",
+            "label": "Hero Section",
+            "name": "tours_hero",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Customize the header section of the Tours page",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_tours_hero_title",
+                    "label": "Page Title",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Main title for the Tours page",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Explore All Tours",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_tours_hero_description",
+                    "label": "Page Description",
+                    "name": "description",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Description text below the title",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Discover amazing experiences across all our tour categories. From adventure activities to cultural experiences, find the perfect tour for your next adventure.",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "new_lines": ""
+                },
+                {
+                    "key": "field_tours_hero_background",
+                    "label": "Background Image",
+                    "name": "background_image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "Optional background image for the hero section",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": ""
+                },
+                {
+                    "key": "field_tours_hero_stats",
+                    "label": "Statistics",
+                    "name": "statistics",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "Statistics to display in the hero section",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 0,
+                    "max": 5,
+                    "layout": "table",
+                    "rows_per_page": 20,
+                    "button_label": "Add Statistic",
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_stat_number",
+                            "label": "Number",
+                            "name": "number",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "The statistic number (auto-calculated for some)",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "5.0 or Auto",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_tours_hero_stats"
+                        },
+                        {
+                            "key": "field_stat_label",
+                            "label": "Label",
+                            "name": "label",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "What this statistic represents",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "Average Rating",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_tours_hero_stats"
+                        },
+                        {
+                            "key": "field_stat_auto_calculate",
+                            "label": "Auto Calculate",
+                            "name": "auto_calculate",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "Auto-calculate this number from site data",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "none": "Use custom number",
+                                "categories": "Total Categories",
+                                "tours": "Total Tours",
+                                "rating": "Average Rating"
+                            },
+                            "default_value": "none",
+                            "multiple": 0,
+                            "ui": 0,
+                            "return_format": "value",
+                            "ajax": 0,
+                            "placeholder": "",
+                            "allow_null": 0,
+                            "parent_repeater": "field_tours_hero_stats"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "field_tours_page_layout",
+            "label": "Page Layout Settings",
+            "name": "layout_settings",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Customize how the tours are displayed",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_categories_per_row",
+                    "label": "Categories Per Row",
+                    "name": "categories_per_row",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "How many category cards to show per row",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "2": "2 per row",
+                        "3": "3 per row",
+                        "4": "4 per row"
+                    },
+                    "default_value": "3",
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": "",
+                    "allow_null": 0
+                },
+                {
+                    "key": "field_show_view_toggle",
+                    "label": "Show View Toggle",
+                    "name": "show_view_toggle",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Allow users to switch between grid and list view",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 1,
+                    "ui": 1,
+                    "message": "",
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_show_sorting",
+                    "label": "Show Sorting Options",
+                    "name": "show_sorting",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Allow users to sort categories",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 1,
+                    "ui": 1,
+                    "message": "",
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                }
+            ]
+        },
+        {
+            "key": "field_tours_page_cta",
+            "label": "Call to Action Section",
+            "name": "cta_section",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Customize the bottom call-to-action section",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_cta_title",
+                    "label": "CTA Title",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Can't Find What You're Looking For?",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_cta_description",
+                    "label": "CTA Description",
+                    "name": "description",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Our expert team can help you find the perfect tour or create a custom experience just for you.",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "new_lines": ""
+                },
+                {
+                    "key": "field_cta_buttons",
+                    "label": "CTA Buttons",
+                    "name": "buttons",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "Contact buttons for the CTA section",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "min": 1,
+                    "max": 3,
+                    "layout": "table",
+                    "rows_per_page": 20,
+                    "button_label": "Add Button",
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_cta_button_text",
+                            "label": "Button Text",
+                            "name": "text",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "📞 Call Now",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_cta_buttons"
+                        },
+                        {
+                            "key": "field_cta_button_link",
+                            "label": "Button Link",
+                            "name": "link",
+                            "aria-label": "",
+                            "type": "url",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "tel:+64312345678",
+                            "parent_repeater": "field_cta_buttons"
+                        },
+                        {
+                            "key": "field_cta_button_style",
+                            "label": "Button Style",
+                            "name": "style",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "primary": "Primary (Solid)",
+                                "secondary": "Secondary (Outline)"
+                            },
+                            "default_value": "primary",
+                            "multiple": 0,
+                            "ui": 0,
+                            "return_format": "value",
+                            "ajax": 0,
+                            "placeholder": "",
+                            "allow_null": 0,
+                            "parent_repeater": "field_cta_buttons"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-tours.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content"
+    ],
+    "active": true,
+    "description": "Custom fields for the Tours page template",
+    "show_in_rest": false,
+    "modified": 1750865370
+}
