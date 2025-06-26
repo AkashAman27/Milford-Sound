@@ -169,10 +169,10 @@ $categories_query = new WP_Query(array(
                         $tips_list = safe_get($pro_tips, 'tips_list', array());
                         ?>
                         
-                        <article class="category-card" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease; position: relative; cursor: pointer;">
+                        <article class="category-card" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease; position: relative; cursor: pointer; display: flex; flex-direction: column; height: 600px;">
                             
                             <!-- Category Image -->
-                            <div style="height: 200px; overflow: hidden; position: relative;">
+                            <div style="height: 200px; overflow: hidden; position: relative; flex-shrink: 0;">
                                 <?php if ($hero_bg_image) : ?>
                                     <img src="<?php echo esc_url($hero_bg_image['url']); ?>" alt="<?php echo esc_attr($hero_bg_image['alt']); ?>" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
                                 <?php elseif (has_post_thumbnail()) : ?>
@@ -200,7 +200,10 @@ $categories_query = new WP_Query(array(
                             </div>
                             
                             <!-- Category Content -->
-                            <div style="padding: 2rem;">
+                            <div style="padding: 2rem; display: flex; flex-direction: column; flex: 1;">
+                                
+                                <!-- Main content area that can grow -->
+                                <div class="category-info" style="flex: 1;">
                                 
                                 <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.3;">
                                     <a href="<?php the_permalink(); ?>" style="text-decoration: none; color: #1e293b; transition: color 0.3s ease;">
@@ -246,8 +249,10 @@ $categories_query = new WP_Query(array(
                                     </div>
                                 <?php endif; ?>
                                 
-                                <!-- Action Buttons -->
-                                <div style="display: flex; gap: 1rem; align-items: center;">
+                                </div>
+                                
+                                <!-- Action Buttons - Fixed at bottom -->
+                                <div style="display: flex; gap: 1rem; align-items: center; margin-top: 1.5rem;">
                                     <a href="<?php the_permalink(); ?>" style="background: #2dd4bf; color: white; padding: 0.75rem 1.5rem; border-radius: 25px; text-decoration: none; font-weight: 600; flex: 1; text-align: center; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(45, 212, 191, 0.2);">
                                         Explore Category
                                     </a>
@@ -451,6 +456,18 @@ $categories_query = new WP_Query(array(
     
     .page-tours .category-card {
         margin-bottom: 1rem;
+        height: 550px !important;
+    }
+}
+
+/* Ensure consistent card heights */
+.page-tours .category-card {
+    min-height: 600px;
+}
+
+@media (max-width: 768px) {
+    .page-tours .category-card {
+        min-height: 550px;
     }
 }
 </style>

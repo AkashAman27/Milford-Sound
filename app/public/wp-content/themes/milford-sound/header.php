@@ -19,7 +19,7 @@
         <nav class="main-nav">
             <ul>
                 <li><a href="<?php echo home_url(); ?>">Home</a></li>
-                <li><a href="#tours">Tours</a></li>
+                <li><a href="<?php echo get_permalink(797); ?>">Tours</a></li>
                 <li><a href="<?php echo home_url('/blog'); ?>">Blog</a></li>
                 <li><a href="#guides">Guides</a></li>
                 <li><a href="#quiz">Quiz</a></li>
