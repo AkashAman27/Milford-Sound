@@ -148,10 +148,54 @@ if ($flexible_content) :
                         }
                     }
                     
-                    /* Enhance button hover effects */
+                    /* Enhanced Interactive Button Effects */
+                    .hero-buttons a {
+                        position: relative;
+                        overflow: hidden;
+                        cursor: pointer;
+                        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    }
+                    
+                    .hero-buttons a::before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: -100%;
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+                        transition: left 0.6s ease;
+                    }
+                    
                     .hero-buttons a:hover {
-                        transform: translateY(-2px);
-                        box-shadow: 0 6px 20px rgba(0,0,0,0.3) !important;
+                        transform: translateY(-4px) scale(1.05);
+                        box-shadow: 0 10px 30px rgba(45, 212, 191, 0.4) !important;
+                        background: #26d0ce !important;
+                        filter: brightness(1.1);
+                    }
+                    
+                    .hero-buttons a:hover::before {
+                        left: 100%;
+                    }
+                    
+                    .hero-buttons a:active {
+                        transform: translateY(-2px) scale(1.02);
+                        transition: all 0.1s ease;
+                    }
+                    
+                    /* Pulse animation on page load */
+                    @keyframes buttonPulse {
+                        0% { box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+                        50% { box-shadow: 0 6px 25px rgba(45, 212, 191, 0.3); }
+                        100% { box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+                    }
+                    
+                    .hero-buttons a {
+                        animation: buttonPulse 3s ease-in-out infinite;
+                    }
+                    
+                    .hero-buttons a:hover {
+                        animation: none;
                     }
                     </style>
                 </section>
