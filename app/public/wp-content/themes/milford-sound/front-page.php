@@ -140,123 +140,223 @@ if ($flexible_content) :
                 
             case 'stats_section':
                 ?>
-                <!-- Stats Section -->
-                <section class="stats-section" style="padding: 4rem 0; background: #f8fafc;">
-                    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
-                        <div class="stats-container" style="display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: center;">
+                <!-- Ultra-Modern Stats Section -->
+                <section class="py-24 bg-gradient-to-br from-white via-blue-50 to-indigo-50 relative overflow-hidden">
+                    <!-- Animated Background Elements -->
+                    <div class="absolute inset-0">
+                        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/5 via-transparent to-secondary/5"></div>
+                        <div class="absolute -top-20 -left-20 w-40 h-40 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
+                        <div class="absolute -bottom-20 -right-20 w-60 h-60 bg-secondary/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+                    </div>
+                    
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                        <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
                             
-                            <!-- Weather Info -->
-                            <div class="weather-info" style="background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                                <?php if (safe_get($section, 'title')) : ?>
-                                    <h3 style="font-size: 1.5rem; font-weight: 700; color: #1e293b; margin-bottom: 0.5rem;">
-                                        🌊 <?php echo esc_html($section['title']); ?>
-                                    </h3>
-                                <?php endif; ?>
-                                
-                                <?php if (safe_get($section, 'subtitle')) : ?>
-                                    <p style="color: #64748b; margin-bottom: 1.5rem;"><?php echo esc_html($section['subtitle']); ?></p>
-                                <?php endif; ?>
-                                
-                                <?php if (safe_get($section, 'weather_items') && !empty($section['weather_items'])) : ?>
-                                    <div class="weather-details" style="display: grid; gap: 1rem;">
-                                        <?php foreach ($section['weather_items'] as $item) : ?>
-                                            <div class="weather-item" style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem; background: #f8fafc; border-radius: 10px;">
-                                                <span style="font-size: 1.25rem;"><?php echo esc_html(safe_get($item, 'icon')); ?></span>
-                                                <span style="font-weight: 600; color: #1e293b;"><?php echo esc_html(safe_get($item, 'text')); ?></span>
+                            <!-- Weather/Info Panel -->
+                            <div class="lg:col-span-2">
+                                <div class="bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/50 hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in-up">
+                                    <?php if (safe_get($section, 'title')) : ?>
+                                        <div class="flex items-center gap-3 mb-4">
+                                            <div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center text-white text-2xl">
+                                                🌊
+                                            </div>
+                                            <h3 class="text-2xl font-black text-gray-900">
+                                                <?php echo esc_html($section['title']); ?>
+                                            </h3>
+                                        </div>
+                                    <?php endif; ?>
+                                    
+                                    <?php if (safe_get($section, 'subtitle')) : ?>
+                                        <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                                            <?php echo esc_html($section['subtitle']); ?>
+                                        </p>
+                                    <?php endif; ?>
+                                    
+                                    <?php if (safe_get($section, 'weather_items') && !empty($section['weather_items'])) : ?>
+                                        <div class="space-y-4">
+                                            <?php foreach ($section['weather_items'] as $index => $item) : ?>
+                                                <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl hover:from-primary/10 hover:to-secondary/10 transition-all duration-300 animate-scale-in" style="animation-delay: <?php echo $index * 0.1; ?>s;">
+                                                    <div class="text-2xl">
+                                                        <?php echo esc_html(safe_get($item, 'icon')); ?>
+                                                    </div>
+                                                    <span class="font-semibold text-gray-800">
+                                                        <?php echo esc_html(safe_get($item, 'text')); ?>
+                                                    </span>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                            
+                            <!-- Modern Statistics Grid -->
+                            <?php if (safe_get($section, 'statistics') && !empty($section['statistics'])) : ?>
+                                <div class="lg:col-span-3">
+                                    <div class="grid grid-cols-2 gap-6">
+                                        <?php foreach ($section['statistics'] as $index => $stat) : ?>
+                                            <div class="bg-white/80 backdrop-blur-xl rounded-3xl p-8 text-center shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 group animate-fade-in-up" style="animation-delay: <?php echo ($index * 0.15) + 0.2; ?>s;">
+                                                
+                                                <!-- Icon with Gradient Background -->
+                                                <?php if (safe_get($stat, 'stat_icon', safe_get($stat, 'icon'))) : ?>
+                                                    <div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center text-white text-3xl mb-6 mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                                                        <?php echo esc_html(safe_get($stat, 'stat_icon', safe_get($stat, 'icon'))); ?>
+                                                    </div>
+                                                <?php endif; ?>
+                                                
+                                                <!-- Animated Number -->
+                                                <div class="stat-number text-4xl md:text-5xl font-black bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-3 group-hover:from-primary group-hover:to-secondary transition-all duration-500" data-target="<?php echo esc_attr(preg_replace('/[^0-9]/', '', safe_get($stat, 'stat_number', safe_get($stat, 'number')))); ?>">
+                                                    <?php echo esc_html(safe_get($stat, 'stat_number', safe_get($stat, 'number'))); ?>
+                                                </div>
+                                                
+                                                <!-- Label -->
+                                                <div class="text-gray-600 font-semibold text-sm uppercase tracking-wide group-hover:text-gray-800 transition-colors duration-300">
+                                                    <?php echo esc_html(safe_get($stat, 'stat_label', safe_get($stat, 'label'))); ?>
+                                                </div>
+                                                
+                                                <!-- Decorative Line -->
+                                                <div class="w-16 h-1 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto mt-4 group-hover:w-24 transition-all duration-300"></div>
                                             </div>
                                         <?php endforeach; ?>
                                     </div>
-                                <?php endif; ?>
-                            </div>
-                            
-                            <!-- Statistics -->
-                            <?php if (safe_get($section, 'statistics') && !empty($section['statistics'])) : ?>
-                                <div class="stats-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
-                                    <?php foreach ($section['statistics'] as $stat) : ?>
-                                        <div class="stat-item" style="text-align: center; background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
-                                            <?php if (safe_get($stat, 'stat_icon', safe_get($stat, 'icon'))) : ?>
-                                                <div style="font-size: 2rem; margin-bottom: 1rem;"><?php echo esc_html(safe_get($stat, 'stat_icon', safe_get($stat, 'icon'))); ?></div>
-                                            <?php endif; ?>
-                                            <span class="stat-number" style="display: block; font-size: 2.5rem; font-weight: 800; color: #2dd4bf; margin-bottom: 0.5rem;">
-                                                <?php echo esc_html(safe_get($stat, 'stat_number', safe_get($stat, 'number'))); ?>
-                                            </span>
-                                            <span class="stat-label" style="font-size: 0.9rem; color: #64748b; font-weight: 600;">
-                                                <?php echo esc_html(safe_get($stat, 'stat_label', safe_get($stat, 'label'))); ?>
-                                            </span>
-                                        </div>
-                                    <?php endforeach; ?>
                                 </div>
                             <?php endif; ?>
                             
                         </div>
                     </div>
+                    
+                    <!-- Counter Animation Script -->
+                    <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const observerOptions = {
+                            threshold: 0.7,
+                            rootMargin: '0px 0px -50px 0px'
+                        };
+                        
+                        const observer = new IntersectionObserver((entries) => {
+                            entries.forEach(entry => {
+                                if (entry.isIntersecting) {
+                                    animateNumber(entry.target);
+                                }
+                            });
+                        }, observerOptions);
+                        
+                        document.querySelectorAll('.stat-number').forEach(stat => {
+                            observer.observe(stat);
+                        });
+                        
+                        function animateNumber(element) {
+                            const target = parseInt(element.dataset.target) || 0;
+                            const increment = target / 100;
+                            let current = 0;
+                            
+                            const timer = setInterval(() => {
+                                current += increment;
+                                if (current >= target) {
+                                    current = target;
+                                    clearInterval(timer);
+                                }
+                                
+                                const displayValue = Math.floor(current);
+                                const originalText = element.textContent;
+                                const suffix = originalText.replace(/[0-9]/g, '');
+                                element.textContent = displayValue + suffix;
+                            }, 20);
+                        }
+                    });
+                    </script>
                 </section>
                 <?php
                 break;
                 
             case 'features_section':
                 ?>
-                <!-- Features Section -->
-                <section class="features-section" style="padding: 6rem 0; background: white;">
-                    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem; text-align: center;">
+                <!-- Ultra-Modern Features Section -->
+                <section class="py-24 bg-white relative overflow-hidden">
+                    <!-- Animated Background -->
+                    <div class="absolute inset-0">
+                        <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-primary/5 to-secondary/10 rounded-full blur-3xl"></div>
+                        <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-500/5 to-pink-500/10 rounded-full blur-3xl"></div>
+                    </div>
+                    
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                         
-                        <?php if (safe_get($section, 'badge')) : ?>
-                            <div class="section-badge" style="background: linear-gradient(135deg, #f59e0b, #f97316); color: white; padding: 0.5rem 1.5rem; border-radius: 25px; font-size: 0.9rem; font-weight: 600; display: inline-block; margin-bottom: 2rem;">
-                                <?php echo esc_html($section['badge']); ?>
-                            </div>
-                        <?php endif; ?>
-                        
-                        <?php if (safe_get($section, 'title')) : ?>
-                            <h2 class="section-title" style="font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 2rem; color: #1e293b; line-height: 1.2;">
-                                <?php echo esc_html($section['title']); ?>
-                            </h2>
-                        <?php endif; ?>
-                        
-                        <?php if (safe_get($section, 'description')) : ?>
-                            <p class="section-description" style="font-size: 1.25rem; color: #64748b; margin-bottom: 4rem; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.6;">
-                                <?php echo esc_html($section['description']); ?>
-                            </p>
-                        <?php endif; ?>
+                        <!-- Section Header -->
+                        <div class="text-center mb-20">
+                            <?php if (safe_get($section, 'badge')) : ?>
+                                <div class="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-full text-sm font-semibold mb-6 shadow-lg animate-fade-in-down">
+                                    <div class="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                                    <?php echo esc_html($section['badge']); ?>
+                                </div>
+                            <?php endif; ?>
+                            
+                            <?php if (safe_get($section, 'title')) : ?>
+                                <h2 class="text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-6 leading-tight animate-fade-in-up">
+                                    <?php echo esc_html($section['title']); ?>
+                                </h2>
+                            <?php endif; ?>
+                            
+                            <?php if (safe_get($section, 'description')) : ?>
+                                <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed animate-fade-in-up" style="animation-delay: 0.2s;">
+                                    <?php echo esc_html($section['description']); ?>
+                                </p>
+                            <?php endif; ?>
+                            
+                            <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mt-8 animate-scale-in"></div>
+                        </div>
                         
                         <?php if (safe_get($section, 'features') && !empty($section['features'])) : ?>
-                            <div class="features-carousel-container" style="position: relative; overflow: hidden;">
-                                <!-- Carousel Navigation Arrows -->
-                                <button class="features-nav prev" onclick="scrollFeatures(-1)" style="position: absolute; left: -20px; top: 50%; transform: translateY(-50%); background: white; border: none; border-radius: 50%; width: 50px; height: 50px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #64748b; transition: all 0.3s ease;">
-                                    ←
-                                </button>
-                                <button class="features-nav next" onclick="scrollFeatures(1)" style="position: absolute; right: -20px; top: 50%; transform: translateY(-50%); background: white; border: none; border-radius: 50%; width: 50px; height: 50px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #64748b; transition: all 0.3s ease;">
-                                    →
+                            <!-- Modern Features Container -->
+                            <div class="relative group">
+                                
+                                <!-- Enhanced Navigation -->
+                                <button class="absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-white/90 backdrop-blur-xl hover:bg-white text-gray-700 hover:text-primary w-14 h-14 rounded-2xl shadow-2xl hover:shadow-primary/20 transition-all duration-500 transform hover:scale-110 opacity-0 group-hover:opacity-100 flex items-center justify-center border border-gray-200/50" onclick="scrollFeatures(-1)">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path>
+                                    </svg>
                                 </button>
                                 
-                                <!-- Features Carousel -->
-                                <div class="features-carousel" id="featuresCarousel" style="display: flex; gap: 2rem; overflow-x: auto; scroll-behavior: smooth; padding: 1rem 0; scrollbar-width: none; -ms-overflow-style: none;">
-                                    <?php foreach ($section['features'] as $feature) : ?>
-                                        <div class="feature-card" style="background: #f8fafc; padding: 3rem 2rem; border-radius: 20px; text-align: center; transition: transform 0.3s ease; min-width: 300px; max-width: 300px; flex-shrink: 0;">
-                                        
-                                        <?php if (safe_get($feature, 'image')) : ?>
-                                            <div style="width: 80px; height: 80px; margin: 0 auto 2rem; border-radius: 50%; overflow: hidden;">
-                                                <img src="<?php echo esc_url($feature['image']['sizes']['thumbnail']); ?>" 
-                                                     alt="<?php echo esc_attr($feature['image']['alt']); ?>"
-                                                     style="width: 100%; height: 100%; object-fit: cover;">
+                                <button class="absolute right-4 top-1/2 -translate-y-1/2 z-30 bg-white/90 backdrop-blur-xl hover:bg-white text-gray-700 hover:text-primary w-14 h-14 rounded-2xl shadow-2xl hover:shadow-primary/20 transition-all duration-500 transform hover:scale-110 opacity-0 group-hover:opacity-100 flex items-center justify-center border border-gray-200/50" onclick="scrollFeatures(1)">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </button>
+                                
+                                <!-- Premium Features Carousel -->
+                                <div class="features-carousel overflow-x-auto scrollbar-hide flex gap-8 pb-6 scroll-smooth" id="featuresCarousel">
+                                    <?php foreach ($section['features'] as $index => $feature) : ?>
+                                        <div class="feature-card flex-none w-80 bg-gradient-to-br from-white to-gray-50 rounded-3xl p-8 text-center shadow-xl hover:shadow-2xl border border-gray-100 transition-all duration-700 transform hover:-translate-y-3 hover:rotate-1 group/card animate-fade-in-up" style="animation-delay: <?php echo $index * 0.15; ?>s;">
+                                            
+                                            <!-- Modern Icon -->
+                                            <div class="mb-8">
+                                                <?php if (safe_get($feature, 'image')) : ?>
+                                                    <div class="w-20 h-20 mx-auto rounded-3xl overflow-hidden ring-4 ring-primary/10 group-hover/card:ring-primary/30 transition-all duration-300">
+                                                        <img src="<?php echo esc_url($feature['image']['sizes']['thumbnail']); ?>" 
+                                                             alt="<?php echo esc_attr($feature['image']['alt']); ?>"
+                                                             class="w-full h-full object-cover">
+                                                    </div>
+                                                <?php else : ?>
+                                                    <div class="w-20 h-20 mx-auto rounded-3xl flex items-center justify-center text-4xl text-white shadow-xl group-hover/card:scale-110 transition-transform duration-300" style="background: <?php echo esc_attr(safe_get($feature, 'color', 'linear-gradient(135deg, #2dd4bf, #3b82f6)')); ?>;">
+                                                        <?php echo esc_html(safe_get($feature, 'feature_icon', '⭐')); ?>
+                                                    </div>
+                                                <?php endif; ?>
                                             </div>
-                                        <?php else : ?>
-                                            <div class="feature-icon" style="width: 80px; height: 80px; margin: 0 auto 2rem; background: <?php echo esc_attr(safe_get($feature, 'color', '#2dd4bf')); ?>; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
-                                                <?php echo esc_html(safe_get($feature, 'feature_icon', '⭐')); ?>
-                                            </div>
-                                        <?php endif; ?>
-                                        
-                                        <?php if (safe_get($feature, 'feature_title')) : ?>
-                                            <h3 class="feature-title" style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: #1e293b;">
-                                                <?php echo esc_html($feature['feature_title']); ?>
-                                            </h3>
-                                        <?php endif; ?>
-                                        
-                                        <?php if (safe_get($feature, 'feature_description')) : ?>
-                                            <p class="feature-description" style="color: #64748b; line-height: 1.6;">
-                                                <?php echo esc_html($feature['feature_description']); ?>
-                                            </p>
-                                        <?php endif; ?>
-                                        
+                                            
+                                            <!-- Title -->
+                                            <?php if (safe_get($feature, 'feature_title')) : ?>
+                                                <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover/card:text-primary transition-colors duration-300">
+                                                    <?php echo esc_html($feature['feature_title']); ?>
+                                                </h3>
+                                            <?php endif; ?>
+                                            
+                                            <!-- Description -->
+                                            <?php if (safe_get($feature, 'feature_description')) : ?>
+                                                <p class="text-gray-600 leading-relaxed group-hover/card:text-gray-700 transition-colors duration-300">
+                                                    <?php echo esc_html($feature['feature_description']); ?>
+                                                </p>
+                                            <?php endif; ?>
+                                            
+                                            <!-- Decorative Element -->
+                                            <div class="mt-6 w-16 h-1 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto group-hover/card:w-24 transition-all duration-300"></div>
                                         </div>
                                     <?php endforeach; ?>
                                 </div>
@@ -266,62 +366,55 @@ if ($flexible_content) :
                             <script>
                             function scrollFeatures(direction) {
                                 const carousel = document.getElementById('featuresCarousel');
-                                const scrollAmount = 320; // Card width (300px) + gap (20px)
+                                const cardWidth = 352; // w-80 (320px) + gap-8 (32px)
                                 const currentScroll = carousel.scrollLeft;
                                 
-                                if (direction === 1) {
-                                    carousel.scrollTo({
-                                        left: currentScroll + scrollAmount,
-                                        behavior: 'smooth'
-                                    });
-                                } else {
-                                    carousel.scrollTo({
-                                        left: currentScroll - scrollAmount,
-                                        behavior: 'smooth'
-                                    });
-                                }
+                                carousel.scrollTo({
+                                    left: currentScroll + (direction * cardWidth),
+                                    behavior: 'smooth'
+                                });
                             }
                             
-                            // Auto-scroll functionality for features
+                            // Enhanced auto-scroll for features
                             let featuresAutoScrollInterval;
                             let featuresCurrentIndex = 0;
                             
                             function startFeaturesAutoScroll() {
+                                const carousel = document.getElementById('featuresCarousel');
+                                if (!carousel || carousel.children.length <= 1) return;
+                                
                                 featuresAutoScrollInterval = setInterval(() => {
-                                    const carousel = document.getElementById('featuresCarousel');
-                                    const containerWidth = carousel.parentElement.clientWidth;
-                                    const cardWidth = 320; // Card width + gap
+                                    const containerWidth = carousel.offsetWidth;
+                                    const cardWidth = 352;
                                     const maxScroll = carousel.scrollWidth - containerWidth;
                                     
-                                    // Check if we're at or near the end
-                                    if (carousel.scrollLeft >= maxScroll - 50) {
-                                        // Jump back to start smoothly
+                                    if (carousel.scrollLeft >= maxScroll - 10) {
                                         carousel.scrollTo({ left: 0, behavior: 'smooth' });
                                         featuresCurrentIndex = 0;
                                     } else {
-                                        // Continue scrolling right
                                         featuresCurrentIndex++;
-                                        carousel.scrollTo({ left: featuresCurrentIndex * cardWidth, behavior: 'smooth' });
+                                        carousel.scrollTo({ 
+                                            left: featuresCurrentIndex * cardWidth, 
+                                            behavior: 'smooth' 
+                                        });
                                     }
-                                }, 4500); // Change feature every 4.5 seconds
+                                }, 5000); // Change every 5 seconds
                             }
                             
                             function stopFeaturesAutoScroll() {
                                 clearInterval(featuresAutoScrollInterval);
                             }
                             
-                            // Initialize features auto-scroll when page loads
+                            // Initialize features
                             document.addEventListener('DOMContentLoaded', function() {
-                                const featuresCarousel = document.getElementById('featuresCarousel');
-                                if (featuresCarousel && featuresCarousel.children.length > 0) {
+                                const carousel = document.getElementById('featuresCarousel');
+                                const container = carousel?.parentElement;
+                                
+                                if (carousel && container) {
                                     startFeaturesAutoScroll();
                                     
-                                    // Pause auto-scroll on hover
-                                    const featuresContainer = document.querySelector('.features-carousel-container');
-                                    if (featuresContainer) {
-                                        featuresContainer.addEventListener('mouseenter', stopFeaturesAutoScroll);
-                                        featuresContainer.addEventListener('mouseleave', startFeaturesAutoScroll);
-                                    }
+                                    container.addEventListener('mouseenter', stopFeaturesAutoScroll);
+                                    container.addEventListener('mouseleave', startFeaturesAutoScroll);
                                 }
                             });
                             </script>
@@ -659,179 +752,184 @@ if ($flexible_content) :
                 
             case 'testimonials_section':
                 ?>
-                <!-- Testimonials Section -->
-                <section class="testimonials-section" style="padding: 6rem 0; background: white;">
-                    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem; text-align: center;">
+                <!-- Ultra-Modern Testimonials Section -->
+                <section class="py-24 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
+                    <!-- Animated Background Elements -->
+                    <div class="absolute inset-0 overflow-hidden">
+                        <div class="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-full blur-3xl animate-pulse"></div>
+                        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-purple-400/10 to-pink-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+                    </div>
+                    
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                         
-                        <?php if (safe_get($section, 'title')) : ?>
-                            <h2 class="section-title" style="font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 4rem; color: #1e293b;">
-                                <?php echo esc_html($section['title']); ?>
-                            </h2>
-                        <?php endif; ?>
+                        <!-- Section Header -->
+                        <div class="text-center mb-20">
+                            <?php if (safe_get($section, 'title')) : ?>
+                                <h2 class="text-5xl md:text-6xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 mb-6 leading-tight animate-fade-in-up">
+                                    <?php echo esc_html($section['title']); ?>
+                                </h2>
+                            <?php endif; ?>
+                            
+                            <div class="w-32 h-1.5 bg-gradient-to-r from-primary via-secondary to-purple-500 mx-auto rounded-full mb-8 animate-scale-in"></div>
+                            <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed animate-fade-in-up" style="animation-delay: 0.2s;">
+                                Discover what our adventurers say about their unforgettable Milford Sound experiences
+                            </p>
+                        </div>
                         
                         <?php if (safe_get($section, 'testimonials') && !empty($section['testimonials'])) : ?>
-                            <div class="testimonials-carousel-container" style="position: relative; overflow: hidden;">
-                                <!-- Carousel Navigation Arrows -->
-                                <button class="testimonials-nav prev" onclick="scrollTestimonials(-1)" style="position: absolute; left: -20px; top: 50%; transform: translateY(-50%); background: white; border: none; border-radius: 50%; width: 50px; height: 50px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #64748b; transition: all 0.3s ease;">
-                                    ←
-                                </button>
-                                <button class="testimonials-nav next" onclick="scrollTestimonials(1)" style="position: absolute; right: -20px; top: 50%; transform: translateY(-50%); background: white; border: none; border-radius: 50%; width: 50px; height: 50px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #64748b; transition: all 0.3s ease;">
-                                    →
+                            <!-- Modern Testimonials Container -->
+                            <div class="relative group">
+                                
+                                <!-- Enhanced Navigation Arrows -->
+                                <button class="absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-white/90 backdrop-blur-xl hover:bg-white text-gray-700 hover:text-primary w-14 h-14 rounded-2xl shadow-2xl hover:shadow-primary/20 transition-all duration-500 transform hover:scale-110 opacity-0 group-hover:opacity-100 flex items-center justify-center border border-gray-200/50" onclick="scrollTestimonials(-1)">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path>
+                                    </svg>
                                 </button>
                                 
-                                <!-- Testimonials Carousel -->
-                                <div class="testimonials-carousel" id="testimonialsCarousel" style="display: flex; gap: 2rem; overflow-x: auto; scroll-behavior: smooth; padding: 1rem 0; scrollbar-width: none; -ms-overflow-style: none;">
-                                    <?php foreach ($section['testimonials'] as $testimonial) : ?>
-                                        <div class="testimonial-card" style="background: #f8fafc; padding: 2rem; border-radius: 20px; text-align: left; min-width: 350px; max-width: 350px; flex-shrink: 0; height: 280px; display: flex; flex-direction: column;">
-                                        
-                                        <!-- Testimonial content that grows -->
-                                        <div class="testimonial-content" style="flex: 1;">
+                                <button class="absolute right-4 top-1/2 -translate-y-1/2 z-30 bg-white/90 backdrop-blur-xl hover:bg-white text-gray-700 hover:text-primary w-14 h-14 rounded-2xl shadow-2xl hover:shadow-primary/20 transition-all duration-500 transform hover:scale-110 opacity-0 group-hover:opacity-100 flex items-center justify-center border border-gray-200/50" onclick="scrollTestimonials(1)">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </button>
+                                
+                                <!-- Premium Testimonials Carousel -->
+                                <div class="testimonials-carousel overflow-x-auto scrollbar-hide flex gap-8 pb-6 scroll-smooth" id="testimonialsCarousel">
+                                    <?php foreach ($section['testimonials'] as $index => $testimonial) : ?>
+                                        <div class="testimonial-card flex-none w-96 bg-white/70 backdrop-blur-lg rounded-3xl p-8 shadow-xl hover:shadow-2xl border border-white/50 transition-all duration-700 transform hover:-translate-y-3 hover:rotate-1 group/card animate-fade-in-up" style="animation-delay: <?php echo $index * 0.15; ?>s;">
+                                            
+                                            <!-- Quote Icon -->
+                                            <div class="mb-6">
+                                                <div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center shadow-lg group-hover/card:scale-110 transition-transform duration-300">
+                                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Rating Stars -->
                                             <?php if (safe_get($testimonial, 'rating')) : ?>
-                                                <div class="testimonial-rating" style="margin-bottom: 1rem;">
+                                                <div class="flex items-center gap-1 mb-6">
                                                     <?php for ($i = 1; $i <= 5; $i++) : ?>
-                                                        <span style="color: <?php echo $i <= $testimonial['rating'] ? '#fbbf24' : '#e5e7eb'; ?>;">⭐</span>
+                                                        <svg class="w-5 h-5 <?php echo $i <= $testimonial['rating'] ? 'text-yellow-400' : 'text-gray-300'; ?> transition-colors duration-300" fill="currentColor" viewBox="0 0 20 20">
+                                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                                        </svg>
                                                     <?php endfor; ?>
+                                                    <span class="ml-2 text-sm font-semibold text-gray-700"><?php echo esc_html($testimonial['rating']); ?>/5</span>
                                                 </div>
                                             <?php endif; ?>
                                             
+                                            <!-- Testimonial Text -->
                                             <?php if (safe_get($testimonial, 'text')) : ?>
-                                                <blockquote style="font-style: italic; color: #64748b; margin-bottom: 1.5rem; line-height: 1.6; font-size: 1rem;">
-                                                    "<?php echo esc_html(strlen($testimonial['text']) > 120 ? substr($testimonial['text'], 0, 120) . '...' : $testimonial['text']); ?>"
+                                                <blockquote class="text-gray-700 text-lg leading-relaxed mb-8 font-medium italic group-hover/card:text-gray-800 transition-colors duration-300">
+                                                    "<?php echo esc_html($testimonial['text']); ?>"
                                                 </blockquote>
                                             <?php endif; ?>
-                                        </div>
-                                        
-                                        <div class="testimonial-author" style="display: flex; align-items: center; gap: 1rem;">
-                                            <?php if (safe_get($testimonial, 'avatar')) : ?>
-                                                <div style="width: 50px; height: 50px; border-radius: 50%; overflow: hidden;">
-                                                    <img src="<?php echo esc_url($testimonial['avatar']['sizes']['thumbnail']); ?>" 
-                                                         alt="<?php echo esc_attr($testimonial['avatar']['alt']); ?>"
-                                                         style="width: 100%; height: 100%; object-fit: cover;">
-                                                </div>
-                                            <?php else : ?>
-                                                <div style="width: 50px; height: 50px; border-radius: 50%; background: #2dd4bf; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">
-                                                    <?php echo esc_html(substr(safe_get($testimonial, 'name', 'U'), 0, 1)); ?>
-                                                </div>
-                                            <?php endif; ?>
                                             
-                                            <div>
-                                                <?php if (safe_get($testimonial, 'name')) : ?>
-                                                    <div style="font-weight: 600; color: #1e293b;">
-                                                        <?php echo esc_html($testimonial['name']); ?>
+                                            <!-- Author Section -->
+                                            <div class="flex items-center gap-4 mt-auto">
+                                                <!-- Avatar -->
+                                                <div class="relative">
+                                                    <?php if (safe_get($testimonial, 'avatar')) : ?>
+                                                        <div class="w-14 h-14 rounded-full overflow-hidden ring-4 ring-primary/20 group-hover/card:ring-primary/40 transition-all duration-300">
+                                                            <img src="<?php echo esc_url($testimonial['avatar']['sizes']['thumbnail']); ?>" 
+                                                                 alt="<?php echo esc_attr($testimonial['avatar']['alt']); ?>"
+                                                                 class="w-full h-full object-cover">
+                                                        </div>
+                                                    <?php else : ?>
+                                                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold text-lg ring-4 ring-primary/20 group-hover/card:ring-primary/40 transition-all duration-300">
+                                                            <?php echo esc_html(substr(safe_get($testimonial, 'name', 'U'), 0, 1)); ?>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                    
+                                                    <!-- Verified Badge -->
+                                                    <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center ring-2 ring-white">
+                                                        <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                                        </svg>
                                                     </div>
-                                                <?php endif; ?>
+                                                </div>
                                                 
-                                                <?php if (safe_get($testimonial, 'location')) : ?>
-                                                    <div style="font-size: 0.9rem; color: #64748b;">
-                                                        <?php echo esc_html($testimonial['location']); ?>
-                                                    </div>
-                                                <?php endif; ?>
+                                                <!-- Author Info -->
+                                                <div class="flex-1">
+                                                    <?php if (safe_get($testimonial, 'name')) : ?>
+                                                        <div class="font-bold text-gray-900 text-lg group-hover/card:text-primary transition-colors duration-300">
+                                                            <?php echo esc_html($testimonial['name']); ?>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                    
+                                                    <?php if (safe_get($testimonial, 'location')) : ?>
+                                                        <div class="text-gray-500 text-sm flex items-center gap-1">
+                                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                                            </svg>
+                                                            <?php echo esc_html($testimonial['location']); ?>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </div>
                                             </div>
-                                        </div>
-                                        
                                         </div>
                                     <?php endforeach; ?>
                                 </div>
                             </div>
                             
-                            <!-- Add Testimonials Carousel JavaScript -->
+                            <!-- Modern Testimonials JavaScript -->
                             <script>
                             function scrollTestimonials(direction) {
                                 const carousel = document.getElementById('testimonialsCarousel');
-                                const scrollAmount = 370; // Card width (350px) + gap (20px)
+                                const cardWidth = 416; // 384px (w-96) + 32px (gap-8)
                                 const currentScroll = carousel.scrollLeft;
                                 
-                                if (direction === 1) {
-                                    carousel.scrollTo({
-                                        left: currentScroll + scrollAmount,
-                                        behavior: 'smooth'
-                                    });
-                                } else {
-                                    carousel.scrollTo({
-                                        left: currentScroll - scrollAmount,
-                                        behavior: 'smooth'
-                                    });
-                                }
+                                carousel.scrollTo({
+                                    left: currentScroll + (direction * cardWidth),
+                                    behavior: 'smooth'
+                                });
                             }
                             
-                            // Auto-scroll functionality for testimonials
+                            // Enhanced auto-scroll for testimonials
                             let testimonialsAutoScrollInterval;
                             let testimonialsCurrentIndex = 0;
                             
                             function startTestimonialsAutoScroll() {
+                                const carousel = document.getElementById('testimonialsCarousel');
+                                if (!carousel || carousel.children.length <= 1) return;
+                                
                                 testimonialsAutoScrollInterval = setInterval(() => {
-                                    const carousel = document.getElementById('testimonialsCarousel');
-                                    const containerWidth = carousel.parentElement.clientWidth;
-                                    const cardWidth = 370; // Card width + gap
+                                    const containerWidth = carousel.offsetWidth;
+                                    const cardWidth = 416;
                                     const maxScroll = carousel.scrollWidth - containerWidth;
                                     
-                                    // Check if we're at or near the end
-                                    if (carousel.scrollLeft >= maxScroll - 50) {
-                                        // Jump back to start smoothly
+                                    if (carousel.scrollLeft >= maxScroll - 10) {
                                         carousel.scrollTo({ left: 0, behavior: 'smooth' });
                                         testimonialsCurrentIndex = 0;
                                     } else {
-                                        // Continue scrolling right
                                         testimonialsCurrentIndex++;
-                                        carousel.scrollTo({ left: testimonialsCurrentIndex * cardWidth, behavior: 'smooth' });
+                                        carousel.scrollTo({ 
+                                            left: testimonialsCurrentIndex * cardWidth, 
+                                            behavior: 'smooth' 
+                                        });
                                     }
-                                }, 5000); // Change testimonial every 5 seconds
+                                }, 6000); // Change every 6 seconds
                             }
                             
                             function stopTestimonialsAutoScroll() {
                                 clearInterval(testimonialsAutoScrollInterval);
                             }
                             
-                            // Initialize testimonials auto-scroll when page loads
+                            // Initialize testimonials
                             document.addEventListener('DOMContentLoaded', function() {
-                                startTestimonialsAutoScroll();
+                                const carousel = document.getElementById('testimonialsCarousel');
+                                const container = carousel?.parentElement;
                                 
-                                // Pause auto-scroll on hover
-                                const testimonialsContainer = document.querySelector('.testimonials-carousel-container');
-                                
-                                if (testimonialsContainer) {
-                                    testimonialsContainer.addEventListener('mouseenter', stopTestimonialsAutoScroll);
-                                    testimonialsContainer.addEventListener('mouseleave', startTestimonialsAutoScroll);
+                                if (carousel && container) {
+                                    startTestimonialsAutoScroll();
+                                    
+                                    container.addEventListener('mouseenter', stopTestimonialsAutoScroll);
+                                    container.addEventListener('mouseleave', startTestimonialsAutoScroll);
                                 }
                             });
                             </script>
-                            
-                            <!-- Additional CSS for testimonials -->
-                            <style>
-                            .testimonials-carousel::-webkit-scrollbar {
-                                display: none;
-                            }
-                            
-                            .testimonials-nav:hover {
-                                background: #f8fafc !important;
-                                transform: translateY(-50%) scale(1.1) !important;
-                                box-shadow: 0 6px 25px rgba(0,0,0,0.15) !important;
-                            }
-                            
-                            .testimonial-card:hover {
-                                transform: translateY(-5px);
-                                transition: transform 0.3s ease;
-                            }
-                            
-                            @media (max-width: 768px) {
-                                .testimonials-nav {
-                                    display: none !important;
-                                }
-                                
-                                .testimonial-card {
-                                    min-width: 300px !important;
-                                    max-width: 300px !important;
-                                    height: 250px !important;
-                                }
-                            }
-                            
-                            @media (min-width: 1200px) {
-                                .testimonials-carousel-container {
-                                    max-width: 1100px;
-                                    margin: 0 auto;
-                                }
-                            }
-                            </style>
                         <?php endif; ?>
                         
                     </div>
@@ -841,55 +939,91 @@ if ($flexible_content) :
                 
             case 'cta_section':
                 ?>
-                <!-- CTA Section -->
-                <section class="cta-section" style="padding: 6rem 0; background: linear-gradient(135deg, #2dd4bf, #3b82f6); color: white; text-align: center;">
-                    <div class="container" style="max-width: 1000px; margin: 0 auto; padding: 0 2rem;">
+                <!-- Ultra-Modern CTA Section -->
+                <section class="relative py-32 overflow-hidden bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
+                    <!-- Animated Background -->
+                    <div class="absolute inset-0">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/20 to-purple-600/20 animate-gradient-x"></div>
                         
+                        <!-- Floating Orbs -->
+                        <div class="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
+                        <div class="absolute bottom-20 right-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-500"></div>
+                        
+                        <!-- Grid Pattern -->
+                        <div class="absolute inset-0 bg-grid-white/[0.02] bg-grid-pattern"></div>
+                    </div>
+                    
+                    <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                        
+                        <!-- Badge -->
                         <?php if (safe_get($section, 'badge')) : ?>
-                            <div class="cta-badge" style="background: rgba(255,255,255,0.2); padding: 0.5rem 1.5rem; border-radius: 25px; font-size: 0.9rem; font-weight: 600; display: inline-block; margin-bottom: 2rem;">
+                            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-xl border border-white/20 px-8 py-4 rounded-full text-white font-semibold mb-8 shadow-2xl animate-fade-in-down">
+                                <div class="w-3 h-3 bg-primary rounded-full animate-ping"></div>
                                 <?php echo esc_html($section['badge']); ?>
                             </div>
                         <?php endif; ?>
                         
+                        <!-- Title -->
                         <?php if (safe_get($section, 'title')) : ?>
-                            <h2 class="cta-title" style="font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 2rem; line-height: 1.2;">
-                                <?php echo esc_html($section['title']); ?>
+                            <h2 class="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-tight animate-fade-in-up">
+                                <span class="bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent">
+                                    <?php echo esc_html($section['title']); ?>
+                                </span>
                             </h2>
                         <?php endif; ?>
                         
+                        <!-- Description -->
                         <?php if (safe_get($section, 'description')) : ?>
-                            <p class="cta-description" style="font-size: 1.25rem; margin-bottom: 3rem; opacity: 0.9; line-height: 1.6;">
+                            <p class="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed mb-12 animate-fade-in-up" style="animation-delay: 0.2s;">
                                 <?php echo esc_html($section['description']); ?>
                             </p>
                         <?php endif; ?>
                         
+                        <!-- Buttons -->
                         <?php if (safe_get($section, 'buttons') && !empty($section['buttons'])) : ?>
-                            <div class="cta-buttons" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem;">
-                                <?php foreach ($section['buttons'] as $button) : ?>
+                            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16 animate-fade-in-up" style="animation-delay: 0.4s;">
+                                <?php foreach ($section['buttons'] as $index => $button) : ?>
                                     <?php
                                     $btn_style = safe_get($button, 'style', 'primary');
-                                    $btn_class = ($btn_style === 'primary') 
-                                        ? 'background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3);' 
-                                        : 'background: white; color: #2dd4bf;';
+                                    $btn_classes = ($btn_style === 'primary') 
+                                        ? 'bg-white text-gray-900 hover:bg-gray-100 shadow-2xl hover:shadow-white/20' 
+                                        : 'bg-white/10 text-white border-2 border-white/30 hover:bg-white/20 hover:border-white/50 backdrop-blur-xl';
                                     ?>
                                     <a href="<?php echo esc_url(safe_get(safe_get($button, 'link'), 'url', '#')); ?>" 
-                                       style="<?php echo $btn_class; ?> padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;"
+                                       class="<?php echo $btn_classes; ?> px-10 py-5 rounded-2xl font-bold text-lg transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 group min-w-[250px] animate-scale-in"
+                                       style="animation-delay: <?php echo 0.6 + ($index * 0.1); ?>s;"
                                        <?php if (safe_get(safe_get($button, 'link'), 'target')) echo 'target="' . esc_attr($button['link']['target']) . '"'; ?>>
-                                        <?php if (safe_get($button, 'icon')) : ?>
-                                            <?php echo esc_html($button['icon']); ?> 
-                                        <?php endif; ?>
-                                        <?php echo esc_html(safe_get($button, 'text', 'Button')); ?>
+                                        <span class="flex items-center justify-center gap-3">
+                                            <?php if (safe_get($button, 'icon')) : ?>
+                                                <span class="text-2xl"><?php echo esc_html($button['icon']); ?></span>
+                                            <?php endif; ?>
+                                            <span><?php echo esc_html(safe_get($button, 'text', 'Button')); ?></span>
+                                            <svg class="w-5 h-5 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                                            </svg>
+                                        </span>
                                     </a>
                                 <?php endforeach; ?>
                             </div>
                         <?php endif; ?>
                         
+                        <!-- Modern Features -->
                         <?php if (safe_get($section, 'features') && !empty($section['features'])) : ?>
-                            <div class="cta-features" style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-                                <?php foreach ($section['features'] as $feature) : ?>
-                                    <div class="cta-feature" style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; opacity: 0.9;">
-                                        <span><?php echo esc_html(safe_get($feature, 'icon', '✓')); ?></span>
-                                        <span><?php echo esc_html(safe_get($feature, 'text')); ?></span>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 animate-fade-in-up" style="animation-delay: 0.8s;">
+                                <?php foreach ($section['features'] as $index => $feature) : ?>
+                                    <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 text-center transform hover:scale-105 transition-all duration-500 hover:bg-white/20 animate-scale-in" style="animation-delay: <?php echo 1 + ($index * 0.1); ?>s;">
+                                        <div class="text-4xl mb-4">
+                                            <?php echo esc_html(safe_get($feature, 'icon', '✓')); ?>
+                                        </div>
+                                        <h3 class="text-white font-bold text-lg mb-2">
+                                            <?php echo esc_html(safe_get($feature, 'title', safe_get($feature, 'text'))); ?>
+                                        </h3>
+                                        <?php if (safe_get($feature, 'description')) : ?>
+                                            <p class="text-white/80 text-sm">
+                                                <?php echo esc_html($feature['description']); ?>
+                                            </p>
+                                        <?php endif; ?>
                                     </div>
                                 <?php endforeach; ?>
                             </div>

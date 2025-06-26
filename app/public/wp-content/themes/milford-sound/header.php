@@ -21,6 +21,11 @@
                         'fade-in-down': 'fadeInDown 0.8s ease-out forwards',
                         'scale-in': 'scaleIn 0.6s ease-out forwards',
                         'gradient-x': 'gradient-x 15s ease infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'pulse-slow': 'pulse 4s infinite',
+                        'spin-slow': 'spin 8s linear infinite',
                     },
                     utilities: {
                         '.scrollbar-hide': {
